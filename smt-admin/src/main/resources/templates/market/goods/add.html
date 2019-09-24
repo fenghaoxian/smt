@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-smtGoods-add">
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">商品中文名称：</label>
+				<div class="col-sm-8">
+					<input id="goodsCname" name="goodsCname" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">海关编码：</label>
+				<div class="col-sm-8">
+					<input id="hsCode" name="hsCode" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">附加编码：</label>
+				<div class="col-sm-8">
+					<input id="hsCodes" name="hsCodes" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">企业自有编码：</label>
+				<div class="col-sm-8">
+					<input id="corpOwnerCode" name="corpOwnerCode" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">商品类别：</label>
+				<div class="col-sm-8">
+					<input id="goodsType" name="goodsType" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">商品英文名称：</label>
+				<div class="col-sm-8">
+					<input id="goodsEname" name="goodsEname" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">规格型号：</label>
+				<div class="col-sm-8">
+					<input id="model" name="model" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">是否品牌授权：</label>
+				<div class="col-sm-8">
+					<input id="isBrand" name="isBrand" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">品牌中文名：</label>
+				<div class="col-sm-8">
+					<input id="cBrand" name="cBrand" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">品牌英文名：</label>
+				<div class="col-sm-8">
+					<input id="eBrand" name="eBrand" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">生产厂家代码：</label>
+				<div class="col-sm-8">
+					<input id="producer" name="producer" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">成交单位：</label>
+				<div class="col-sm-8">
+					<input id="cunit" name="cunit" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">法定单位：</label>
+				<div class="col-sm-8">
+					<input id="qunit" name="qunit" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">第二单位：</label>
+				<div class="col-sm-8">
+					<input id="wunit" name="wunit" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">商品图片：</label>
+				<div class="col-sm-8">
+					<input id="goodsImage" name="goodsImage" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">商品编码：</label>
+				<div class="col-sm-8">
+					<input id="goodsCode" name="goodsCode" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">市场核实状态：</label>
+				<div class="col-sm-8">
+					<input id="chkMarket" name="chkMarket" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">删除标志：</label>
+				<div class="col-sm-8">
+					<input id="delFlag" name="delFlag" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建人：</label>
+				<div class="col-sm-8">
+					<input id="createBy" name="createBy" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建时间：</label>
+				<div class="col-sm-8">
+					<input id="createTime" name="createTime" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">更新人：</label>
+				<div class="col-sm-8">
+					<input id="updateBy" name="updateBy" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">更新时间：</label>
+				<div class="col-sm-8">
+					<input id="updateTime" name="updateTime" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">备注：</label>
+				<div class="col-sm-8">
+					<input id="remark" name="remark" class="form-control" type="text">
+				</div>
+			</div>
+		</form>
+	</div>
+    <div th:include="include::footer"></div>
+    <script type="text/javascript">
+		var prefix = ctx + "market/goods"
+		$("#form-smtGoods-add").validate({
+			rules:{
+				xxxx:{
+					required:true,
+				},
+			}
+		});
+		
+		function submitHandler() {
+	        if ($.validate.form()) {
+	            $.operate.save(prefix + "/add", $('#form-smtGoods-add').serialize());
+	        }
+	    }
+	</script>
+</body>
+</html>

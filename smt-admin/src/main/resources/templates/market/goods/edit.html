@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-smtGoods-edit" th:object="${smtGoods}">
+            <input id="goodsId" name="goodsId" th:field="*{goodsId}"  type="hidden">
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">商品中文名称：</label>
+				<div class="col-sm-8">
+					<input id="goodsCname" name="goodsCname" th:field="*{goodsCname}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">海关编码：</label>
+				<div class="col-sm-8">
+					<input id="hsCode" name="hsCode" th:field="*{hsCode}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">附加编码：</label>
+				<div class="col-sm-8">
+					<input id="hsCodes" name="hsCodes" th:field="*{hsCodes}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">企业自有编码：</label>
+				<div class="col-sm-8">
+					<input id="corpOwnerCode" name="corpOwnerCode" th:field="*{corpOwnerCode}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">商品类别：</label>
+				<div class="col-sm-8">
+					<input id="goodsType" name="goodsType" th:field="*{goodsType}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">商品英文名称：</label>
+				<div class="col-sm-8">
+					<input id="goodsEname" name="goodsEname" th:field="*{goodsEname}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">规格型号：</label>
+				<div class="col-sm-8">
+					<input id="model" name="model" th:field="*{model}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">是否品牌授权：</label>
+				<div class="col-sm-8">
+					<input id="isBrand" name="isBrand" th:field="*{isBrand}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">品牌中文名：</label>
+				<div class="col-sm-8">
+					<input id="cBrand" name="cBrand" th:field="*{cBrand}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">品牌英文名：</label>
+				<div class="col-sm-8">
+					<input id="eBrand" name="eBrand" th:field="*{eBrand}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">生产厂家代码：</label>
+				<div class="col-sm-8">
+					<input id="producer" name="producer" th:field="*{producer}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">成交单位：</label>
+				<div class="col-sm-8">
+					<input id="cunit" name="cunit" th:field="*{cunit}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">法定单位：</label>
+				<div class="col-sm-8">
+					<input id="qunit" name="qunit" th:field="*{qunit}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">第二单位：</label>
+				<div class="col-sm-8">
+					<input id="wunit" name="wunit" th:field="*{wunit}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">商品图片：</label>
+				<div class="col-sm-8">
+					<input id="goodsImage" name="goodsImage" th:field="*{goodsImage}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">商品编码：</label>
+				<div class="col-sm-8">
+					<input id="goodsCode" name="goodsCode" th:field="*{goodsCode}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">市场核实状态：</label>
+				<div class="col-sm-8">
+					<input id="chkMarket" name="chkMarket" th:field="*{chkMarket}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">删除标志：</label>
+				<div class="col-sm-8">
+					<input id="delFlag" name="delFlag" th:field="*{delFlag}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建人：</label>
+				<div class="col-sm-8">
+					<input id="createBy" name="createBy" th:field="*{createBy}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建时间：</label>
+				<div class="col-sm-8">
+					<input id="createTime" name="createTime" th:field="*{createTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">更新人：</label>
+				<div class="col-sm-8">
+					<input id="updateBy" name="updateBy" th:field="*{updateBy}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">更新时间：</label>
+				<div class="col-sm-8">
+					<input id="updateTime" name="updateTime" th:field="*{updateTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">备注：</label>
+				<div class="col-sm-8">
+					<input id="remark" name="remark" th:field="*{remark}" class="form-control" type="text">
+				</div>
+			</div>
+		</form>
+    </div>
+    <div th:include="include::footer"></div>
+    <script type="text/javascript">
+		var prefix = ctx + "market/goods";
+		$("#form-smtGoods-edit").validate({
+			rules:{
+				xxxx:{
+					required:true,
+				},
+			}
+		});
+		
+		function submitHandler() {
+	        if ($.validate.form()) {
+	            $.operate.save(prefix + "/edit", $('#form-smtGoods-edit').serialize());
+	        }
+	    }
+	</script>
+</body>
+</html>

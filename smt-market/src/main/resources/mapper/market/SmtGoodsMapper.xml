@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smt.market.mapper.SmtGoodsMapper">
+    
+    <resultMap type="SmtGoods" id="SmtGoodsResult">
+        <result property="goodsId"    column="goods_id"    />
+        <result property="goodsCname"    column="goods_cname"    />
+        <result property="hsCode"    column="hs_code"    />
+        <result property="hsCodes"    column="hs_codes"    />
+        <result property="corpOwnerCode"    column="corp_owner_code"    />
+        <result property="goodsType"    column="goods_type"    />
+        <result property="goodsEname"    column="goods_ename"    />
+        <result property="model"    column="model"    />
+        <result property="isBrand"    column="is_brand"    />
+        <result property="cBrand"    column="c_brand"    />
+        <result property="eBrand"    column="e_brand"    />
+        <result property="producer"    column="producer"    />
+        <result property="cunit"    column="cunit"    />
+        <result property="qunit"    column="qunit"    />
+        <result property="wunit"    column="wunit"    />
+        <result property="goodsImage"    column="goods_image"    />
+        <result property="goodsCode"    column="goods_code"    />
+        <result property="chkMarket"    column="chk_market"    />
+        <result property="delFlag"    column="del_flag"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+	
+	<sql id="selectSmtGoodsVo">
+        select goods_id, goods_cname, hs_code, hs_codes, corp_owner_code, goods_type, goods_ename, model, is_brand, c_brand, e_brand, producer, cunit, qunit, wunit, goods_image, goods_code, chk_market, del_flag, create_by, create_time, update_by, update_time, remark from smt_goods
+    </sql>
+	
+    <select id="selectSmtGoodsList" parameterType="SmtGoods" resultMap="SmtGoodsResult">
+        <include refid="selectSmtGoodsVo"/>
+        <where>  
+            <if test="goodsId != null "> and goods_id = #{goodsId}</if>
+             <if test="goodsCname != null  and goodsCname != '' "> and goods_cname = #{goodsCname}</if>
+             <if test="hsCode != null  and hsCode != '' "> and hs_code = #{hsCode}</if>
+             <if test="hsCodes != null  and hsCodes != '' "> and hs_codes = #{hsCodes}</if>
+             <if test="corpOwnerCode != null  and corpOwnerCode != '' "> and corp_owner_code = #{corpOwnerCode}</if>
+             <if test="goodsType != null  and goodsType != '' "> and goods_type = #{goodsType}</if>
+             <if test="goodsEname != null  and goodsEname != '' "> and goods_ename = #{goodsEname}</if>
+             <if test="model != null  and model != '' "> and model = #{model}</if>
+             <if test="isBrand != null  and isBrand != '' "> and is_brand = #{isBrand}</if>
+             <if test="cBrand != null  and cBrand != '' "> and c_brand = #{cBrand}</if>
+             <if test="eBrand != null  and eBrand != '' "> and e_brand = #{eBrand}</if>
+             <if test="producer != null  and producer != '' "> and producer = #{producer}</if>
+             <if test="cunit != null  and cunit != '' "> and cunit = #{cunit}</if>
+             <if test="qunit != null  and qunit != '' "> and qunit = #{qunit}</if>
+             <if test="wunit != null  and wunit != '' "> and wunit = #{wunit}</if>
+             <if test="goodsImage != null  and goodsImage != '' "> and goods_image = #{goodsImage}</if>
+             <if test="goodsCode != null  and goodsCode != '' "> and goods_code = #{goodsCode}</if>
+             <if test="chkMarket != null  and chkMarket != '' "> and chk_market = #{chkMarket}</if>
+             <if test="delFlag != null  and delFlag != '' "> and del_flag = #{delFlag}</if>
+             <if test="createBy != null  and createBy != '' "> and create_by = #{createBy}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+             <if test="updateBy != null  and updateBy != '' "> and update_by = #{updateBy}</if>
+             <if test="updateTime != null "> and update_time = #{updateTime}</if>
+             <if test="remark != null  and remark != '' "> and remark = #{remark}</if>
+         </where>
+    </select>
+    
+    <select id="selectSmtGoodsById" parameterType="Integer" resultMap="SmtGoodsResult">
+        <include refid="selectSmtGoodsVo"/>
+        where goods_id = #{goodsId}
+    </select>
+        
+    <insert id="insertSmtGoods" parameterType="SmtGoods" useGeneratedKeys="true" keyProperty="goodsId">
+        insert into smt_goods
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="goodsCname != null  and goodsCname != ''  ">goods_cname,</if>
+			<if test="hsCode != null  and hsCode != ''  ">hs_code,</if>
+			<if test="hsCodes != null  and hsCodes != ''  ">hs_codes,</if>
+			<if test="corpOwnerCode != null  and corpOwnerCode != ''  ">corp_owner_code,</if>
+			<if test="goodsType != null  and goodsType != ''  ">goods_type,</if>
+			<if test="goodsEname != null  and goodsEname != ''  ">goods_ename,</if>
+			<if test="model != null  and model != ''  ">model,</if>
+			<if test="isBrand != null  and isBrand != ''  ">is_brand,</if>
+			<if test="cBrand != null  and cBrand != ''  ">c_brand,</if>
+			<if test="eBrand != null  and eBrand != ''  ">e_brand,</if>
+			<if test="producer != null  and producer != ''  ">producer,</if>
+			<if test="cunit != null  and cunit != ''  ">cunit,</if>
+			<if test="qunit != null  and qunit != ''  ">qunit,</if>
+			<if test="wunit != null  and wunit != ''  ">wunit,</if>
+			<if test="goodsImage != null  and goodsImage != ''  ">goods_image,</if>
+			<if test="goodsCode != null  and goodsCode != ''  ">goods_code,</if>
+			<if test="chkMarket != null  and chkMarket != ''  ">chk_market,</if>
+			<if test="delFlag != null  and delFlag != ''  ">del_flag,</if>
+			<if test="createBy != null  and createBy != ''  ">create_by,</if>
+			<if test="createTime != null  ">create_time,</if>
+			<if test="updateBy != null  and updateBy != ''  ">update_by,</if>
+			<if test="updateTime != null  ">update_time,</if>
+			<if test="remark != null  and remark != ''  ">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="goodsCname != null  and goodsCname != ''  ">#{goodsCname},</if>
+			<if test="hsCode != null  and hsCode != ''  ">#{hsCode},</if>
+			<if test="hsCodes != null  and hsCodes != ''  ">#{hsCodes},</if>
+			<if test="corpOwnerCode != null  and corpOwnerCode != ''  ">#{corpOwnerCode},</if>
+			<if test="goodsType != null  and goodsType != ''  ">#{goodsType},</if>
+			<if test="goodsEname != null  and goodsEname != ''  ">#{goodsEname},</if>
+			<if test="model != null  and model != ''  ">#{model},</if>
+			<if test="isBrand != null  and isBrand != ''  ">#{isBrand},</if>
+			<if test="cBrand != null  and cBrand != ''  ">#{cBrand},</if>
+			<if test="eBrand != null  and eBrand != ''  ">#{eBrand},</if>
+			<if test="producer != null  and producer != ''  ">#{producer},</if>
+			<if test="cunit != null  and cunit != ''  ">#{cunit},</if>
+			<if test="qunit != null  and qunit != ''  ">#{qunit},</if>
+			<if test="wunit != null  and wunit != ''  ">#{wunit},</if>
+			<if test="goodsImage != null  and goodsImage != ''  ">#{goodsImage},</if>
+			<if test="goodsCode != null  and goodsCode != ''  ">#{goodsCode},</if>
+			<if test="chkMarket != null  and chkMarket != ''  ">#{chkMarket},</if>
+			<if test="delFlag != null  and delFlag != ''  ">#{delFlag},</if>
+			<if test="createBy != null  and createBy != ''  ">#{createBy},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+			<if test="updateBy != null  and updateBy != ''  ">#{updateBy},</if>
+			<if test="updateTime != null  ">#{updateTime},</if>
+			<if test="remark != null  and remark != ''  ">#{remark},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateSmtGoods" parameterType="SmtGoods">
+        update smt_goods
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="goodsCname != null  and goodsCname != ''  ">goods_cname = #{goodsCname},</if>
+            <if test="hsCode != null  and hsCode != ''  ">hs_code = #{hsCode},</if>
+            <if test="hsCodes != null  and hsCodes != ''  ">hs_codes = #{hsCodes},</if>
+            <if test="corpOwnerCode != null  and corpOwnerCode != ''  ">corp_owner_code = #{corpOwnerCode},</if>
+            <if test="goodsType != null  and goodsType != ''  ">goods_type = #{goodsType},</if>
+            <if test="goodsEname != null  and goodsEname != ''  ">goods_ename = #{goodsEname},</if>
+            <if test="model != null  and model != ''  ">model = #{model},</if>
+            <if test="isBrand != null  and isBrand != ''  ">is_brand = #{isBrand},</if>
+            <if test="cBrand != null  and cBrand != ''  ">c_brand = #{cBrand},</if>
+            <if test="eBrand != null  and eBrand != ''  ">e_brand = #{eBrand},</if>
+            <if test="producer != null  and producer != ''  ">producer = #{producer},</if>
+            <if test="cunit != null  and cunit != ''  ">cunit = #{cunit},</if>
+            <if test="qunit != null  and qunit != ''  ">qunit = #{qunit},</if>
+            <if test="wunit != null  and wunit != ''  ">wunit = #{wunit},</if>
+            <if test="goodsImage != null  and goodsImage != ''  ">goods_image = #{goodsImage},</if>
+            <if test="goodsCode != null  and goodsCode != ''  ">goods_code = #{goodsCode},</if>
+            <if test="chkMarket != null  and chkMarket != ''  ">chk_market = #{chkMarket},</if>
+            <if test="delFlag != null  and delFlag != ''  ">del_flag = #{delFlag},</if>
+            <if test="createBy != null  and createBy != ''  ">create_by = #{createBy},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by = #{updateBy},</if>
+            <if test="updateTime != null  ">update_time = #{updateTime},</if>
+            <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
+        </trim>
+        where goods_id = #{goodsId}
+    </update>
+
+	<delete id="deleteSmtGoodsById" parameterType="Integer">
+        delete from smt_goods where goods_id = #{goodsId}
+    </delete>
+	
+    <delete id="deleteSmtGoodsByIds" parameterType="String">
+        delete from smt_goods where goods_id in 
+        <foreach item="goodsId" collection="array" open="(" separator="," close=")">
+            #{goodsId}
+        </foreach>
+    </delete>
+    
+</mapper>

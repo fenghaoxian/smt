@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smt.market.mapper.SmtCompanyMapper">
+    
+    <resultMap type="SmtCompany" id="SmtCompanyResult">
+        <result property="companyId"    column="company_id"    />
+        <result property="sgsRegCode"    column="sgs_reg_code"    />
+        <result property="regionCode"    column="region_code"    />
+        <result property="taxAuthoritiesCode"    column="tax_authorities_code"    />
+        <result property="corpCname"    column="corp_cname"    />
+        <result property="corpEname"    column="corp_ename"    />
+        <result property="corpShortName"    column="corp_short_name"    />
+        <result property="corpOrgCode"    column="corp_org_code"    />
+        <result property="corpType"    column="corp_type"    />
+        <result property="characters"    column="characters"    />
+        <result property="legalName"    column="legal_name"    />
+        <result property="identCode"    column="ident_code"    />
+        <result property="identIdCode"    column="ident_id_code"    />
+        <result property="contractMan"    column="contract_man"    />
+        <result property="loginUserName"    column="login_user_name"    />
+        <result property="cellPhoneNo"    column="cell_phone_no"    />
+        <result property="email"    column="email"    />
+        <result property="wisdomCheckNo"    column="wisdom_check_no"    />
+        <result property="faxNo"    column="fax_no"    />
+        <result property="postCode"    column="post_code"    />
+        <result property="caddress"    column="caddress"    />
+        <result property="regMoney"    column="reg_money"    />
+        <result property="companyType"    column="company_type"    />
+        <result property="scope"    column="scope"    />
+        <result property="industryCode"    column="industry_code"    />
+        <result property="taxIdentCode"    column="tax_ident_code"    />
+        <result property="corpTaxType"    column="corp_tax_type"    />
+        <result property="customCode"    column="custom_code"    />
+        <result property="declCode"    column="decl_code"    />
+        <result property="ioCorpCode"    column="io_corp_code"    />
+        <result property="creditLevel"    column="credit_level"    />
+        <result property="validateBeg"    column="validate_beg"    />
+        <result property="validateEng"    column="validate_eng"    />
+        <result property="regDate"    column="reg_date"    />
+        <result property="openDate"    column="open_date"    />
+        <result property="resCountry"    column="res_country"    />
+        <result property="orgAddress"    column="org_address"    />
+        <result property="finvest1"    column="finvest1"    />
+        <result property="finvest2"    column="finvest2"    />
+        <result property="finvest3"    column="finvest3"    />
+        <result property="finvest4"    column="finvest4"    />
+        <result property="finvest5"    column="finvest5"    />
+        <result property="economyType"    column="economy_type"    />
+        <result property="locationfCode"    column="locationf_code"    />
+        <result property="isSpecialCorp"    column="is_special_corp"    />
+        <result property="specialCorpType"    column="special_corp_type"    />
+        <result property="period"    column="period"    />
+        <result property="investMoneyKind"    column="invest_money_kind"    />
+        <result property="fregMoneyDollar"    column="freg_money_dollar"    />
+        <result property="investSumMoney"    column="invest_sum_money"    />
+        <result property="rmbInvestSumMoney"    column="rmb_invest_sum_money"    />
+        <result property="finvestSumMoneyDollar"    column="finvest_sum_money_dollar"    />
+        <result property="orgType"    column="org_type"    />
+        <result property="corpBussinessType"    column="corp_bussiness_type"    />
+        <result property="showSellGoods"    column="show_sell_goods"    />
+        <result property="relateCorp"    column="relate_corp"    />
+        <result property="orgId"    column="org_id"    />
+        <result property="delFlag"    column="del_flag"    />
+        <result property="remark"    column="remark"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+	
+	<sql id="selectSmtCompanyVo">
+        select company_id, sgs_reg_code, region_code, tax_authorities_code, corp_cname, corp_ename, corp_short_name, corp_org_code, corp_type, characters, legal_name, ident_code, ident_id_code, contract_man, login_user_name, cell_phone_no, email, wisdom_check_no, fax_no, post_code, caddress, reg_money, company_type, scope, industry_code, tax_ident_code, corp_tax_type, custom_code, decl_code, io_corp_code, credit_level, validate_beg, validate_eng, reg_date, open_date, res_country, org_address, finvest1, finvest2, finvest3, finvest4, finvest5, economy_type, locationf_code, is_special_corp, special_corp_type, period, invest_money_kind, freg_money_dollar, invest_sum_money, rmb_invest_sum_money, finvest_sum_money_dollar, org_type, corp_bussiness_type, show_sell_goods, relate_corp, org_id, del_flag, remark, create_by, create_time, update_by, update_time from smt_company
+    </sql>
+	
+    <select id="selectSmtCompanyList" parameterType="SmtCompany" resultMap="SmtCompanyResult">
+        <include refid="selectSmtCompanyVo"/>
+        <where>  
+            <if test="companyId != null "> and company_id = #{companyId}</if>
+             <if test="sgsRegCode != null  and sgsRegCode != '' "> and sgs_reg_code = #{sgsRegCode}</if>
+             <if test="regionCode != null  and regionCode != '' "> and region_code = #{regionCode}</if>
+             <if test="taxAuthoritiesCode != null  and taxAuthoritiesCode != '' "> and tax_authorities_code = #{taxAuthoritiesCode}</if>
+             <if test="corpCname != null  and corpCname != '' "> and corp_cname = #{corpCname}</if>
+             <if test="corpEname != null  and corpEname != '' "> and corp_ename = #{corpEname}</if>
+             <if test="corpShortName != null  and corpShortName != '' "> and corp_short_name = #{corpShortName}</if>
+             <if test="corpOrgCode != null  and corpOrgCode != '' "> and corp_org_code = #{corpOrgCode}</if>
+             <if test="corpType != null  and corpType != '' "> and corp_type = #{corpType}</if>
+             <if test="characters != null  and characters != '' "> and characters = #{characters}</if>
+             <if test="legalName != null  and legalName != '' "> and legal_name = #{legalName}</if>
+             <if test="identCode != null  and identCode != '' "> and ident_code = #{identCode}</if>
+             <if test="identIdCode != null  and identIdCode != '' "> and ident_id_code = #{identIdCode}</if>
+             <if test="contractMan != null  and contractMan != '' "> and contract_man = #{contractMan}</if>
+             <if test="loginUserName != null  and loginUserName != '' "> and login_user_name = #{loginUserName}</if>
+             <if test="cellPhoneNo != null  and cellPhoneNo != '' "> and cell_phone_no = #{cellPhoneNo}</if>
+             <if test="email != null  and email != '' "> and email = #{email}</if>
+             <if test="wisdomCheckNo != null  and wisdomCheckNo != '' "> and wisdom_check_no = #{wisdomCheckNo}</if>
+             <if test="faxNo != null  and faxNo != '' "> and fax_no = #{faxNo}</if>
+             <if test="postCode != null  and postCode != '' "> and post_code = #{postCode}</if>
+             <if test="caddress != null  and caddress != '' "> and caddress = #{caddress}</if>
+             <if test="regMoney != null  and regMoney != '' "> and reg_money = #{regMoney}</if>
+             <if test="companyType != null  and companyType != '' "> and company_type = #{companyType}</if>
+             <if test="scope != null  and scope != '' "> and scope = #{scope}</if>
+             <if test="industryCode != null  and industryCode != '' "> and industry_code = #{industryCode}</if>
+             <if test="taxIdentCode != null  and taxIdentCode != '' "> and tax_ident_code = #{taxIdentCode}</if>
+             <if test="corpTaxType != null  and corpTaxType != '' "> and corp_tax_type = #{corpTaxType}</if>
+             <if test="customCode != null  and customCode != '' "> and custom_code = #{customCode}</if>
+             <if test="declCode != null  and declCode != '' "> and decl_code = #{declCode}</if>
+             <if test="ioCorpCode != null  and ioCorpCode != '' "> and io_corp_code = #{ioCorpCode}</if>
+             <if test="creditLevel != null  and creditLevel != '' "> and credit_level = #{creditLevel}</if>
+             <if test="validateBeg != null "> and validate_beg = #{validateBeg}</if>
+             <if test="validateEng != null "> and validate_eng = #{validateEng}</if>
+             <if test="regDate != null "> and reg_date = #{regDate}</if>
+             <if test="openDate != null "> and open_date = #{openDate}</if>
+             <if test="resCountry != null  and resCountry != '' "> and res_country = #{resCountry}</if>
+             <if test="orgAddress != null  and orgAddress != '' "> and org_address = #{orgAddress}</if>
+             <if test="finvest1 != null  and finvest1 != '' "> and finvest1 = #{finvest1}</if>
+             <if test="finvest2 != null  and finvest2 != '' "> and finvest2 = #{finvest2}</if>
+             <if test="finvest3 != null  and finvest3 != '' "> and finvest3 = #{finvest3}</if>
+             <if test="finvest4 != null  and finvest4 != '' "> and finvest4 = #{finvest4}</if>
+             <if test="finvest5 != null  and finvest5 != '' "> and finvest5 = #{finvest5}</if>
+             <if test="economyType != null  and economyType != '' "> and economy_type = #{economyType}</if>
+             <if test="locationfCode != null  and locationfCode != '' "> and locationf_code = #{locationfCode}</if>
+             <if test="isSpecialCorp != null  and isSpecialCorp != '' "> and is_special_corp = #{isSpecialCorp}</if>
+             <if test="specialCorpType != null  and specialCorpType != '' "> and special_corp_type = #{specialCorpType}</if>
+             <if test="period != null  and period != '' "> and period = #{period}</if>
+             <if test="investMoneyKind != null  and investMoneyKind != '' "> and invest_money_kind = #{investMoneyKind}</if>
+             <if test="fregMoneyDollar != null "> and freg_money_dollar = #{fregMoneyDollar}</if>
+             <if test="investSumMoney != null  and investSumMoney != '' "> and invest_sum_money = #{investSumMoney}</if>
+             <if test="rmbInvestSumMoney != null  and rmbInvestSumMoney != '' "> and rmb_invest_sum_money = #{rmbInvestSumMoney}</if>
+             <if test="finvestSumMoneyDollar != null  and finvestSumMoneyDollar != '' "> and finvest_sum_money_dollar = #{finvestSumMoneyDollar}</if>
+             <if test="orgType != null  and orgType != '' "> and org_type = #{orgType}</if>
+             <if test="corpBussinessType != null  and corpBussinessType != '' "> and corp_bussiness_type = #{corpBussinessType}</if>
+             <if test="showSellGoods != null  and showSellGoods != '' "> and show_sell_goods = #{showSellGoods}</if>
+             <if test="relateCorp != null  and relateCorp != '' "> and relate_corp = #{relateCorp}</if>
+             <if test="orgId != null  and orgId != '' "> and org_id = #{orgId}</if>
+             <if test="delFlag != null  and delFlag != '' "> and del_flag = #{delFlag}</if>
+             <if test="remark != null  and remark != '' "> and remark = #{remark}</if>
+             <if test="createBy != null  and createBy != '' "> and create_by = #{createBy}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+             <if test="updateBy != null  and updateBy != '' "> and update_by = #{updateBy}</if>
+             <if test="updateTime != null "> and update_time = #{updateTime}</if>
+         </where>
+    </select>
+    
+    <select id="selectSmtCompanyById" parameterType="Integer" resultMap="SmtCompanyResult">
+        <include refid="selectSmtCompanyVo"/>
+        where company_id = #{companyId}
+    </select>
+        
+    <insert id="insertSmtCompany" parameterType="SmtCompany" useGeneratedKeys="true" keyProperty="companyId">
+        insert into smt_company
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="sgsRegCode != null  and sgsRegCode != ''  ">sgs_reg_code,</if>
+			<if test="regionCode != null  and regionCode != ''  ">region_code,</if>
+			<if test="taxAuthoritiesCode != null  and taxAuthoritiesCode != ''  ">tax_authorities_code,</if>
+			<if test="corpCname != null  and corpCname != ''  ">corp_cname,</if>
+			<if test="corpEname != null  and corpEname != ''  ">corp_ename,</if>
+			<if test="corpShortName != null  and corpShortName != ''  ">corp_short_name,</if>
+			<if test="corpOrgCode != null  and corpOrgCode != ''  ">corp_org_code,</if>
+			<if test="corpType != null  and corpType != ''  ">corp_type,</if>
+			<if test="characters != null  and characters != ''  ">characters,</if>
+			<if test="legalName != null  and legalName != ''  ">legal_name,</if>
+			<if test="identCode != null  and identCode != ''  ">ident_code,</if>
+			<if test="identIdCode != null  and identIdCode != ''  ">ident_id_code,</if>
+			<if test="contractMan != null  and contractMan != ''  ">contract_man,</if>
+			<if test="loginUserName != null  and loginUserName != ''  ">login_user_name,</if>
+			<if test="cellPhoneNo != null  and cellPhoneNo != ''  ">cell_phone_no,</if>
+			<if test="email != null  and email != ''  ">email,</if>
+			<if test="wisdomCheckNo != null  and wisdomCheckNo != ''  ">wisdom_check_no,</if>
+			<if test="faxNo != null  and faxNo != ''  ">fax_no,</if>
+			<if test="postCode != null  and postCode != ''  ">post_code,</if>
+			<if test="caddress != null  and caddress != ''  ">caddress,</if>
+			<if test="regMoney != null  and regMoney != ''  ">reg_money,</if>
+			<if test="companyType != null  and companyType != ''  ">company_type,</if>
+			<if test="scope != null  and scope != ''  ">scope,</if>
+			<if test="industryCode != null  and industryCode != ''  ">industry_code,</if>
+			<if test="taxIdentCode != null  and taxIdentCode != ''  ">tax_ident_code,</if>
+			<if test="corpTaxType != null  and corpTaxType != ''  ">corp_tax_type,</if>
+			<if test="customCode != null  and customCode != ''  ">custom_code,</if>
+			<if test="declCode != null  and declCode != ''  ">decl_code,</if>
+			<if test="ioCorpCode != null  and ioCorpCode != ''  ">io_corp_code,</if>
+			<if test="creditLevel != null  and creditLevel != ''  ">credit_level,</if>
+			<if test="validateBeg != null  ">validate_beg,</if>
+			<if test="validateEng != null  ">validate_eng,</if>
+			<if test="regDate != null  ">reg_date,</if>
+			<if test="openDate != null  ">open_date,</if>
+			<if test="resCountry != null  and resCountry != ''  ">res_country,</if>
+			<if test="orgAddress != null  and orgAddress != ''  ">org_address,</if>
+			<if test="finvest1 != null  and finvest1 != ''  ">finvest1,</if>
+			<if test="finvest2 != null  and finvest2 != ''  ">finvest2,</if>
+			<if test="finvest3 != null  and finvest3 != ''  ">finvest3,</if>
+			<if test="finvest4 != null  and finvest4 != ''  ">finvest4,</if>
+			<if test="finvest5 != null  and finvest5 != ''  ">finvest5,</if>
+			<if test="economyType != null  and economyType != ''  ">economy_type,</if>
+			<if test="locationfCode != null  and locationfCode != ''  ">locationf_code,</if>
+			<if test="isSpecialCorp != null  and isSpecialCorp != ''  ">is_special_corp,</if>
+			<if test="specialCorpType != null  and specialCorpType != ''  ">special_corp_type,</if>
+			<if test="period != null  and period != ''  ">period,</if>
+			<if test="investMoneyKind != null  and investMoneyKind != ''  ">invest_money_kind,</if>
+			<if test="fregMoneyDollar != null  ">freg_money_dollar,</if>
+			<if test="investSumMoney != null  and investSumMoney != ''  ">invest_sum_money,</if>
+			<if test="rmbInvestSumMoney != null  and rmbInvestSumMoney != ''  ">rmb_invest_sum_money,</if>
+			<if test="finvestSumMoneyDollar != null  and finvestSumMoneyDollar != ''  ">finvest_sum_money_dollar,</if>
+			<if test="orgType != null  and orgType != ''  ">org_type,</if>
+			<if test="corpBussinessType != null  and corpBussinessType != ''  ">corp_bussiness_type,</if>
+			<if test="showSellGoods != null  and showSellGoods != ''  ">show_sell_goods,</if>
+			<if test="relateCorp != null  and relateCorp != ''  ">relate_corp,</if>
+			<if test="orgId != null  and orgId != ''  ">org_id,</if>
+			<if test="delFlag != null  and delFlag != ''  ">del_flag,</if>
+			<if test="remark != null  and remark != ''  ">remark,</if>
+			<if test="createBy != null  and createBy != ''  ">create_by,</if>
+			<if test="createTime != null  ">create_time,</if>
+			<if test="updateBy != null  and updateBy != ''  ">update_by,</if>
+			<if test="updateTime != null  ">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="sgsRegCode != null  and sgsRegCode != ''  ">#{sgsRegCode},</if>
+			<if test="regionCode != null  and regionCode != ''  ">#{regionCode},</if>
+			<if test="taxAuthoritiesCode != null  and taxAuthoritiesCode != ''  ">#{taxAuthoritiesCode},</if>
+			<if test="corpCname != null  and corpCname != ''  ">#{corpCname},</if>
+			<if test="corpEname != null  and corpEname != ''  ">#{corpEname},</if>
+			<if test="corpShortName != null  and corpShortName != ''  ">#{corpShortName},</if>
+			<if test="corpOrgCode != null  and corpOrgCode != ''  ">#{corpOrgCode},</if>
+			<if test="corpType != null  and corpType != ''  ">#{corpType},</if>
+			<if test="characters != null  and characters != ''  ">#{characters},</if>
+			<if test="legalName != null  and legalName != ''  ">#{legalName},</if>
+			<if test="identCode != null  and identCode != ''  ">#{identCode},</if>
+			<if test="identIdCode != null  and identIdCode != ''  ">#{identIdCode},</if>
+			<if test="contractMan != null  and contractMan != ''  ">#{contractMan},</if>
+			<if test="loginUserName != null  and loginUserName != ''  ">#{loginUserName},</if>
+			<if test="cellPhoneNo != null  and cellPhoneNo != ''  ">#{cellPhoneNo},</if>
+			<if test="email != null  and email != ''  ">#{email},</if>
+			<if test="wisdomCheckNo != null  and wisdomCheckNo != ''  ">#{wisdomCheckNo},</if>
+			<if test="faxNo != null  and faxNo != ''  ">#{faxNo},</if>
+			<if test="postCode != null  and postCode != ''  ">#{postCode},</if>
+			<if test="caddress != null  and caddress != ''  ">#{caddress},</if>
+			<if test="regMoney != null  and regMoney != ''  ">#{regMoney},</if>
+			<if test="companyType != null  and companyType != ''  ">#{companyType},</if>
+			<if test="scope != null  and scope != ''  ">#{scope},</if>
+			<if test="industryCode != null  and industryCode != ''  ">#{industryCode},</if>
+			<if test="taxIdentCode != null  and taxIdentCode != ''  ">#{taxIdentCode},</if>
+			<if test="corpTaxType != null  and corpTaxType != ''  ">#{corpTaxType},</if>
+			<if test="customCode != null  and customCode != ''  ">#{customCode},</if>
+			<if test="declCode != null  and declCode != ''  ">#{declCode},</if>
+			<if test="ioCorpCode != null  and ioCorpCode != ''  ">#{ioCorpCode},</if>
+			<if test="creditLevel != null  and creditLevel != ''  ">#{creditLevel},</if>
+			<if test="validateBeg != null  ">#{validateBeg},</if>
+			<if test="validateEng != null  ">#{validateEng},</if>
+			<if test="regDate != null  ">#{regDate},</if>
+			<if test="openDate != null  ">#{openDate},</if>
+			<if test="resCountry != null  and resCountry != ''  ">#{resCountry},</if>
+			<if test="orgAddress != null  and orgAddress != ''  ">#{orgAddress},</if>
+			<if test="finvest1 != null  and finvest1 != ''  ">#{finvest1},</if>
+			<if test="finvest2 != null  and finvest2 != ''  ">#{finvest2},</if>
+			<if test="finvest3 != null  and finvest3 != ''  ">#{finvest3},</if>
+			<if test="finvest4 != null  and finvest4 != ''  ">#{finvest4},</if>
+			<if test="finvest5 != null  and finvest5 != ''  ">#{finvest5},</if>
+			<if test="economyType != null  and economyType != ''  ">#{economyType},</if>
+			<if test="locationfCode != null  and locationfCode != ''  ">#{locationfCode},</if>
+			<if test="isSpecialCorp != null  and isSpecialCorp != ''  ">#{isSpecialCorp},</if>
+			<if test="specialCorpType != null  and specialCorpType != ''  ">#{specialCorpType},</if>
+			<if test="period != null  and period != ''  ">#{period},</if>
+			<if test="investMoneyKind != null  and investMoneyKind != ''  ">#{investMoneyKind},</if>
+			<if test="fregMoneyDollar != null  ">#{fregMoneyDollar},</if>
+			<if test="investSumMoney != null  and investSumMoney != ''  ">#{investSumMoney},</if>
+			<if test="rmbInvestSumMoney != null  and rmbInvestSumMoney != ''  ">#{rmbInvestSumMoney},</if>
+			<if test="finvestSumMoneyDollar != null  and finvestSumMoneyDollar != ''  ">#{finvestSumMoneyDollar},</if>
+			<if test="orgType != null  and orgType != ''  ">#{orgType},</if>
+			<if test="corpBussinessType != null  and corpBussinessType != ''  ">#{corpBussinessType},</if>
+			<if test="showSellGoods != null  and showSellGoods != ''  ">#{showSellGoods},</if>
+			<if test="relateCorp != null  and relateCorp != ''  ">#{relateCorp},</if>
+			<if test="orgId != null  and orgId != ''  ">#{orgId},</if>
+			<if test="delFlag != null  and delFlag != ''  ">#{delFlag},</if>
+			<if test="remark != null  and remark != ''  ">#{remark},</if>
+			<if test="createBy != null  and createBy != ''  ">#{createBy},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+			<if test="updateBy != null  and updateBy != ''  ">#{updateBy},</if>
+			<if test="updateTime != null  ">#{updateTime},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateSmtCompany" parameterType="SmtCompany">
+        update smt_company
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="sgsRegCode != null  and sgsRegCode != ''  ">sgs_reg_code = #{sgsRegCode},</if>
+            <if test="regionCode != null  and regionCode != ''  ">region_code = #{regionCode},</if>
+            <if test="taxAuthoritiesCode != null  and taxAuthoritiesCode != ''  ">tax_authorities_code = #{taxAuthoritiesCode},</if>
+            <if test="corpCname != null  and corpCname != ''  ">corp_cname = #{corpCname},</if>
+            <if test="corpEname != null  and corpEname != ''  ">corp_ename = #{corpEname},</if>
+            <if test="corpShortName != null  and corpShortName != ''  ">corp_short_name = #{corpShortName},</if>
+            <if test="corpOrgCode != null  and corpOrgCode != ''  ">corp_org_code = #{corpOrgCode},</if>
+            <if test="corpType != null  and corpType != ''  ">corp_type = #{corpType},</if>
+            <if test="characters != null  and characters != ''  ">characters = #{characters},</if>
+            <if test="legalName != null  and legalName != ''  ">legal_name = #{legalName},</if>
+            <if test="identCode != null  and identCode != ''  ">ident_code = #{identCode},</if>
+            <if test="identIdCode != null  and identIdCode != ''  ">ident_id_code = #{identIdCode},</if>
+            <if test="contractMan != null  and contractMan != ''  ">contract_man = #{contractMan},</if>
+            <if test="loginUserName != null  and loginUserName != ''  ">login_user_name = #{loginUserName},</if>
+            <if test="cellPhoneNo != null  and cellPhoneNo != ''  ">cell_phone_no = #{cellPhoneNo},</if>
+            <if test="email != null  and email != ''  ">email = #{email},</if>
+            <if test="wisdomCheckNo != null  and wisdomCheckNo != ''  ">wisdom_check_no = #{wisdomCheckNo},</if>
+            <if test="faxNo != null  and faxNo != ''  ">fax_no = #{faxNo},</if>
+            <if test="postCode != null  and postCode != ''  ">post_code = #{postCode},</if>
+            <if test="caddress != null  and caddress != ''  ">caddress = #{caddress},</if>
+            <if test="regMoney != null  and regMoney != ''  ">reg_money = #{regMoney},</if>
+            <if test="companyType != null  and companyType != ''  ">company_type = #{companyType},</if>
+            <if test="scope != null  and scope != ''  ">scope = #{scope},</if>
+            <if test="industryCode != null  and industryCode != ''  ">industry_code = #{industryCode},</if>
+            <if test="taxIdentCode != null  and taxIdentCode != ''  ">tax_ident_code = #{taxIdentCode},</if>
+            <if test="corpTaxType != null  and corpTaxType != ''  ">corp_tax_type = #{corpTaxType},</if>
+            <if test="customCode != null  and customCode != ''  ">custom_code = #{customCode},</if>
+            <if test="declCode != null  and declCode != ''  ">decl_code = #{declCode},</if>
+            <if test="ioCorpCode != null  and ioCorpCode != ''  ">io_corp_code = #{ioCorpCode},</if>
+            <if test="creditLevel != null  and creditLevel != ''  ">credit_level = #{creditLevel},</if>
+            <if test="validateBeg != null  ">validate_beg = #{validateBeg},</if>
+            <if test="validateEng != null  ">validate_eng = #{validateEng},</if>
+            <if test="regDate != null  ">reg_date = #{regDate},</if>
+            <if test="openDate != null  ">open_date = #{openDate},</if>
+            <if test="resCountry != null  and resCountry != ''  ">res_country = #{resCountry},</if>
+            <if test="orgAddress != null  and orgAddress != ''  ">org_address = #{orgAddress},</if>
+            <if test="finvest1 != null  and finvest1 != ''  ">finvest1 = #{finvest1},</if>
+            <if test="finvest2 != null  and finvest2 != ''  ">finvest2 = #{finvest2},</if>
+            <if test="finvest3 != null  and finvest3 != ''  ">finvest3 = #{finvest3},</if>
+            <if test="finvest4 != null  and finvest4 != ''  ">finvest4 = #{finvest4},</if>
+            <if test="finvest5 != null  and finvest5 != ''  ">finvest5 = #{finvest5},</if>
+            <if test="economyType != null  and economyType != ''  ">economy_type = #{economyType},</if>
+            <if test="locationfCode != null  and locationfCode != ''  ">locationf_code = #{locationfCode},</if>
+            <if test="isSpecialCorp != null  and isSpecialCorp != ''  ">is_special_corp = #{isSpecialCorp},</if>
+            <if test="specialCorpType != null  and specialCorpType != ''  ">special_corp_type = #{specialCorpType},</if>
+            <if test="period != null  and period != ''  ">period = #{period},</if>
+            <if test="investMoneyKind != null  and investMoneyKind != ''  ">invest_money_kind = #{investMoneyKind},</if>
+            <if test="fregMoneyDollar != null  ">freg_money_dollar = #{fregMoneyDollar},</if>
+            <if test="investSumMoney != null  and investSumMoney != ''  ">invest_sum_money = #{investSumMoney},</if>
+            <if test="rmbInvestSumMoney != null  and rmbInvestSumMoney != ''  ">rmb_invest_sum_money = #{rmbInvestSumMoney},</if>
+            <if test="finvestSumMoneyDollar != null  and finvestSumMoneyDollar != ''  ">finvest_sum_money_dollar = #{finvestSumMoneyDollar},</if>
+            <if test="orgType != null  and orgType != ''  ">org_type = #{orgType},</if>
+            <if test="corpBussinessType != null  and corpBussinessType != ''  ">corp_bussiness_type = #{corpBussinessType},</if>
+            <if test="showSellGoods != null  and showSellGoods != ''  ">show_sell_goods = #{showSellGoods},</if>
+            <if test="relateCorp != null  and relateCorp != ''  ">relate_corp = #{relateCorp},</if>
+            <if test="orgId != null  and orgId != ''  ">org_id = #{orgId},</if>
+            <if test="delFlag != null  and delFlag != ''  ">del_flag = #{delFlag},</if>
+            <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
+            <if test="createBy != null  and createBy != ''  ">create_by = #{createBy},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by = #{updateBy},</if>
+            <if test="updateTime != null  ">update_time = #{updateTime},</if>
+        </trim>
+        where company_id = #{companyId}
+    </update>
+
+	<delete id="deleteSmtCompanyById" parameterType="Integer">
+        delete from smt_company where company_id = #{companyId}
+    </delete>
+	
+    <delete id="deleteSmtCompanyByIds" parameterType="String">
+        delete from smt_company where company_id in 
+        <foreach item="companyId" collection="array" open="(" separator="," close=")">
+            #{companyId}
+        </foreach>
+    </delete>
+    
+</mapper>
