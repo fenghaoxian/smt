@@ -109,7 +109,7 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 		if (iterator.hasNext()) {
 			Element element = (Element) iterator.next();
-			Iterator companyIter = element.elementIterator("company");
+			Iterator companyIter = element.elementIterator("Company");
 			if (companyIter.hasNext()) {
 				Element ele = (Element) companyIter.next();
 				String username = ele.elementTextTrim("username");
