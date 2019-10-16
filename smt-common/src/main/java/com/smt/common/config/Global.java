@@ -1,12 +1,13 @@
 package com.smt.common.config;
 
+import com.smt.common.utils.StringUtils;
+import com.smt.common.utils.YamlUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import com.smt.common.utils.StringUtils;
-import com.smt.common.utils.YamlUtil;
 
 /**
  * 全局配置类
@@ -167,5 +168,22 @@ public class Global
     public static String getTablePrefix()
     {
         return StringUtils.nvl(getConfig("gen.tablePrefix"), "sys_");
+    }
+
+
+    public static String getCorpCode() {
+        return StringUtils.nvl(getConfig("trade.corpCode"), "");
+    }
+
+    public static String getCorpName() {
+        return StringUtils.nvl(getConfig("trade.corpName"), "");
+    }
+
+    public static String getLoginCode() {
+        return StringUtils.nvl(getConfig("trade.loginCode"), "");
+    }
+
+    public static String getLoginPassWord() {
+        return StringUtils.nvl(getConfig("trade.loginPassWord"), "");
     }
 }

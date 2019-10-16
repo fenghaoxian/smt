@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smt.market.mapper.SmtCompanyBuyerMapper">
+    
+    <resultMap type="SmtCompanyBuyer" id="SmtCompanyBuyerResult">
+        <result property="companyId"    column="company_id"    />
+        <result property="buyerId"    column="buyer_id"    />
+    </resultMap>
+	
+	<sql id="selectSmtCompanyBuyerVo">
+        select company_id, buyer_id from smt_company_buyer
+    </sql>
+	
+    <select id="selectSmtCompanyBuyerList" parameterType="SmtCompanyBuyer" resultMap="SmtCompanyBuyerResult">
+        <include refid="selectSmtCompanyBuyerVo"/>
+        <where>  
+            <if test="companyId != null "> and company_id = #{companyId}</if>
+             <if test="buyerId != null "> and buyer_id = #{buyerId}</if>
+         </where>
+    </select>
+    
+    <select id="selectSmtCompanyBuyerById" parameterType="Integer" resultMap="SmtCompanyBuyerResult">
+        <include refid="selectSmtCompanyBuyerVo"/>
+        where company_id = #{companyId}
+    </select>
+        
+    <insert id="insertSmtCompanyBuyer" parameterType="SmtCompanyBuyer">
+        insert into smt_company_buyer
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="companyId != null  ">company_id,</if>
+			<if test="buyerId != null  ">buyer_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="companyId != null  ">#{companyId},</if>
+			<if test="buyerId != null  ">#{buyerId},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateSmtCompanyBuyer" parameterType="SmtCompanyBuyer">
+        update smt_company_buyer
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="buyerId != null  ">buyer_id = #{buyerId},</if>
+        </trim>
+        where company_id = #{companyId}
+    </update>
+
+	<delete id="deleteSmtCompanyBuyerById" parameterType="Integer">
+        delete from smt_company_buyer where company_id = #{companyId}
+    </delete>
+	
+    <delete id="deleteSmtCompanyBuyerByIds" parameterType="String">
+        delete from smt_company_buyer where company_id in 
+        <foreach item="companyId" collection="array" open="(" separator="," close=")">
+            #{companyId}
+        </foreach>
+    </delete>
+    
+</mapper>

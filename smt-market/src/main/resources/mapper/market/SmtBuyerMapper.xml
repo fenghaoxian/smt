@@ -2,128 +2,118 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.smt.market.mapper.SmtProducerMapper">
+<mapper namespace="com.smt.market.mapper.SmtBuyerMapper">
     
-    <resultMap type="SmtProducer" id="SmtProducerResult">
-        <result property="producerId"    column="producer_id"    />
+    <resultMap type="SmtBuyer" id="SmtBuyerResult">
+        <result property="buyerId"    column="buyer_id"    />
         <result property="corpCode"    column="corp_code"    />
-        <result property="corpCname"    column="corp_cname"    />
-        <result property="corpEname"    column="corp_ename"    />
+        <result property="corpCName"    column="corp_c_name"    />
         <result property="companyType"    column="company_type"    />
         <result property="contractMan"    column="contract_man"    />
-        <result property="identCode"    column="ident_code"    />
+        <result property="finvest1"    column="finvest1"    />
         <result property="telno"    column="telno"    />
-        <result property="caddress"    column="caddress"    />
+        <result property="address"    column="address"    />
+        <result property="delFlag"    column="del_flag"    />
         <result property="createTime"    column="create_time"    />
         <result property="createBy"    column="create_by"    />
         <result property="updateTime"    column="update_time"    />
         <result property="updateBy"    column="update_by"    />
         <result property="remark"    column="remark"    />
-        <result property="delFlag"    column="del_flag"    />
     </resultMap>
 	
-	<sql id="selectSmtProducerVo">
-        select producer_id, corp_code, corp_cname, corp_ename, company_type, contract_man, ident_code, telno, caddress, create_time, create_by, update_time, update_by, remark, del_flag from smt_producer
+	<sql id="selectSmtBuyerVo">
+        select buyer_id, corp_code, corp_c_name, company_type, contract_man, finvest1, telno, address, del_flag, create_time, create_by, update_time, update_by, remark from smt_buyer
     </sql>
 	
-    <select id="selectSmtProducerList" parameterType="SmtProducer" resultMap="SmtProducerResult">
-        <include refid="selectSmtProducerVo"/>
+    <select id="selectSmtBuyerList" parameterType="SmtBuyer" resultMap="SmtBuyerResult">
+        <include refid="selectSmtBuyerVo"/>
         <where>  
-            <if test="producerId != null "> and producer_id = #{producerId}</if>
+            <if test="buyerId != null "> and buyer_id = #{buyerId}</if>
              <if test="corpCode != null  and corpCode != '' "> and corp_code = #{corpCode}</if>
-             <if test="corpCname != null  and corpCname != '' "> and corp_cname = #{corpCname}</if>
-             <if test="corpEname != null  and corpEname != '' "> and corp_ename = #{corpEname}</if>
+             <if test="corpCName != null  and corpCName != '' "> and corp_c_name = #{corpCName}</if>
              <if test="companyType != null  and companyType != '' "> and company_type = #{companyType}</if>
              <if test="contractMan != null  and contractMan != '' "> and contract_man = #{contractMan}</if>
-             <if test="identCode != null  and identCode != '' "> and ident_code = #{identCode}</if>
+             <if test="finvest1 != null  and finvest1 != '' "> and finvest1 = #{finvest1}</if>
              <if test="telno != null  and telno != '' "> and telno = #{telno}</if>
-             <if test="caddress != null  and caddress != '' "> and caddress = #{caddress}</if>
+             <if test="address != null  and address != '' "> and address = #{address}</if>
+             <if test="delFlag != null  and delFlag != '' "> and del_flag = #{delFlag}</if>
              <if test="createTime != null "> and create_time = #{createTime}</if>
              <if test="createBy != null  and createBy != '' "> and create_by = #{createBy}</if>
              <if test="updateTime != null "> and update_time = #{updateTime}</if>
              <if test="updateBy != null  and updateBy != '' "> and update_by = #{updateBy}</if>
              <if test="remark != null  and remark != '' "> and remark = #{remark}</if>
-             <if test="delFlag != null  and delFlag != '' "> and del_flag = #{delFlag}</if>
          </where>
     </select>
     
-    <select id="selectSmtProducerById" parameterType="Integer" resultMap="SmtProducerResult">
-        <include refid="selectSmtProducerVo"/>
-        where producer_id = #{producerId}
-    </select>
-
-    <select id="selectSmtProducerByCorpCode" parameterType="String" resultMap="SmtProducerResult">
-        <include refid="selectSmtProducerVo"/>
-        where corp_code = #{corpCode}
+    <select id="selectSmtBuyerById" parameterType="Integer" resultMap="SmtBuyerResult">
+        <include refid="selectSmtBuyerVo"/>
+        where buyer_id = #{buyerId}
     </select>
         
-    <insert id="insertSmtProducer" parameterType="SmtProducer">
-        insert into smt_producer
+    <insert id="insertSmtBuyer" parameterType="SmtBuyer">
+        insert into smt_buyer
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="producerId != null  ">producer_id,</if>
+			<if test="buyerId != null  ">buyer_id,</if>
 			<if test="corpCode != null  and corpCode != ''  ">corp_code,</if>
-			<if test="corpCname != null  and corpCname != ''  ">corp_cname,</if>
-			<if test="corpEname != null  and corpEname != ''  ">corp_ename,</if>
+			<if test="corpCName != null  and corpCName != ''  ">corp_c_name,</if>
 			<if test="companyType != null  and companyType != ''  ">company_type,</if>
 			<if test="contractMan != null  and contractMan != ''  ">contract_man,</if>
-			<if test="identCode != null  and identCode != ''  ">ident_code,</if>
+			<if test="finvest1 != null  and finvest1 != ''  ">finvest1,</if>
 			<if test="telno != null  and telno != ''  ">telno,</if>
-			<if test="caddress != null  and caddress != ''  ">caddress,</if>
+			<if test="address != null  and address != ''  ">address,</if>
+			<if test="delFlag != null  and delFlag != ''  ">del_flag,</if>
 			<if test="createTime != null  ">create_time,</if>
 			<if test="createBy != null  and createBy != ''  ">create_by,</if>
 			<if test="updateTime != null  ">update_time,</if>
 			<if test="updateBy != null  and updateBy != ''  ">update_by,</if>
 			<if test="remark != null  and remark != ''  ">remark,</if>
-			<if test="delFlag != null  and delFlag != ''  ">del_flag,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="producerId != null  ">#{producerId},</if>
+			<if test="buyerId != null  ">#{buyerId},</if>
 			<if test="corpCode != null  and corpCode != ''  ">#{corpCode},</if>
-			<if test="corpCname != null  and corpCname != ''  ">#{corpCname},</if>
-			<if test="corpEname != null  and corpEname != ''  ">#{corpEname},</if>
+			<if test="corpCName != null  and corpCName != ''  ">#{corpCName},</if>
 			<if test="companyType != null  and companyType != ''  ">#{companyType},</if>
 			<if test="contractMan != null  and contractMan != ''  ">#{contractMan},</if>
-			<if test="identCode != null  and identCode != ''  ">#{identCode},</if>
+			<if test="finvest1 != null  and finvest1 != ''  ">#{finvest1},</if>
 			<if test="telno != null  and telno != ''  ">#{telno},</if>
-			<if test="caddress != null  and caddress != ''  ">#{caddress},</if>
+			<if test="address != null  and address != ''  ">#{address},</if>
+			<if test="delFlag != null  and delFlag != ''  ">#{delFlag},</if>
 			<if test="createTime != null  ">#{createTime},</if>
 			<if test="createBy != null  and createBy != ''  ">#{createBy},</if>
 			<if test="updateTime != null  ">#{updateTime},</if>
 			<if test="updateBy != null  and updateBy != ''  ">#{updateBy},</if>
 			<if test="remark != null  and remark != ''  ">#{remark},</if>
-			<if test="delFlag != null  and delFlag != ''  ">#{delFlag},</if>
          </trim>
     </insert>
 	 
-    <update id="updateSmtProducer" parameterType="SmtProducer">
-        update smt_producer
+    <update id="updateSmtBuyer" parameterType="SmtBuyer">
+        update smt_buyer
         <trim prefix="SET" suffixOverrides=",">
             <if test="corpCode != null  and corpCode != ''  ">corp_code = #{corpCode},</if>
-            <if test="corpCname != null  and corpCname != ''  ">corp_cname = #{corpCname},</if>
-            <if test="corpEname != null  and corpEname != ''  ">corp_ename = #{corpEname},</if>
+            <if test="corpCName != null  and corpCName != ''  ">corp_c_name = #{corpCName},</if>
             <if test="companyType != null  and companyType != ''  ">company_type = #{companyType},</if>
             <if test="contractMan != null  and contractMan != ''  ">contract_man = #{contractMan},</if>
-            <if test="identCode != null  and identCode != ''  ">ident_code = #{identCode},</if>
+            <if test="finvest1 != null  and finvest1 != ''  ">finvest1 = #{finvest1},</if>
             <if test="telno != null  and telno != ''  ">telno = #{telno},</if>
-            <if test="caddress != null  and caddress != ''  ">caddress = #{caddress},</if>
+            <if test="address != null  and address != ''  ">address = #{address},</if>
+            <if test="delFlag != null  and delFlag != ''  ">del_flag = #{delFlag},</if>
             <if test="createTime != null  ">create_time = #{createTime},</if>
             <if test="createBy != null  and createBy != ''  ">create_by = #{createBy},</if>
             <if test="updateTime != null  ">update_time = #{updateTime},</if>
             <if test="updateBy != null  and updateBy != ''  ">update_by = #{updateBy},</if>
             <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
-            <if test="delFlag != null  and delFlag != ''  ">del_flag = #{delFlag},</if>
         </trim>
-        where producer_id = #{producerId}
+        where buyer_id = #{buyerId}
     </update>
 
-	<delete id="deleteSmtProducerById" parameterType="Integer">
-        delete from smt_producer where producer_id = #{producerId}
+	<delete id="deleteSmtBuyerById" parameterType="Integer">
+        delete from smt_buyer where buyer_id = #{buyerId}
     </delete>
 	
-    <delete id="deleteSmtProducerByIds" parameterType="String">
-        delete from smt_producer where producer_id in 
-        <foreach item="producerId" collection="array" open="(" separator="," close=")">
-            #{producerId}
+    <delete id="deleteSmtBuyerByIds" parameterType="String">
+        delete from smt_buyer where buyer_id in 
+        <foreach item="buyerId" collection="array" open="(" separator="," close=")">
+            #{buyerId}
         </foreach>
     </delete>
     

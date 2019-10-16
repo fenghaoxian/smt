@@ -1,6 +1,8 @@
 package com.smt.market.service;
 
+import com.smt.market.domain.SmtCompany;
 import com.smt.market.domain.SmtGoods;
+import com.smt.market.domain.SmtProducer;
 
 import java.util.Iterator;
 import java.util.List;
@@ -53,6 +55,26 @@ public interface ISmtGoodsService
      */
 	public int deleteSmtGoodsByIds(String ids);
 
+	public void insertGoodsProducer(SmtGoods goods, SmtProducer producer);
+
 	public String insert(Iterator iterator);
+
+	/**
+	 * 商品备案
+	 * @param opType
+	 * @param goodsList
+	 * @param companyList
+	 * @return
+	 */
+	public String execGoods(String opType, List<SmtGoods> goodsList, List<SmtCompany> companyList);
+
+	/**
+	 * 商品备案报文
+	 * @param opType
+	 * @param goodsList
+	 * @param companyList
+	 * @return
+	 */
+	public String getGoodsXmlStr(String opType, List<SmtGoods> goodsList, List<SmtCompany> companyList);
 	
 }

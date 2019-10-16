@@ -18,6 +18,13 @@ public interface SmtProducerMapper
      * @return 生产商信息
      */
 	public SmtProducer selectSmtProducerById(Integer producerId);
+
+	/**
+	 * 查询生产商信息
+	 * @param corpCode 证件代码
+	 * @return
+	 */
+	public SmtProducer selectSmtProducerByCorpCode(String corpCode);
 	
 	/**
      * 查询生产商列表

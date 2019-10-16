@@ -18,6 +18,13 @@ public interface SmtCompanyMapper
      * @return 企业信息
      */
 	public SmtCompany selectSmtCompanyById(Integer companyId);
+
+	/**
+	 *
+	 * @param sgsRegCode 统一社会信用代码
+	 * @return 企业信息
+	 */
+	public SmtCompany selectSmtCompanyBySgsRegCode(String sgsRegCode);
 	
 	/**
      * 查询企业列表

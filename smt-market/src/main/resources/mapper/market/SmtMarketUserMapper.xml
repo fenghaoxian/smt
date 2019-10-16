@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smt.market.mapper.SmtMarketUserMapper">
+    
+    <resultMap type="SmtMarketUser" id="SmtMarketUserResult">
+        <result property="marketId"    column="market_id"    />
+        <result property="sgsRegCode"    column="sgs_reg_code"    />
+        <result property="corpName"    column="corp_name"    />
+        <result property="loginName"    column="login_name"    />
+        <result property="loginPassword"    column="login_password"    />
+        <result property="remark"    column="remark"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+	
+	<sql id="selectSmtMarketUserVo">
+        select market_id, sgs_reg_code, corp_name, login_name, login_password, remark, create_by, create_time, update_by, update_time from smt_market_user
+    </sql>
+	
+    <select id="selectSmtMarketUserList" parameterType="SmtMarketUser" resultMap="SmtMarketUserResult">
+        <include refid="selectSmtMarketUserVo"/>
+        <where>  
+            <if test="marketId != null "> and market_id = #{marketId}</if>
+             <if test="sgsRegCode != null  and sgsRegCode != '' "> and sgs_reg_code = #{sgsRegCode}</if>
+             <if test="corpName != null  and corpName != '' "> and corp_name = #{corpName}</if>
+             <if test="loginName != null  and loginName != '' "> and login_name = #{loginName}</if>
+             <if test="loginPassword != null  and loginPassword != '' "> and login_password = #{loginPassword}</if>
+             <if test="remark != null  and remark != '' "> and remark = #{remark}</if>
+             <if test="createBy != null  and createBy != '' "> and create_by = #{createBy}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+             <if test="updateBy != null  and updateBy != '' "> and update_by = #{updateBy}</if>
+             <if test="updateTime != null "> and update_time = #{updateTime}</if>
+         </where>
+    </select>
+    
+    <select id="selectSmtMarketUserById" parameterType="Integer" resultMap="SmtMarketUserResult">
+        <include refid="selectSmtMarketUserVo"/>
+        where market_id = #{marketId}
+    </select>
+        
+    <insert id="insertSmtMarketUser" parameterType="SmtMarketUser">
+        insert into smt_market_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="marketId != null  ">market_id,</if>
+			<if test="sgsRegCode != null  and sgsRegCode != ''  ">sgs_reg_code,</if>
+			<if test="corpName != null  and corpName != ''  ">corp_name,</if>
+			<if test="loginName != null  and loginName != ''  ">login_name,</if>
+			<if test="loginPassword != null  and loginPassword != ''  ">login_password,</if>
+			<if test="remark != null  and remark != ''  ">remark,</if>
+			<if test="createBy != null  and createBy != ''  ">create_by,</if>
+			<if test="createTime != null  ">create_time,</if>
+			<if test="updateBy != null  and updateBy != ''  ">update_by,</if>
+			<if test="updateTime != null  ">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="marketId != null  ">#{marketId},</if>
+			<if test="sgsRegCode != null  and sgsRegCode != ''  ">#{sgsRegCode},</if>
+			<if test="corpName != null  and corpName != ''  ">#{corpName},</if>
+			<if test="loginName != null  and loginName != ''  ">#{loginName},</if>
+			<if test="loginPassword != null  and loginPassword != ''  ">#{loginPassword},</if>
+			<if test="remark != null  and remark != ''  ">#{remark},</if>
+			<if test="createBy != null  and createBy != ''  ">#{createBy},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+			<if test="updateBy != null  and updateBy != ''  ">#{updateBy},</if>
+			<if test="updateTime != null  ">#{updateTime},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateSmtMarketUser" parameterType="SmtMarketUser">
+        update smt_market_user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="sgsRegCode != null  and sgsRegCode != ''  ">sgs_reg_code = #{sgsRegCode},</if>
+            <if test="corpName != null  and corpName != ''  ">corp_name = #{corpName},</if>
+            <if test="loginName != null  and loginName != ''  ">login_name = #{loginName},</if>
+            <if test="loginPassword != null  and loginPassword != ''  ">login_password = #{loginPassword},</if>
+            <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
+            <if test="createBy != null  and createBy != ''  ">create_by = #{createBy},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by = #{updateBy},</if>
+            <if test="updateTime != null  ">update_time = #{updateTime},</if>
+        </trim>
+        where market_id = #{marketId}
+    </update>
+
+	<delete id="deleteSmtMarketUserById" parameterType="Integer">
+        delete from smt_market_user where market_id = #{marketId}
+    </delete>
+	
+    <delete id="deleteSmtMarketUserByIds" parameterType="String">
+        delete from smt_market_user where market_id in 
+        <foreach item="marketId" collection="array" open="(" separator="," close=")">
+            #{marketId}
+        </foreach>
+    </delete>
+    
+</mapper>

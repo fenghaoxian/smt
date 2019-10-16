@@ -132,3 +132,11 @@ gen:
   autoRemovePre: true
   # 表前缀(类名不会包含表前缀)
   tablePrefix: sys_
+
+trade:
+  tradeUrl: http://113.108.156.186:21080/gz/api/subjectIntFaceFacade/tradeInfoHandle/HTTP_RESP
+  queryTradeUrl: http://113.108.156.186:21080/gz/api/subjectIntFaceFacade/queryTradeInfo/HTTP_RESP
+  corpCode: 91440101MA59LFNE0E
+  corpName: 圣贸通
+  loginCode: 91440101MA59LFNE0E
+  loginPassWord: 827C4E302A95F3A2EBDC4A6FE2058BF8

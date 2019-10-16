@@ -1,10 +1,11 @@
 package com.smt.common.utils;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
+
 import java.lang.management.ManagementFactory;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import org.apache.commons.lang3.time.DateFormatUtils;
 
 /**
  * 时间工具类
@@ -71,6 +72,11 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils
     public static final String parseDateToStr(final String format, final Date date)
     {
         return new SimpleDateFormat(format).format(date);
+    }
+
+    public static final String parseDateToStr(final String format, final Object date)
+    {
+        return new SimpleDateFormat(format).format(parseDate(date));
     }
 
     public static final Date dateTime(final String format, final String ts)

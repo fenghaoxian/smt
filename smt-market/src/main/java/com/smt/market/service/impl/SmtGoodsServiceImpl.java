@@ -1,18 +1,27 @@
 package com.smt.market.service.impl;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import com.smt.common.json.JSONObject;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.smt.common.config.Global;
+import com.smt.common.support.Convert;
+import com.smt.common.utils.DateUtils;
+import com.smt.common.utils.StringUtils;
+import com.smt.market.domain.SmtCompany;
+import com.smt.market.domain.SmtGoods;
+import com.smt.market.domain.SmtGoodsProducer;
+import com.smt.market.domain.SmtProducer;
+import com.smt.market.mapper.SmtCompanyMapper;
+import com.smt.market.mapper.SmtGoodsMapper;
+import com.smt.market.mapper.SmtGoodsProducerMapper;
+import com.smt.market.mapper.SmtProducerMapper;
+import com.smt.market.service.ISmtGoodsService;
 import org.dom4j.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.smt.market.mapper.SmtGoodsMapper;
-import com.smt.market.domain.SmtGoods;
-import com.smt.market.service.ISmtGoodsService;
-import com.smt.common.support.Convert;
+
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * 商品 服务层实现
@@ -25,6 +34,18 @@ public class SmtGoodsServiceImpl implements ISmtGoodsService
 {
 	@Autowired
 	private SmtGoodsMapper smtGoodsMapper;
+
+	@Autowired
+	private SmtCompanyMapper companyMapper;
+
+	@Autowired
+	private SmtGoodsProducerMapper goodsProducerMapper;
+
+	@Autowired
+	private SmtProducerMapper producerMapper;
+
+	@Autowired
+	private SubjectIntFaceFacadeImpl subjectIntFaceFacade;
 
 	/**
      * 查询商品信息
@@ -87,22 +108,35 @@ public class SmtGoodsServiceImpl implements ISmtGoodsService
 	}
 
 	@Override
+	public void insertGoodsProducer(SmtGoods goods, SmtProducer producer) {
+		SmtGoodsProducer goodsProducer = new SmtGoodsProducer();
+		goodsProducer.setGoodsId(goods.getGoodsId());
+		goodsProducer.setProducerId(producer.getProducerId());
+		goodsProducerMapper.insertSmtGoodsProducer(goodsProducer);
+	}
+
+	@Override
 	public String insert(Iterator iterator) {
+		JSONArray jsonArray = new JSONArray();
 		JSONObject json = new JSONObject();
-		ArrayList<SmtGoods> goodsList = new ArrayList<SmtGoods>();
-		JSONObject.JSONArray jsonArray = new JSONObject.JSONArray();
+		ArrayList<Map<String, ArrayList>> list = new ArrayList<>();
+		ArrayList<SmtGoods> goodsList = new ArrayList<>();
+		ArrayList<SmtProducer> producerList = new ArrayList<>();
+		ArrayList<SmtCompany> companyList = new ArrayList<>();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 		if (iterator.hasNext()) {
 			Element element = (Element) iterator.next();
 			Iterator goodsListIter = element.elementIterator("GoodsList");
-			if (goodsListIter.hasNext()) {
+			int i = 1;
+			while (goodsListIter.hasNext()) {
+				SmtCompany company = new SmtCompany();
 				SmtGoods goods = new SmtGoods();
 				Element goodsEle = (Element) goodsListIter.next();
 				String goodsCname = goodsEle.elementTextTrim("goodsCname");
 				if (goodsCname != null && !"".equals(goodsCname)) {
 					goods.setGoodsCname(goodsCname);
 				} else {
-					jsonArray.add("商品中文名称为空");
+					jsonArray.add("第"+i+"个商品中文名称为空");
 				}
 				String hsCode = goodsEle.elementTextTrim("hsCode");
 				if (hsCode != null && !"".equals(hsCode)) {
@@ -116,7 +150,7 @@ public class SmtGoodsServiceImpl implements ISmtGoodsService
 				if (corpOwnerCode != null && !"".equals(corpOwnerCode)) {
 					goods.setCorpOwnerCode(corpOwnerCode);
 				} else {
-					jsonArray.add("企业自有编码为空");
+					jsonArray.add("第"+i+"个商品企业自有编码为空");
 				}
 				String goodsType = goodsEle.elementTextTrim("goodsType");
 				if (goodsType != null && !"".equals(goodsType)) {
@@ -130,7 +164,7 @@ public class SmtGoodsServiceImpl implements ISmtGoodsService
 				if (model != null && !"".equals(model)) {
 					goods.setModel(model);
 				} else {
-					jsonArray.add("规格型号为空");
+					jsonArray.add("第"+1+"个商品规格型号为空");
 				}
 				String isBrand = goodsEle.elementTextTrim("isBrand");
 				if (isBrand != null && !"".equals(isBrand)) {
@@ -146,21 +180,27 @@ public class SmtGoodsServiceImpl implements ISmtGoodsService
 				}
 				String producer = goodsEle.elementTextTrim("producer");
 				if (producer != null && !"".equals(producer)) {
-					goods.setProducer(producer);
+					SmtProducer smtProducer = producerMapper.selectSmtProducerByCorpCode(producer);
+					if (smtProducer != null && !"".equals(smtProducer.getCorpCode())) {
+						goods.setProducer(producer);
+						producerList.add(smtProducer);
+					} else {
+						jsonArray.add("第"+i+"个商品生产厂家不存在");
+					}
 				} else {
-					jsonArray.add("生产厂家为空");
+					jsonArray.add("第"+i+"个商品生产厂家为空");
 				}
 				String cunit = goodsEle.elementTextTrim("cunit");
 				if (cunit != null && !"".equals(cunit)) {
 					goods.setCunit(cunit);
 				} else {
-					jsonArray.add("成交单位为空");
+					jsonArray.add("第"+i+"个商品成交单位为空");
 				}
 				String qunit = goodsEle.elementTextTrim("qunit");
 				if (qunit != null && !"".equals(qunit)) {
 					goods.setQunit(qunit);
 				} else {
-					jsonArray.add("法定单位为空");
+					jsonArray.add("第"+i+"个商品法定单位为空");
 				}
 				String wunit = goodsEle.elementTextTrim("wunit");
 				if (wunit != null && !"".equals(wunit)) {
@@ -176,31 +216,125 @@ public class SmtGoodsServiceImpl implements ISmtGoodsService
 				}
 				String createOrg = goodsEle.elementTextTrim("createOrg");
 				if (createOrg != null && !"".equals(createOrg)) {
-
+					company = companyMapper.selectSmtCompanyBySgsRegCode(createOrg);
+					if (StringUtils.isNotEmpty(company.getSgsRegCode())) {
+						jsonArray.add("第"+i+"个商品创建企业编码不存在");
+					}
 				}
+				goods.setUnId(UUID.randomUUID().toString().replace("-", ""));
 				goodsList.add(goods);
-			}
-			if (goodsList.size() > 0) {
-				for (SmtGoods goods : goodsList) {
-					insertSmtGoods(goods);
-				}
+				companyList.add(company);
 			}
 			if (jsonArray.size() > 0) {
 				json.put("status", false);
 				json.put("msg", jsonArray);
 				return json.toString();
-			} else {
-				jsonArray.add("发送成功");
-				json.put("status", true);
-				json.put("msg", jsonArray);
-				return json.toString();
 			}
+			String response = execGoods("A", goodsList, companyList);
+			if (response.contains("true")) {
+				int index = 0;
+				for (SmtGoods goods : goodsList) {
+					insertSmtGoods(goods);
+					insertGoodsProducer(goods, producerList.get(index++));
+				}
+			}
+			return response;
 		} else {
 			jsonArray.add("报文信息有误");
 			json.put("status", false);
 			json.put("msg", jsonArray);
 			return json.toString();
 		}
+	}
+
+	/**
+	 * 商品备案
+	 * @param opType
+	 * @param goodsList
+	 * @param companyList
+	 * @return
+	 */
+	@Override
+	public String execGoods(String opType, List<SmtGoods> goodsList, List<SmtCompany> companyList) {
+		JSONArray jsonArray = new JSONArray();
+		JSONObject json = new JSONObject();
+		String goodsXmlStr = getGoodsXmlStr(opType, goodsList, companyList);
+		String response = subjectIntFaceFacade.sendDeclaration(Global.getCorpCode(), Global.getCorpName(), Global.getLoginCode(), Global.getLoginPassWord(), goodsXmlStr);
+		if (StringUtils.isEmpty(response)) {
+			json.put("status", false);
+			json.put("msg", jsonArray.add("市场采购贸易系统未返回回执"));
+			return json.toString();
+		}
+		JSONObject repJson = JSONObject.parseObject(response);
+		if (StringUtils.isNotEmpty(repJson.get("otherMessage").toString()) && repJson.getInteger("status") == 1) {
+			json.put("status", true);
+			json.put("msg", repJson.get("otherMessage"));
+			return json.toString();
+		} else if (repJson.getInteger("status") == 0) {
+			json.put("status", false);
+			json.put("msg", repJson.get("errorMessage"));
+			return json.toString();
+		} else {
+			System.out.println(response);
+			json.put("status", false);
+			json.put("msg", jsonArray.add("发送失败"));
+			return json.toString();
+		}
+	}
+
+	/**
+	 * 商品备案报文
+	 * @param opType
+	 * @param goodsList
+	 * @param companyList
+	 * @return
+	 */
+	@Override
+	public String getGoodsXmlStr(String opType, List<SmtGoods> goodsList, List<SmtCompany> companyList) {
+		int num=(int)(Math.random()*9000)+1000;
+		String messageId = "GOODS_"+"91440101MA59LFNE0E"+"_"+DateUtils.dateTimeNow()+""+num;
+		StringBuilder goodsXmlStr = new StringBuilder();
+		goodsXmlStr.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+		goodsXmlStr.append("<SubjectInfo>\n");
+		goodsXmlStr.append("<Head>\n");
+		goodsXmlStr.append(" <MessageId>"+messageId+"</MessageId>\n");
+		goodsXmlStr.append(" <MessageType>GOODS</MessageType>\n");
+		goodsXmlStr.append(" <Sender>"+"91440101MA59LFNE0E"+"</Sender>\n");
+		goodsXmlStr.append(" <Receiver>GZSW</Receiver>\n");
+		goodsXmlStr.append(" <opType>"+opType+"</opType>\n");
+		goodsXmlStr.append("</Head>\n");
+		goodsXmlStr.append("<Declaration>\n");
+		goodsXmlStr.append("<GoodList>\n");
+		for (SmtGoods goods : goodsList) {
+			int i = 0;
+			SmtCompany company = companyList.get(i++);
+			goodsXmlStr.append("<Good>\n");
+			goodsXmlStr.append(" <createOrg>"+(company.getSgsRegCode()==null?"":company.getSgsRegCode())+"</createOrg>\n");
+			goodsXmlStr.append(" <goodsCname>"+(goods.getGoodsCname()==null?"":goods.getGoodsCname())+"</goodsCname>\n");
+			goodsXmlStr.append(" <goodsEname>"+(goods.getGoodsEname()==null?"":goods.getGoodsEname())+"</goodsEname>\n");
+			goodsXmlStr.append(" <goodsId>"+(goods.getGoodsId()==null?"":goods.getGoodsId())+"</goodsId>\n");
+			goodsXmlStr.append(" <goodsImage></goodsImage>\n");
+			goodsXmlStr.append(" <isBrand>"+(goods.getIsBrand()==null?"":goods.getIsBrand())+"</isBrand>\n");
+			goodsXmlStr.append(" <model>"+(goods.getModel()==null?"":goods.getModel())+"</model>\n");
+			goodsXmlStr.append(" <producer>"+(goods.getProducer()==null?"":goods.getProducer())+"</producer>\n");
+			goodsXmlStr.append(" <qunit>"+(goods.getQunit()==null?"":goods.getQunit())+"</qunit>\n");
+			goodsXmlStr.append(" <wunit>"+(goods.getWunit()==null?"":goods.getWunit())+"</wunit>\n");
+			goodsXmlStr.append(" <cunit>"+(goods.getCunit()==null?"":goods.getCunit())+"</cunit>\n");
+			goodsXmlStr.append(" <remark>"+(goods.getRemark()==null?"":goods.getRemark())+"</remark>\n");
+			goodsXmlStr.append(" <cBrand>"+(goods.getCBrand()==null?"":goods.getCBrand())+"</cBrand>\n");
+			goodsXmlStr.append(" <eBrand>"+(goods.getEBrand()==null?"":goods.getEBrand())+"</eBrand>\n");
+			goodsXmlStr.append(" <goodsCode>"+(goods.getGoodsCode()==null?"":goods.getGoodsCode())+"</goodsCode>\n");
+			goodsXmlStr.append(" <reason></reason>\n");
+			goodsXmlStr.append(" <hsCode>"+(goods.getHsCode()==null?"":goods.getHsCode())+"</hsCode>\n");
+			goodsXmlStr.append(" <hsCodeS>"+(goods.getHsCodes()==null?"":goods.getHsCodes())+"</hsCodeS>\n");
+			goodsXmlStr.append(" <corpOwnerCode>"+(goods.getCorpOwnerCode()==null?"":goods.getCorpOwnerCode())+"</corpOwnerCode>\n");
+			goodsXmlStr.append(" <goodsType>"+(goods.getGoodsType()==null?"":goods.getGoodsType())+"</goodsType>\n");
+			goodsXmlStr.append("</Good>\n");
+		}
+		goodsXmlStr.append("</GoodList>\n");
+		goodsXmlStr.append("</Declaration>\n");
+		goodsXmlStr.append("</SubjectInfo>");
+		return goodsXmlStr.toString();
 	}
 
 }

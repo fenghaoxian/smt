@@ -11,7 +11,7 @@ import java.util.Date;
  * 商品表 smt_goods
  * 
  * @author smt
- * @date 2019-09-23
+ * @date 2019-10-16
  */
 public class SmtGoods extends BaseEntity
 {
@@ -51,6 +51,8 @@ public class SmtGoods extends BaseEntity
 	private String goodsImage;
 	/** 商品编码 */
 	private String goodsCode;
+	/** 唯一ID */
+	private String unId;
 	/** 市场核实状态 */
 	private String chkMarket;
 	/** 删除标志 */
@@ -219,6 +221,15 @@ public class SmtGoods extends BaseEntity
 	{
 		return goodsCode;
 	}
+	public void setUnId(String unId) 
+	{
+		this.unId = unId;
+	}
+
+	public String getUnId() 
+	{
+		return unId;
+	}
 	public void setChkMarket(String chkMarket) 
 	{
 		this.chkMarket = chkMarket;
@@ -302,6 +313,7 @@ public class SmtGoods extends BaseEntity
             .append("wunit", getWunit())
             .append("goodsImage", getGoodsImage())
             .append("goodsCode", getGoodsCode())
+            .append("unId", getUnId())
             .append("chkMarket", getChkMarket())
             .append("delFlag", getDelFlag())
             .append("createBy", getCreateBy())

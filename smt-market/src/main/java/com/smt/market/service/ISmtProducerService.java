@@ -1,6 +1,9 @@
 package com.smt.market.service;
 
+import com.smt.market.domain.SmtCompany;
 import com.smt.market.domain.SmtProducer;
+
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -50,5 +53,13 @@ public interface ISmtProducerService
      * @return 结果
      */
 	public int deleteSmtProducerByIds(String ids);
+
+	public void insertCompanyProducer(SmtCompany company, SmtProducer producer);
+
+	public String insert(Iterator iterator);
+
+	public String execProducer(String opType, SmtProducer producer, String createOrg);
+
+	public String getMafXmlStr(String opType, SmtProducer producer, String createOrg);
 	
 }

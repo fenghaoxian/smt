@@ -1,17 +1,14 @@
 package com.smt.market.service.impl;
 
-import com.smt.common.json.JSONObject;
-import com.smt.market.service.ISmtCompanyService;
-import com.smt.market.service.ISmtGoodsService;
-import com.smt.market.service.ISmtSubTradeInfoService;
+import com.alibaba.fastjson.JSONObject;
+import com.smt.market.service.*;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 
-import javax.jws.WebService;
 import java.io.StringReader;
 import java.util.Iterator;
 
@@ -19,9 +16,9 @@ import java.util.Iterator;
  * Date: 2019/9/4
  * Author: fenghx
  * Desc:
+ @Component
+ @WebService
  */
-@Component
-@WebService
 public class SmtSubTradeInfoServiceImpl implements ISmtSubTradeInfoService {
 
     @Autowired
@@ -30,10 +27,24 @@ public class SmtSubTradeInfoServiceImpl implements ISmtSubTradeInfoService {
     @Autowired
     private ISmtGoodsService goodsService;
 
+    @Autowired
+    private ISmtOrderService orderService;
+
+    @Autowired
+    private ISmtProducerService producerService;
+
+    @Autowired
+    private ISmtBuyerService buyerService;
+
+    @Autowired
+    private ISmtMarketUserService marketUserService;
+
+    Logger logger = LoggerFactory.getLogger(SmtSubTradeInfoServiceImpl.class);
+
     @Override
     public String subTradeInfo(String data) throws Exception {
+        logger.info(data);
         JSONObject json = new JSONObject();
-
         SAXReader reader = new SAXReader();
         Document document = reader.read(new StringReader(data));
         if (document != null) {
@@ -49,6 +60,18 @@ public class SmtSubTradeInfoServiceImpl implements ISmtSubTradeInfoService {
                         return msg;
                     } else if ("GOODS".equals(messageType)) {
                         String msg = goodsService.insert(decIter);
+                        return msg;
+                    } else if ("TRAD".equals(messageType)) {
+                        String msg = orderService.insert(decIter);
+                        return msg;
+                    } else if ("BUYER".equals(messageType)) {
+                        String msg = buyerService.insert(decIter);
+                        return msg;
+                    } else if ("MAF".equals(messageType)) {
+                        String msg = producerService.insert(decIter);
+                        return msg;
+                    } else if ("CLIENTAGE".equals(messageType)) {
+                        String msg = marketUserService.execClientage(decIter);
                         return msg;
                     } else {
                         json.put("msg", "失败");
@@ -71,4 +94,5 @@ public class SmtSubTradeInfoServiceImpl implements ISmtSubTradeInfoService {
             return json.toString();
         }
     }
+
 }

@@ -54,5 +54,27 @@ public interface ISmtCompanyService
 	public int deleteSmtCompanyByIds(String ids);
 
 	public String insert(Iterator iterator);
-	
+
+	/**
+	 * 企业备案发送
+	 * @param xml
+	 * @return
+	 */
+	public String execBusiness(String xml);
+
+	/**
+	 * 商户备案报文
+	 * @param opType
+	 * @param company
+	 * @return
+	 */
+	public String getCompXmlStr(String opType, SmtCompany company);
+
+	/**
+	 * 企业备案报文
+	 * @param opType
+	 * @param company
+	 * @return
+	 */
+	public String getBusinessXmlStr(String opType, SmtCompany company);
 }
