@@ -53,7 +53,7 @@ public interface ISmtCompanyService
      */
 	public int deleteSmtCompanyByIds(String ids);
 
-	public String insert(Iterator iterator);
+	public String insert(Iterator iterator, String opType);
 
 	/**
 	 * 企业备案发送
