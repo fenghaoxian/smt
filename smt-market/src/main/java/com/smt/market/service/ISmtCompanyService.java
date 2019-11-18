@@ -53,6 +53,12 @@ public interface ISmtCompanyService
      */
 	public int deleteSmtCompanyByIds(String ids);
 
+	/**
+	 *
+	 * @param iterator
+	 * @param opType
+	 * @return
+	 */
 	public String insert(Iterator iterator, String opType);
 
 	/**
