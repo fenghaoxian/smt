@@ -231,6 +231,7 @@ public class SmtGoodsServiceImpl implements ISmtGoodsService
 				return json.toString();
 			}
 			String response = execGoods("A", goodsList, companyList);
+			System.out.println(response);
 			if (response.contains("true")) {
 				int index = 0;
 				for (SmtGoods goods : goodsList) {

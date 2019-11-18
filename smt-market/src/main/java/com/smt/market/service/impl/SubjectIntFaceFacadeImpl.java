@@ -46,6 +46,7 @@ public class SubjectIntFaceFacadeImpl implements SubjectIntFaceFacade {
             nvps.add(new BasicNameValuePair("loginPassWord",asd.EncryStrHex(asd.GB2Code(loginPassWord), "GZMARKET2017")));
             nvps.add(new BasicNameValuePair("report",xmlStr)); //必填 xml格式报文字符串
             response= HttpUtil.sendPost(Global.getConfig("trade.tradeUrl"), nvps);
+            System.out.println(response);
         } catch (Exception e) {
             e.printStackTrace();
         }
