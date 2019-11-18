@@ -8,6 +8,7 @@ import org.dom4j.io.SAXReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.StringReader;
 import java.util.Iterator;
@@ -19,6 +20,7 @@ import java.util.Iterator;
  @Component
  @WebService
  */
+@Service
 public class SmtSubTradeInfoServiceImpl implements ISmtSubTradeInfoService {
 
     @Autowired
