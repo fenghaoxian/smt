@@ -59,6 +59,7 @@ public class SmtSubTradeInfoServiceImpl implements ISmtSubTradeInfoService {
                 Iterator decIter = rootElt.elementIterator("Declaration");
                 if (decIter.hasNext()) {
                     String messageType = recordEle.elementTextTrim("MessageType");
+                    String opType = recordEle.elementTextTrim("opType");
                     if ("COMP".equals(messageType)) {
                         return companyService.insert(decIter, opType);
                     } else if ("GOODS".equals(messageType)) {
