@@ -66,6 +66,10 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
 	{
 	    return smtCompanyMapper.selectSmtCompanyById(companyId);
 	}
+
+	public SmtCompany selectSmtCompanyBySgsRegCode(String sgsRegCode) {
+        return smtCompanyMapper.selectSmtCompanyBySgsRegCode(sgsRegCode);
+    }
 	
 	/**
      * 查询企业列表
@@ -116,11 +120,12 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
 	}
 
 	@Override
-	public String insert(Iterator iterator) {
+	public String insert(Iterator iterator, String opType) {
         JSONArray jsonArray = new JSONArray();
         JSONObject json = new JSONObject();
 		SmtCompany company = new SmtCompany();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+        SysUser user = new SysUser();
 		if (iterator.hasNext()) {
 			Element element = (Element) iterator.next();
 			Iterator companyIter = element.elementIterator("Company");
@@ -130,7 +135,6 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
 				String password = ele.elementText("password");
 				password = SymmetricEncoder.AES_Decrypt(password, "gz201988i1039com");
 				if (username != null && !"".equals(username) && password != null && !"".equals(password)) {
-                    SysUser user = new SysUser();
                     user.setLoginName(username);
                     user.setSalt(Md5Utils.randomSalt());
                     user.setPassword(new Md5Hash(username + password + user.getSalt()).toHex().toString());
@@ -167,7 +171,6 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
                         return json.toString();
                     }
                     user.setRoles(list);
-                    userService.insertUser(user);
                 } else {
 				    jsonArray.add("平台用户名或密码为空");
 				    json.put("status", false);
@@ -352,23 +355,26 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
 		    json.put("msg", jsonArray);
 		    return json.toString();
         }
-        int i = insertSmtCompany(company);
-		if (i > 0) {
-		    if ("1".equals(company.getCharacters())) {
-                String compXml = this.getCompXmlStr("A", company);
-                String response = execBusiness(compXml);
-                return response;
-            } else {
-                String businessXml = this.getBusinessXmlStr("A", company);
-                String response = execBusiness(businessXml);
-                return response;
-            }
+        String response = "";
+        if ("1".equals(company.getCharacters())) {
+            String compXml = this.getCompXmlStr(opType, company);
+            response = execBusiness(compXml);
         } else {
-		    jsonArray.add("发送失败");
-		    json.put("status", false);
-		    json.put("msg", jsonArray);
-		    return json.toString();
+            String businessXml = this.getBusinessXmlStr(opType, company);
+            response = execBusiness(businessXml);
         }
+        if ("true".equals(response)) {
+            if ("A".equals(opType)) {
+                userService.insertUser(user);
+                insertSmtCompany(company);
+            } else if ("M".equals(opType)) {
+                userService.updateUser(user);
+                SmtCompany company1 = selectSmtCompanyBySgsRegCode(company.getSgsRegCode());
+                company.setCompanyId(company1.getCompanyId());
+                updateSmtCompany(company);
+            }
+        }
+        return response;
     }
 
     /**
