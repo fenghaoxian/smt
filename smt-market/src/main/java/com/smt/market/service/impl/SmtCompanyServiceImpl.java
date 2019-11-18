@@ -183,6 +183,14 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
 				if (sgsRegCode != null && !"".equals(sgsRegCode)) {
 					company.setSgsRegCode(sgsRegCode);
 				}
+				String regionCode = ele.elementTextTrim("regionCode");
+                if (regionCode != null && !"".equals(regionCode)) {
+				    company.setRegionCode(regionCode);
+                }
+                String taxAuthoritiesCode = ele.elementTextTrim("taxAuthoritiesCode");
+                if (taxAuthoritiesCode != null && !"".equals(taxAuthoritiesCode)) {
+                    company.setTaxAuthoritiesCode(taxAuthoritiesCode);
+                }
 				String corpCname = ele.elementTextTrim("corpCname");
 				if (corpCname != null && !"".equals(corpCname)) {
 					company.setCorpCname(corpCname);
