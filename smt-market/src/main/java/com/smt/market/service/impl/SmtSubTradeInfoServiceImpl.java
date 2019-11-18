@@ -1,5 +1,6 @@
 package com.smt.market.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.smt.market.service.*;
 import org.dom4j.Document;
@@ -45,6 +46,7 @@ public class SmtSubTradeInfoServiceImpl implements ISmtSubTradeInfoService {
     public String subTradeInfo(String data) throws Exception {
         logger.info(data);
         JSONObject json = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
         SAXReader reader = new SAXReader();
         Document document = reader.read(new StringReader(data));
         if (document != null) {
@@ -56,40 +58,40 @@ public class SmtSubTradeInfoServiceImpl implements ISmtSubTradeInfoService {
                 if (decIter.hasNext()) {
                     String messageType = recordEle.elementTextTrim("MessageType");
                     if ("COMP".equals(messageType)) {
-                        String msg = companyService.insert(decIter);
-                        return msg;
+                        return companyService.insert(decIter);
                     } else if ("GOODS".equals(messageType)) {
-                        String msg = goodsService.insert(decIter);
-                        return msg;
+                        return goodsService.insert(decIter);
                     } else if ("TRAD".equals(messageType)) {
-                        String msg = orderService.insert(decIter);
-                        return msg;
+                        return orderService.insert(decIter);
                     } else if ("BUYER".equals(messageType)) {
-                        String msg = buyerService.insert(decIter);
-                        return msg;
+                        return buyerService.insert(decIter);
                     } else if ("MAF".equals(messageType)) {
-                        String msg = producerService.insert(decIter);
-                        return msg;
+                        return producerService.insert(decIter);
                     } else if ("CLIENTAGE".equals(messageType)) {
-                        String msg = marketUserService.execClientage(decIter);
-                        return msg;
+                        return marketUserService.execClientage(decIter);
+                    } else if ("AUTO".equals(messageType)) {
+                        return marketUserService.execClientage(decIter);
                     } else {
-                        json.put("msg", "失败");
+                        jsonArray.add("失败");
+                        json.put("msg", jsonArray);
                         json.put("status", false);
                         return json.toString();
                     }
                 } else {
-                    json.put("msg", "失败");
+                    jsonArray.add("失败");
+                    json.put("msg", jsonArray);
                     json.put("status", false);
                     return json.toString();
                 }
             } else {
-                json.put("msg", "失败");
+                jsonArray.add("失败");
+                json.put("msg", jsonArray);
                 json.put("status", false);
                 return json.toString();
             }
         } else {
-            json.put("msg", "失败");
+            jsonArray.add("失败");
+            json.put("msg", jsonArray);
             json.put("status", false);
             return json.toString();
         }
