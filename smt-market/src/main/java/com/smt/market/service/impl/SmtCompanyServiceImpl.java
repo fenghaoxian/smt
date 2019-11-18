@@ -128,10 +128,11 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
 				Element ele = (Element) companyIter.next();
 				String username = ele.elementTextTrim("username");
 				String password = ele.elementText("password");
-				password = SymmetricEncoder.AES_Decrypt(password, "gz201988i1039com");
+				password = SymmetricEncoder.AES_Decrypt("gz201988i1039com", password);
 				if (username != null && !"".equals(username) && password != null && !"".equals(password)) {
                     SysUser user = new SysUser();
                     user.setLoginName(username);
+                    user.setUserName(username);
                     user.setSalt(Md5Utils.randomSalt());
                     user.setPassword(new Md5Hash(username + password + user.getSalt()).toHex().toString());
                     user.setDeptId((long)202);
@@ -219,6 +220,9 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
                 }
 
                 String loginUserName = ele.elementTextTrim("loginUserName");
+                if (username != null && !"".equals(username)) {
+                    company.setLoginUserName(username);
+                }
 
                 String cellphoneNo = ele.elementTextTrim("cellphoneNo");
                 if (cellphoneNo != null && !"".equals(cellphoneNo)) {
@@ -356,10 +360,12 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
 		if (i > 0) {
 		    if ("1".equals(company.getCharacters())) {
                 String compXml = this.getCompXmlStr("A", company);
+                System.out.println(compXml);
                 String response = execBusiness(compXml);
                 return response;
             } else {
                 String businessXml = this.getBusinessXmlStr("A", company);
+                System.out.println(businessXml);
                 String response = execBusiness(businessXml);
                 return response;
             }
