@@ -9,6 +9,7 @@ import org.dom4j.io.SAXReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.StringReader;
 import java.util.Iterator;
@@ -20,6 +21,7 @@ import java.util.Iterator;
  @Component
  @WebService
  */
+@Service
 public class SmtSubTradeInfoServiceImpl implements ISmtSubTradeInfoService {
 
     @Autowired
@@ -58,7 +60,7 @@ public class SmtSubTradeInfoServiceImpl implements ISmtSubTradeInfoService {
                 if (decIter.hasNext()) {
                     String messageType = recordEle.elementTextTrim("MessageType");
                     if ("COMP".equals(messageType)) {
-                        return companyService.insert(decIter);
+                        return companyService.insert(decIter, opType);
                     } else if ("GOODS".equals(messageType)) {
                         return goodsService.insert(decIter);
                     } else if ("TRAD".equals(messageType)) {

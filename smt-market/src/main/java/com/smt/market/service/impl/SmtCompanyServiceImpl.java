@@ -119,7 +119,7 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
 		return smtCompanyMapper.deleteSmtCompanyByIds(Convert.toStrArray(ids));
 	}
 
-	@Override
+    @Override
 	public String insert(Iterator iterator, String opType) {
         JSONArray jsonArray = new JSONArray();
         JSONObject json = new JSONObject();
@@ -133,9 +133,10 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
 				Element ele = (Element) companyIter.next();
 				String username = ele.elementTextTrim("username");
 				String password = ele.elementText("password");
-				password = SymmetricEncoder.AES_Decrypt(password, "gz201988i1039com");
+				password = SymmetricEncoder.AES_Decrypt("gz201988i1039com", password);
 				if (username != null && !"".equals(username) && password != null && !"".equals(password)) {
                     user.setLoginName(username);
+                    user.setUserName(username);
                     user.setSalt(Md5Utils.randomSalt());
                     user.setPassword(new Md5Hash(username + password + user.getSalt()).toHex().toString());
                     user.setDeptId((long)202);
@@ -222,6 +223,9 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
                 }
 
                 String loginUserName = ele.elementTextTrim("loginUserName");
+                if (username != null && !"".equals(username)) {
+                    company.setLoginUserName(username);
+                }
 
                 String cellphoneNo = ele.elementTextTrim("cellphoneNo");
                 if (cellphoneNo != null && !"".equals(cellphoneNo)) {
