@@ -415,10 +415,10 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
                 String createOrg = inteEle.elementTextTrim("createOrg");
                 if (StringUtils.isNotEmpty(createOrg)) {
                     SmtCompany company = this.selectSmtCompanyBySgsRegCode(createOrg);
-                    if (StringUtils.isEmpty(company.getSgsRegCode())) {
-                        jsonArray.add("社会信用代码无对应企业:"+createOrg);
+                    if (company.getSgsRegCode() != null && !"".equals(company.getSgsRegCode())) {
+                        list.add(company.getSgsRegCode());
                     } else {
-                        list.add(createOrg);
+                        jsonArray.add("社会信用代码无对应企业:"+createOrg);
                     }
                 } else {
                     jsonArray.add("社会信用代码为空");
@@ -456,10 +456,11 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
                                 }else if(data.get("status").toString().contains("核实不通过")){
                                     status = MarketConstants.SMT_COMPANY_STATUS_HSBTG;
                                 }
-                                company.setSgsRegCode(createOrg);
-                                company.setStatus(status);
-                                company.setStatusDesc(data.get("status").toString());
-                                this.updateSmtCompany(company);
+                                SmtCompany com = new SmtCompany();
+                                com.setSgsRegCode(createOrg);
+                                com.setStatus(status);
+                                com.setStatusDesc(data.get("status").toString());
+                                this.updateSmtCompany(com);
                                 jsonArray.add(data.get("status"));
                                 json.put("status", true);
                                 json.put("msg", jsonArray);

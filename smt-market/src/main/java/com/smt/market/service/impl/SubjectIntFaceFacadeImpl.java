@@ -64,10 +64,10 @@ public class SubjectIntFaceFacadeImpl implements SubjectIntFaceFacade {
         DesEcrypt asd =new DesEcrypt();
         try {
             List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-            nvps.add(new BasicNameValuePair("corpCode",asd.EncryStrHex(asd.GB2Code(Global.getConfig("trade.corpCode")), "GZMARKET2017")));
-            nvps.add(new BasicNameValuePair("corpName",asd.EncryStrHex(asd.GB2Code(Global.getConfig("trade.corpName")), "GZMARKET2017")));
-            nvps.add(new BasicNameValuePair("loginCode",asd.EncryStrHex(asd.GB2Code(Global.getConfig("loginCode")), "GZMARKET2017")));
-            nvps.add(new BasicNameValuePair("loginPassWord",asd.EncryStrHex(asd.GB2Code(Global.getConfig("loginPassWord")), "GZMARKET2017")));
+            nvps.add(new BasicNameValuePair("corpCode",asd.EncryStrHex(asd.GB2Code(Global.getCorpCode()), "GZMARKET2017")));
+            nvps.add(new BasicNameValuePair("corpName",asd.EncryStrHex(asd.GB2Code(Global.getCorpName()), "GZMARKET2017")));
+            nvps.add(new BasicNameValuePair("loginCode",asd.EncryStrHex(asd.GB2Code(Global.getLoginCode()), "GZMARKET2017")));
+            nvps.add(new BasicNameValuePair("loginPassWord",asd.EncryStrHex(asd.GB2Code(Global.getLoginPassWord()), "GZMARKET2017")));
             nvps.add(new BasicNameValuePair("opType",asd.EncryStrHex(asd.GB2Code(opType), "GZMARKET2017")));
             nvps.add(new BasicNameValuePair("param",asd.EncryStrHex(asd.GB2Code(param), "GZMARKET2017")));
             response= HttpUtil.sendPost(Global.getConfig("trade.queryTradeUrl"), nvps);

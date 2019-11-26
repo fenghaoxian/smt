@@ -2,6 +2,7 @@ package com.smt.web.controller.tool;
 
 import com.smt.framework.web.base.BaseController;
 import com.smt.market.service.ISmtCompanyService;
+import com.smt.market.service.ISmtQueryTradeInfoService;
 import com.smt.market.service.ISmtSubTradeInfoService;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -34,6 +35,9 @@ public class MarketController extends BaseController {
     ISmtSubTradeInfoService subTradeInfoService;
 
     @Autowired
+    ISmtQueryTradeInfoService queryTradeInfoService;
+
+    @Autowired
     ISmtCompanyService companyService;
 
     private String prefix = "tool/market";
@@ -52,6 +56,35 @@ public class MarketController extends BaseController {
         }
         String str = result.toString(StandardCharsets.UTF_8.name());
         return subTradeInfoService.subTradeInfo(str);
+        /*SAXReader reader = new SAXReader();
+        Document document = reader.read(new StringReader(str));
+        if (document != null) {
+            Element rootElt = document.getRootElement();
+            Iterator headIter = rootElt.elementIterator("Head");
+            if (headIter.hasNext()) {
+                Iterator decIter = rootElt.elementIterator("Declaration");
+                if (decIter.hasNext()) {
+                    return companyService.insert(decIter);
+                }
+            }
+            return "";
+        }*/
+    }
+
+    @ApiOperation(value = "报文测试", notes = "报文测试")
+    @RequiresPermissions("tool:market:query")
+    @PostMapping("/query")
+    @ResponseBody
+    public String companyQuery(HttpServletRequest request, @RequestParam(value = "file", required = true)MultipartFile companyXml) throws Exception {
+        InputStream inputStream = companyXml.getInputStream();
+        ByteArrayOutputStream result = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = inputStream.read(buffer)) != -1) {
+            result.write(buffer, 0, length);
+        }
+        String str = result.toString(StandardCharsets.UTF_8.name());
+        return queryTradeInfoService.queryTradeInfo(str);
         /*SAXReader reader = new SAXReader();
         Document document = reader.read(new StringReader(str));
         if (document != null) {
