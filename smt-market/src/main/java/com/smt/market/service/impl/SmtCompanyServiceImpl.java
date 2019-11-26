@@ -370,23 +370,34 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
         String response = "";
         if ("1".equals(company.getCharacters())) {
             String compXml = this.getCompXmlStr(opType, company);
+            System.out.println(compXml);
             response = execBusiness(compXml);
+            System.out.println(response);
         } else {
             String businessXml = this.getBusinessXmlStr(opType, company);
+            System.out.println(businessXml);
             response = execBusiness(businessXml);
+            System.out.println(response);
         }
         if ("true".equals(response)) {
             if ("A".equals(opType)) {
                 userService.insertUser(user);
                 insertSmtCompany(company);
+                return response;
             } else if ("M".equals(opType)) {
                 userService.updateUser(user);
                 SmtCompany company1 = selectSmtCompanyBySgsRegCode(company.getSgsRegCode());
                 company.setCompanyId(company1.getCompanyId());
                 updateSmtCompany(company);
+                return response;
             }
+        } else {
+            return response;
         }
-        return response;
+        jsonArray.add("发送失败");
+        json.put("msg", jsonArray);
+        json.put("status", false);
+        return json.toString();
     }
 
     /**
@@ -412,8 +423,9 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
             json.put("msg", repArray);
             return json.toString();
         } else if (response.contains("统一社会信用代码已存在")) {
+            jsonArray.add("统一社会信用代码已存在");
             json.put("status", true);
-            json.put("msg", jsonArray.add("统一社会信用代码已存在"));
+            json.put("msg", jsonArray);
             return json.toString();
         } else if (repJson.getInteger("result") == 0 && !"".equals(repJson.get("errorMessage"))) {
             JSONArray errArray = repJson.getJSONArray("errorMessage");
@@ -516,7 +528,6 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
     public String getBusinessXmlStr(String opType, SmtCompany company){
         int num=(int)(Math.random()*9000)+1000;
         String messageId = "COMP_"+company.getSgsRegCode()+"_"+DateUtils.dateTimeNow()+""+num;
-        String taxAuthoritiesCode="";
         StringBuilder compXmlStr = new StringBuilder();
         compXmlStr.append("<?xml version='1.0' encoding='utf-8'?>\n");
         compXmlStr.append("<SubjectInfo>\n");
@@ -532,7 +543,7 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
         compXmlStr.append("	<orgId>"+(company.getOrgId()==null?"":company.getOrgId())+"</orgId>\n");
         compXmlStr.append("	<sgsRegCode>"+(company.getSgsRegCode()==null?"":company.getSgsRegCode().toString().trim())+"</sgsRegCode>\n");
         compXmlStr.append("	<regionCode>"+(company.getRegionCode()==null?"":company.getRegionCode())+"</regionCode>\n");
-        compXmlStr.append(" <taxAuthoritiesCode>"+taxAuthoritiesCode+"</taxAuthoritiesCode>\n");
+        compXmlStr.append(" <taxAuthoritiesCode>"+company.getTaxAuthoritiesCode()+"</taxAuthoritiesCode>\n");
         compXmlStr.append("	<locationfCode>"+(company.getLocationfCode()==null?"":company.getLocationfCode())+"</locationfCode>\n");
         compXmlStr.append("	<corpCname>"+(company.getCorpCname()==null?"":company.getCorpCname().toString().trim())+"</corpCname>\n");
         compXmlStr.append("	<corpEname>"+(company.getCorpEname()==null?"":company.getCorpEname())+"</corpEname>\n");
