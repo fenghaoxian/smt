@@ -2,8 +2,6 @@ package com.smt.market.domain;
 
 
 import com.smt.common.base.BaseEntity;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -134,6 +132,12 @@ public class SmtCompany extends BaseEntity
 	private String orgId;
 	/** 删除标志 存在(0),删除(2) */
 	private String delFlag;
+	/** 平台状态*/
+	private String status;
+	/** 市场平台状态 */
+	private String marketStatus;
+	/** 状态描述 */
+	private String statusDesc;
 	/** 备注 */
 	private String remark;
 	/** 创建者 */
@@ -713,71 +717,99 @@ public class SmtCompany extends BaseEntity
 		return updateTime;
 	}
 
-    public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("companyId", getCompanyId())
-            .append("sgsRegCode", getSgsRegCode())
-            .append("regionCode", getRegionCode())
-            .append("taxAuthoritiesCode", getTaxAuthoritiesCode())
-            .append("corpCname", getCorpCname())
-            .append("corpEname", getCorpEname())
-            .append("corpShortName", getCorpShortName())
-            .append("corpOrgCode", getCorpOrgCode())
-            .append("corpType", getCorpType())
-            .append("characters", getCharacters())
-            .append("legalName", getLegalName())
-            .append("identCode", getIdentCode())
-            .append("identIdCode", getIdentIdCode())
-            .append("contractMan", getContractMan())
-            .append("loginUserName", getLoginUserName())
-            .append("cellPhoneNo", getCellPhoneNo())
-            .append("email", getEmail())
-            .append("wisdomCheckNo", getWisdomCheckNo())
-            .append("faxNo", getFaxNo())
-            .append("postCode", getPostCode())
-            .append("caddress", getCaddress())
-            .append("regMoney", getRegMoney())
-            .append("companyType", getCompanyType())
-            .append("scope", getScope())
-            .append("industryCode", getIndustryCode())
-            .append("taxIdentCode", getTaxIdentCode())
-            .append("corpTaxType", getCorpTaxType())
-            .append("customCode", getCustomCode())
-            .append("declCode", getDeclCode())
-            .append("ioCorpCode", getIoCorpCode())
-            .append("creditLevel", getCreditLevel())
-            .append("validateBeg", getValidateBeg())
-            .append("validateEng", getValidateEng())
-            .append("regDate", getRegDate())
-            .append("openDate", getOpenDate())
-            .append("resCountry", getResCountry())
-            .append("orgAddress", getOrgAddress())
-            .append("finvest1", getFinvest1())
-            .append("finvest2", getFinvest2())
-            .append("finvest3", getFinvest3())
-            .append("finvest4", getFinvest4())
-            .append("finvest5", getFinvest5())
-            .append("economyType", getEconomyType())
-            .append("locationfCode", getLocationfCode())
-            .append("isSpecialCorp", getIsSpecialCorp())
-            .append("specialCorpType", getSpecialCorpType())
-            .append("period", getPeriod())
-            .append("investMoneyKind", getInvestMoneyKind())
-            .append("fregMoneyDollar", getFregMoneyDollar())
-            .append("investSumMoney", getInvestSumMoney())
-            .append("rmbInvestSumMoney", getRmbInvestSumMoney())
-            .append("finvestSumMoneyDollar", getFinvestSumMoneyDollar())
-            .append("orgType", getOrgType())
-            .append("corpBussinessType", getCorpBussinessType())
-            .append("showSellGoods", getShowSellGoods())
-            .append("relateCorp", getRelateCorp())
-            .append("orgId", getOrgId())
-            .append("delFlag", getDelFlag())
-            .append("remark", getRemark())
-            .append("createBy", getCreateBy())
-            .append("createTime", getCreateTime())
-            .append("updateBy", getUpdateBy())
-            .append("updateTime", getUpdateTime())
-            .toString();
-    }
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getMarketStatus() {
+		return marketStatus;
+	}
+
+	public void setMarketStatus(String marketStatus) {
+		this.marketStatus = marketStatus;
+	}
+
+	public String getStatusDesc() {
+		return statusDesc;
+	}
+
+	public void setStatusDesc(String statusDesc) {
+		this.statusDesc = statusDesc;
+	}
+
+	@Override
+	public String toString() {
+		return "SmtCompany{" +
+				"companyId=" + companyId +
+				", sgsRegCode='" + sgsRegCode + '\'' +
+				", regionCode='" + regionCode + '\'' +
+				", taxAuthoritiesCode='" + taxAuthoritiesCode + '\'' +
+				", corpCname='" + corpCname + '\'' +
+				", corpEname='" + corpEname + '\'' +
+				", corpShortName='" + corpShortName + '\'' +
+				", corpOrgCode='" + corpOrgCode + '\'' +
+				", corpType='" + corpType + '\'' +
+				", characters='" + characters + '\'' +
+				", legalName='" + legalName + '\'' +
+				", identCode='" + identCode + '\'' +
+				", identIdCode='" + identIdCode + '\'' +
+				", contractMan='" + contractMan + '\'' +
+				", loginUserName='" + loginUserName + '\'' +
+				", cellPhoneNo='" + cellPhoneNo + '\'' +
+				", email='" + email + '\'' +
+				", wisdomCheckNo='" + wisdomCheckNo + '\'' +
+				", faxNo='" + faxNo + '\'' +
+				", postCode='" + postCode + '\'' +
+				", caddress='" + caddress + '\'' +
+				", regMoney='" + regMoney + '\'' +
+				", companyType='" + companyType + '\'' +
+				", scope='" + scope + '\'' +
+				", industryCode='" + industryCode + '\'' +
+				", taxIdentCode='" + taxIdentCode + '\'' +
+				", corpTaxType='" + corpTaxType + '\'' +
+				", customCode='" + customCode + '\'' +
+				", declCode='" + declCode + '\'' +
+				", ioCorpCode='" + ioCorpCode + '\'' +
+				", creditLevel='" + creditLevel + '\'' +
+				", validateBeg=" + validateBeg +
+				", validateEng=" + validateEng +
+				", regDate=" + regDate +
+				", openDate=" + openDate +
+				", resCountry='" + resCountry + '\'' +
+				", orgAddress='" + orgAddress + '\'' +
+				", finvest1='" + finvest1 + '\'' +
+				", finvest2='" + finvest2 + '\'' +
+				", finvest3='" + finvest3 + '\'' +
+				", finvest4='" + finvest4 + '\'' +
+				", finvest5='" + finvest5 + '\'' +
+				", economyType='" + economyType + '\'' +
+				", locationfCode='" + locationfCode + '\'' +
+				", isSpecialCorp='" + isSpecialCorp + '\'' +
+				", specialCorpType='" + specialCorpType + '\'' +
+				", period='" + period + '\'' +
+				", investMoneyKind='" + investMoneyKind + '\'' +
+				", fregMoneyDollar=" + fregMoneyDollar +
+				", investSumMoney='" + investSumMoney + '\'' +
+				", rmbInvestSumMoney='" + rmbInvestSumMoney + '\'' +
+				", finvestSumMoneyDollar='" + finvestSumMoneyDollar + '\'' +
+				", orgType='" + orgType + '\'' +
+				", corpBussinessType='" + corpBussinessType + '\'' +
+				", showSellGoods='" + showSellGoods + '\'' +
+				", relateCorp='" + relateCorp + '\'' +
+				", orgId='" + orgId + '\'' +
+				", delFlag='" + delFlag + '\'' +
+				", status='" + status + '\'' +
+				", marketStatus='" + marketStatus + '\'' +
+				", statusDesc='" + statusDesc + '\'' +
+				", remark='" + remark + '\'' +
+				", createBy='" + createBy + '\'' +
+				", createTime=" + createTime +
+				", updateBy='" + updateBy + '\'' +
+				", updateTime=" + updateTime +
+				'}';
+	}
 }

@@ -2,57 +2,38 @@ package com.smt.market.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.smt.market.service.*;
+import com.smt.market.service.ISmtCompanyService;
+import com.smt.market.service.ISmtQueryTradeInfoService;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.io.StringReader;
+import java.text.SimpleDateFormat;
 import java.util.Iterator;
 
 /**
- * Date: 2019/9/4
+ * Date: 2019/11/26
  * Author: fenghx
  * Desc:
- @Component
- @WebService
  */
-@Service
-public class SmtSubTradeInfoServiceImpl implements ISmtSubTradeInfoService {
+public class SmtQueryTradeServiceimpl implements ISmtQueryTradeInfoService {
 
     @Autowired
     private ISmtCompanyService companyService;
 
-    @Autowired
-    private ISmtGoodsService goodsService;
-
-    @Autowired
-    private ISmtOrderService orderService;
-
-    @Autowired
-    private ISmtProducerService producerService;
-
-    @Autowired
-    private ISmtBuyerService buyerService;
-
-    @Autowired
-    private ISmtMarketUserService marketUserService;
-
-    @Autowired
-    private ISmtCustomService customService;
-
     Logger logger = LoggerFactory.getLogger(SmtSubTradeInfoServiceImpl.class);
 
     @Override
-    public String subTradeInfo(String data) throws Exception {
+    public String queryTradeInfo(String data) throws Exception {
         logger.info(data);
         JSONObject json = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         SAXReader reader = new SAXReader();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Document document = reader.read(new StringReader(data));
         if (document != null) {
             Element rootElt = document.getRootElement();
@@ -64,19 +45,7 @@ public class SmtSubTradeInfoServiceImpl implements ISmtSubTradeInfoService {
                     String messageType = recordEle.elementTextTrim("MessageType");
                     String opType = recordEle.elementTextTrim("opType");
                     if ("COMP".equals(messageType)) {
-                        return companyService.insert(decIter, opType);
-                    } else if ("GOODS".equals(messageType)) {
-                        return goodsService.insert(decIter);
-                    } else if ("TRAD".equals(messageType)) {
-                        return orderService.insert(decIter);
-                    } else if ("BUYER".equals(messageType)) {
-                        return buyerService.insert(decIter);
-                    } else if ("MAF".equals(messageType)) {
-                        return producerService.insert(decIter);
-                    } else if ("CLIENTAGE".equals(messageType)) {
-                        return marketUserService.execClientage(decIter);
-                    } else if ("AUTO".equals(messageType)) {
-                        return customService.insert(decIter, opType);
+                        return companyService.query(decIter, messageType);
                     } else {
                         jsonArray.add("失败");
                         json.put("msg", jsonArray);
@@ -102,5 +71,4 @@ public class SmtSubTradeInfoServiceImpl implements ISmtSubTradeInfoService {
             return json.toString();
         }
     }
-
 }

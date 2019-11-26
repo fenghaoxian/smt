@@ -3,6 +3,7 @@ package com.smt.market.service.impl;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.smt.common.config.Global;
+import com.smt.common.constant.MarketConstants;
 import com.smt.common.support.Convert;
 import com.smt.common.utils.DateUtils;
 import com.smt.common.utils.Md5Utils;
@@ -398,6 +399,102 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
         json.put("msg", jsonArray);
         json.put("status", false);
         return json.toString();
+    }
+
+    @Override
+    public String query(Iterator iterator, String messageType) {
+        JSONArray jsonArray = new JSONArray();
+        JSONObject json = new JSONObject();
+        List<String> list = new ArrayList<String>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+        if (iterator.hasNext()) {
+            Element element = (Element) iterator.next();
+            Iterator inteIterator = (Iterator) element.elementIterator("InteInfo");
+            if (inteIterator.hasNext()) {
+                Element inteEle = (Element) inteIterator.next();
+                String createOrg = inteEle.elementTextTrim("createOrg");
+                if (StringUtils.isNotEmpty(createOrg)) {
+                    SmtCompany company = this.selectSmtCompanyBySgsRegCode(createOrg);
+                    if (StringUtils.isEmpty(company.getSgsRegCode())) {
+                        jsonArray.add("社会信用代码无对应企业:"+createOrg);
+                    } else {
+                        list.add(createOrg);
+                    }
+                } else {
+                    jsonArray.add("社会信用代码为空");
+                }
+                String loginName = inteEle.elementTextTrim("loginName");
+                if (StringUtils.isNotEmpty(loginName)) {
+                    list.add(loginName);
+                } else {
+                    jsonArray.add("创建企业登录名为空");
+                }
+                String loginPassWord = inteEle.elementTextTrim("loginPassWord");
+                if (StringUtils.isNotEmpty(loginPassWord)) {
+                    loginPassWord = SymmetricEncoder.AES_Decrypt("gz201988i1039com", loginPassWord);
+                    list.add(loginPassWord);
+                } else {
+                    jsonArray.add("创建企业密码为空");
+                }
+                if (jsonArray.size() > 0) {
+                    json.put("status", false);
+                    json.put("msg", jsonArray);
+                    return json.toString();
+                } else {
+                    String response = subjectIntFaceFacade.queryTradeInfo("COMP", createOrg);
+                    log.info(response);
+                    if(StringUtils.isNotEmpty(response)){
+                        JSONObject jsonObject = JSONObject.parseObject(response);
+                        //正确请求
+                        if(jsonObject.get("result").equals("1")){
+                            JSONArray dataList = jsonObject.getJSONArray("dataList");
+                            if(dataList!=null && dataList.size() >0){
+                                JSONObject data= dataList.getJSONObject(0);
+                                String status = MarketConstants.SMT_GOODS_STATUS_YTJ;
+                                if(data.get("statusCode").equals("1")){
+                                    status = MarketConstants.SMT_COMPANY_STATUS_HSTG;
+                                }else if(data.get("status").toString().contains("核实不通过")){
+                                    status = MarketConstants.SMT_COMPANY_STATUS_HSBTG;
+                                }
+                                company.setSgsRegCode(createOrg);
+                                company.setStatus(status);
+                                company.setStatusDesc(data.get("status").toString());
+                                this.updateSmtCompany(company);
+                                jsonArray.add(data.get("status"));
+                                json.put("status", true);
+                                json.put("msg", jsonArray);
+                                return json.toString();
+                            } else {
+                                jsonArray.add("请求失败");
+                                json.put("status", false);
+                                json.put("msg", jsonArray);
+                                return json.toString();
+                            }
+                        } else {
+                            jsonArray.add("请求失败");
+                            json.put("status", false);
+                            json.put("msg", jsonArray);
+                            return json.toString();
+                        }
+                    } else {
+                        jsonArray.add("请求失败");
+                        json.put("status", false);
+                        json.put("msg", jsonArray);
+                        return json.toString();
+                    }
+                }
+            } else {
+                jsonArray.add("报文信息有误");
+                json.put("status", false);
+                json.put("msg", jsonArray);
+                return json.toString();
+            }
+        } else {
+            jsonArray.add("报文信息有误");
+            json.put("status", false);
+            json.put("msg", jsonArray);
+            return json.toString();
+        }
     }
 
     /**
