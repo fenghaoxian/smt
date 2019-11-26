@@ -1,5 +1,6 @@
 package com.smt.web.core.config;
 
+import com.smt.market.service.ISmtQueryTradeInfoService;
 import com.smt.market.service.ISmtSubTradeInfoService;
 import org.apache.cxf.Bus;
 import org.apache.cxf.jaxws.EndpointImpl;
@@ -21,13 +22,17 @@ public class WebServiceConfig {
     private ISmtSubTradeInfoService subTradeInfoService;
 
     @Autowired
+    private ISmtQueryTradeInfoService queryTradeInfoService;
+
+    @Autowired
     private Bus bus;
 
     @Bean
     public Endpoint endpoint() {
         EndpointImpl endpoint = new EndpointImpl(bus, subTradeInfoService);
+        EndpointImpl endpoint1 = new EndpointImpl(bus, queryTradeInfoService);
         endpoint.publish("/subTradeInfo");
-        endpoint.publish("/queryTradeInfo");
+        endpoint1.publish("/queryTradeInfo");
         return endpoint;
     }
 }

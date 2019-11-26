@@ -1,16 +1,15 @@
 package com.smt.market.service;
 
-import org.springframework.stereotype.Service;
-
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import javax.jws.WebService;
 
 /**
  * Date: 2019/11/26
  * Author: fenghx
  * Desc:
  */
-@Service
+@WebService
 public interface ISmtQueryTradeInfoService {
 
     @WebMethod
