@@ -61,6 +61,8 @@ public interface ISmtCompanyService
 	 */
 	public String insert(Iterator iterator, String opType);
 
+	public String query(Iterator iterator, String messageType);
+
 	/**
 	 * 企业备案发送
 	 * @param xml

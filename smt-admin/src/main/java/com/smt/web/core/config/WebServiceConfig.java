@@ -3,9 +3,7 @@ package com.smt.web.core.config;
 import com.smt.market.service.ISmtSubTradeInfoService;
 import org.apache.cxf.Bus;
 import org.apache.cxf.jaxws.EndpointImpl;
-import org.apache.cxf.transport.servlet.CXFServlet;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -29,6 +27,7 @@ public class WebServiceConfig {
     public Endpoint endpoint() {
         EndpointImpl endpoint = new EndpointImpl(bus, subTradeInfoService);
         endpoint.publish("/subTradeInfo");
+        endpoint.publish("/queryTradeInfo");
         return endpoint;
     }
 }

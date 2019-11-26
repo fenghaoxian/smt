@@ -42,6 +42,9 @@ public class SmtSubTradeInfoServiceImpl implements ISmtSubTradeInfoService {
     @Autowired
     private ISmtMarketUserService marketUserService;
 
+    @Autowired
+    private ISmtCustomService customService;
+
     Logger logger = LoggerFactory.getLogger(SmtSubTradeInfoServiceImpl.class);
 
     @Override
@@ -73,7 +76,7 @@ public class SmtSubTradeInfoServiceImpl implements ISmtSubTradeInfoService {
                     } else if ("CLIENTAGE".equals(messageType)) {
                         return marketUserService.execClientage(decIter);
                     } else if ("AUTO".equals(messageType)) {
-                        return marketUserService.execClientage(decIter);
+                        return customService.insert(decIter, opType);
                     } else {
                         jsonArray.add("失败");
                         json.put("msg", jsonArray);
