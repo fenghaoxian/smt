@@ -403,6 +403,7 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
 
     @Override
     public String query(Iterator iterator, String messageType) {
+        SmtCompany company = new SmtCompany();
         JSONArray jsonArray = new JSONArray();
         JSONObject json = new JSONObject();
         List<String> list = new ArrayList<String>();
@@ -414,7 +415,7 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
                 Element inteEle = (Element) inteIterator.next();
                 String createOrg = inteEle.elementTextTrim("createOrg");
                 if (StringUtils.isNotEmpty(createOrg)) {
-                    SmtCompany company = this.selectSmtCompanyBySgsRegCode(createOrg);
+                    company = this.selectSmtCompanyBySgsRegCode(createOrg);
                     if (company.getSgsRegCode() != null && !"".equals(company.getSgsRegCode())) {
                         list.add(company.getSgsRegCode());
                     } else {
@@ -456,11 +457,9 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
                                 }else if(data.get("status").toString().contains("核实不通过")){
                                     status = MarketConstants.SMT_COMPANY_STATUS_HSBTG;
                                 }
-                                SmtCompany com = new SmtCompany();
-                                com.setSgsRegCode(createOrg);
-                                com.setStatus(status);
-                                com.setStatusDesc(data.get("status").toString());
-                                this.updateSmtCompany(com);
+                                company.setStatus(status);
+                                company.setStatusDesc(data.get("status").toString());
+                                int i = this.updateSmtCompany(company);
                                 jsonArray.add(data.get("status"));
                                 json.put("status", true);
                                 json.put("msg", jsonArray);
