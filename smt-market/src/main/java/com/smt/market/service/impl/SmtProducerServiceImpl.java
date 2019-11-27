@@ -14,6 +14,8 @@ import com.smt.market.mapper.SmtCompanyProducerMapper;
 import com.smt.market.mapper.SmtProducerMapper;
 import com.smt.market.service.ISmtProducerService;
 import org.dom4j.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +42,8 @@ public class SmtProducerServiceImpl implements ISmtProducerService
 
 	@Autowired
 	private SubjectIntFaceFacadeImpl subjectIntFaceFacade;
+
+	private static final Logger log = LoggerFactory.getLogger(SmtProducerServiceImpl.class);
 
 	/**
      * 查询生产商信息
@@ -166,16 +170,12 @@ public class SmtProducerServiceImpl implements ISmtProducerService
 					json.put("msg", jsonArray);
 					return json.toString();
 				} else {
-					int rows = smtProducerMapper.insertSmtProducer(producer);
-					if (rows > 0) {
+					String response = execProducer("A", producer, company.getSgsRegCode());
+					if ("true".equals(response)) {
+						smtProducerMapper.insertSmtProducer(producer);
 						insertCompanyProducer(company, producer);
-						String response = execProducer("A", producer, company.getSgsRegCode());
-						return response;
-					} else {
-						json.put("status", false);
-						json.put("msg", jsonArray.add("数据保存失败"));
-						return json.toString();
 					}
+					return response;
 				}
 			} else {
 				jsonArray.add("报文信息有误");
@@ -204,6 +204,7 @@ public class SmtProducerServiceImpl implements ISmtProducerService
 		JSONObject json = new JSONObject();
 		String mafXmlStr = getMafXmlStr(opType, producer, createOrg);
 		String response = subjectIntFaceFacade.sendDeclaration(Global.getCorpCode(), Global.getCorpName(), Global.getLoginCode(), Global.getLoginPassWord(), mafXmlStr);
+		log.info(response);
 		if (StringUtils.isEmpty(response)) {
 			json.put("status", false);
 			json.put("msg", jsonArray.add("市场采购贸易系统未返回回执"));
@@ -215,10 +216,15 @@ public class SmtProducerServiceImpl implements ISmtProducerService
 				json.put("status", false);
 				json.put("msg", jsonArray.add("私有数据已存在不需要新建"));
 				return json.toString();
+			} else {
+				json.put("status", false);
+				json.put("msg", repJSON.get("errorMessage"));
+				return json.toString();
 			}
 		}
+		jsonArray.add("发送成功");
 		json.put("status", true);
-		json.put("msg", "发送成功");
+		json.put("msg", jsonArray);
 		return json.toString();
 	}
 

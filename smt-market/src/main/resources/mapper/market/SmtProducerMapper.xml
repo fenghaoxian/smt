@@ -57,7 +57,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where corp_code = #{corpCode}
     </select>
         
-    <insert id="insertSmtProducer" parameterType="SmtProducer">
+    <insert id="insertSmtProducer" parameterType="SmtProducer" keyProperty="producerId" useGeneratedKeys="true">
         insert into smt_producer
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="producerId != null  ">producer_id,</if>
