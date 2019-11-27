@@ -25,6 +25,8 @@ public interface SmtCompanyMapper
 	 * @return 企业信息
 	 */
 	public SmtCompany selectSmtCompanyBySgsRegCode(String sgsRegCode);
+
+	public List<SmtCompany> selectSmtCompanyByStatus(String status);
 	
 	/**
      * 查询企业列表

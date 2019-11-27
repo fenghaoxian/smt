@@ -20,6 +20,10 @@ public interface ISmtCompanyService
      * @return 企业信息
      */
 	public SmtCompany selectSmtCompanyById(Integer companyId);
+
+	public SmtCompany selectSmtCompanyBySgsRegCode(String sgsRegCode);
+
+	public List<SmtCompany> selectSmtCompanyByStatus(String status);
 	
 	/**
      * 查询企业列表
@@ -62,6 +66,8 @@ public interface ISmtCompanyService
 	public String insert(Iterator iterator, String opType);
 
 	public String query(Iterator iterator, String messageType);
+
+	public String queryCompany(String opType, SmtCompany company);
 
 	/**
 	 * 企业备案发送

@@ -158,6 +158,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectSmtCompanyVo"/>
         where sgs_reg_code = #{sgsRegCode}
     </select>
+
+    <select id="selectSmtCompanyByStatus" parameterType="String" resultMap="SmtCompanyResult">
+        <include refid="selectSmtCompanyVo"/>
+        where status = #{status}
+    </select>
         
     <insert id="insertSmtCompany" parameterType="SmtCompany" useGeneratedKeys="true" keyProperty="companyId">
         insert into smt_company
