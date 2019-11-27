@@ -384,7 +384,8 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
             response = execBusiness(businessXml);
             System.out.println(response);
         }
-        if ("true".equals(response)) {
+        JSONObject repJSON = JSONObject.parseObject(response);
+        if (repJSON.getBoolean("status")) {
             if ("A".equals(opType)) {
                 userService.insertUser(user);
                 insertSmtCompany(company);
