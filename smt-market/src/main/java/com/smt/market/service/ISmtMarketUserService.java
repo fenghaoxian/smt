@@ -20,6 +20,8 @@ public interface ISmtMarketUserService
      * @return 委托关系信息
      */
 	public SmtMarketUser selectSmtMarketUserById(Integer marketId);
+
+	public SmtMarketUser selectSmtMarketUserBySgsRegCode(String sgsRegCode);
 	
 	/**
      * 查询委托关系列表

@@ -41,6 +41,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectSmtMarketUserVo"/>
         where market_id = #{marketId}
     </select>
+
+    <select id="selectSmtMarketUserBySgsRegCode" parameterType="String" resultMap="SmtMarketUserResult">
+        <include refid="selectSmtMarketUserVo"/>
+        where sgs_reg_code = #{sgsRegCode}
+    </select>
         
     <insert id="insertSmtMarketUser" parameterType="SmtMarketUser">
         insert into smt_market_user

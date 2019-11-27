@@ -12,6 +12,8 @@ import com.smt.market.domain.SmtMarketUser;
 import com.smt.market.mapper.SmtMarketUserMapper;
 import com.smt.market.service.ISmtMarketUserService;
 import org.dom4j.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +37,8 @@ public class SmtMarketUserServiceImpl implements ISmtMarketUserService
 	@Autowired
 	private SubjectIntFaceFacadeImpl subjectIntFaceFacade;
 
+	Logger logger = LoggerFactory.getLogger(SmtMarketUserServiceImpl.class);
+
 	/**
      * 查询委托关系信息
      * 
@@ -46,7 +50,12 @@ public class SmtMarketUserServiceImpl implements ISmtMarketUserService
 	{
 	    return smtMarketUserMapper.selectSmtMarketUserById(marketId);
 	}
-	
+
+	@Override
+	public SmtMarketUser selectSmtMarketUserBySgsRegCode(String sgsRegCode) {
+    	return smtMarketUserMapper.selectSmtMarketUserBySgsRegCode(sgsRegCode);
+	}
+
 	/**
      * 查询委托关系列表
      * 
@@ -139,12 +148,19 @@ public class SmtMarketUserServiceImpl implements ISmtMarketUserService
 				}
 				String clientageXml = getClientageXml(marketUserList);
 				String response = subjectIntFaceFacade.sendDeclaration(Global.getCorpCode(), Global.getCorpName(), Global.getLoginCode(), Global.getLoginPassWord(), clientageXml);
+				logger.info(response);
 				JSONObject repJson = JSONObject.parseObject(response);
-				if (repJson.getInteger("status") == 1) {
+				if (repJson.getInteger("result") == 1) {
+					jsonArray.add("委托成功");
 					json.put("status", true);
-					json.put("msg", jsonArray.add("发送成功"));
+					json.put("msg", jsonArray);
 					for (SmtMarketUser marketUser : marketUserList) {
-						smtMarketUserMapper.insertSmtMarketUser(marketUser);
+						SmtMarketUser smtMarketUser = selectSmtMarketUserBySgsRegCode(marketUser.getSgsRegCode());
+						if (smtMarketUser != null) {
+							smtMarketUserMapper.updateSmtMarketUser(marketUser);
+						} else {
+							smtMarketUserMapper.insertSmtMarketUser(marketUser);
+						}
 					}
 					return json.toString();
 				} else {
