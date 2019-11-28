@@ -206,15 +206,17 @@ public class SmtProducerServiceImpl implements ISmtProducerService
 		String response = subjectIntFaceFacade.sendDeclaration(Global.getCorpCode(), Global.getCorpName(), Global.getLoginCode(), Global.getLoginPassWord(), mafXmlStr);
 		log.info(response);
 		if (StringUtils.isEmpty(response)) {
+			jsonArray.add("市场采购贸易系统未返回回执");
 			json.put("status", false);
-			json.put("msg", jsonArray.add("市场采购贸易系统未返回回执"));
+			json.put("msg", jsonArray);
 			return json.toString();
 		}
 		JSONObject repJSON = JSONObject.parseObject(response);
 		if (StringUtils.isNotEmpty(repJSON.get("errorMessage").toString())) {
 			if (response.contains("私有数据已存在不需要新建")) {
+				jsonArray.add("私有数据已存在不需要新建");
 				json.put("status", false);
-				json.put("msg", jsonArray.add("私有数据已存在不需要新建"));
+				json.put("msg", jsonArray);
 				return json.toString();
 			} else {
 				json.put("status", false);
