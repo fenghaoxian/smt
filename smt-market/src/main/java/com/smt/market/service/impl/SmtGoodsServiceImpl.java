@@ -228,7 +228,7 @@ public class SmtGoodsServiceImpl implements ISmtGoodsService
 					String createOrg = goodsEle.elementTextTrim("createOrg");
 					if (createOrg != null && !"".equals(createOrg)) {
 						company = companyMapper.selectSmtCompanyBySgsRegCode(createOrg);
-						if (StringUtils.isNotEmpty(company.getSgsRegCode())) {
+						if (company == null) {
 							jsonArray.add("第"+i+"个商品创建企业编码不存在");
 						}
 					}
