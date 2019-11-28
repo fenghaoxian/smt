@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smt.market.mapper.SmtGoodsProducerMapper">
+    
+    <resultMap type="SmtGoodsProducer" id="SmtGoodsProducerResult">
+        <result property="goodsId"    column="goods_id"    />
+        <result property="producerId"    column="producer_id"    />
+    </resultMap>
+	
+	<sql id="selectSmtGoodsProducerVo">
+        select goods_id, producer_id from smt_goods_producer
+    </sql>
+	
+    <select id="selectSmtGoodsProducerList" parameterType="SmtGoodsProducer" resultMap="SmtGoodsProducerResult">
+        <include refid="selectSmtGoodsProducerVo"/>
+        <where>  
+            <if test="goodsId != null "> and goods_id = #{goodsId}</if>
+             <if test="producerId != null "> and producer_id = #{producerId}</if>
+         </where>
+    </select>
+    
+    <select id="selectSmtGoodsProducerById" parameterType="Integer" resultMap="SmtGoodsProducerResult">
+        <include refid="selectSmtGoodsProducerVo"/>
+        where goods_id = #{goodsId}
+    </select>
+        
+    <insert id="insertSmtGoodsProducer" parameterType="SmtGoodsProducer">
+        insert into smt_goods_producer
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="goodsId != null  ">goods_id,</if>
+			<if test="producerId != null  ">producer_id,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="goodsId != null  ">#{goodsId},</if>
+			<if test="producerId != null  ">#{producerId},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateSmtGoodsProducer" parameterType="SmtGoodsProducer">
+        update smt_goods_producer
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="producerId != null  ">producer_id = #{producerId},</if>
+        </trim>
+        where goods_id = #{goodsId}
+    </update>
+
+	<delete id="deleteSmtGoodsProducerById" parameterType="Integer">
+        delete from smt_goods_producer where goods_id = #{goodsId}
+    </delete>
+	
+    <delete id="deleteSmtGoodsProducerByIds" parameterType="String">
+        delete from smt_goods_producer where goods_id in 
+        <foreach item="goodsId" collection="array" open="(" separator="," close=")">
+            #{goodsId}
+        </foreach>
+    </delete>
+    
+</mapper>
