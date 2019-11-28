@@ -48,9 +48,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectSmtBuyerById" parameterType="Integer" resultMap="SmtBuyerResult">
         <include refid="selectSmtBuyerVo"/>
         where buyer_id = #{buyerId}
-    </select>
+    </select>s
         
-    <insert id="insertSmtBuyer" parameterType="SmtBuyer">
+    <insert id="insertSmtBuyer" parameterType="SmtBuyer" useGeneratedKeys="true" keyProperty="buyerId">
         insert into smt_buyer
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="buyerId != null  ">buyer_id,</if>
