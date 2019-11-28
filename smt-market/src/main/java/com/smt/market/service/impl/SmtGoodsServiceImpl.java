@@ -343,7 +343,7 @@ public class SmtGoodsServiceImpl implements ISmtGoodsService
 			return json.toString();
 		}
 		JSONObject repJson = JSONObject.parseObject(response);
-		if (StringUtils.isNotEmpty(repJson.get("otherMessage").toString()) && repJson.getInteger("result") == 1) {
+		if (repJson.getInteger("result") == 1 && repJson.get("otherMessage") != null) {
 			json.put("status", true);
 			json.put("msg", repJson.get("otherMessage"));
 			return json.toString();
