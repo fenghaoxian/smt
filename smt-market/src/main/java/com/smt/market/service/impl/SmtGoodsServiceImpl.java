@@ -232,7 +232,6 @@ public class SmtGoodsServiceImpl implements ISmtGoodsService
 							jsonArray.add("第"+i+"个商品创建企业编码不存在");
 						}
 					}
-					goods.setUnId(UUID.randomUUID().toString().replace("-", ""));
 					goodsList.add(goods);
 					companyList.add(company);
 				}
@@ -390,7 +389,7 @@ public class SmtGoodsServiceImpl implements ISmtGoodsService
 			goodsXmlStr.append(" <createOrg>"+(company.getSgsRegCode()==null?"":company.getSgsRegCode())+"</createOrg>\n");
 			goodsXmlStr.append(" <goodsCname>"+(goods.getGoodsCname()==null?"":goods.getGoodsCname())+"</goodsCname>\n");
 			goodsXmlStr.append(" <goodsEname>"+(goods.getGoodsEname()==null?"":goods.getGoodsEname())+"</goodsEname>\n");
-			goodsXmlStr.append(" <goodsId>"+(goods.getGoodsId()==null?"":goods.getGoodsId())+"</goodsId>\n");
+			goodsXmlStr.append(" <goodsId>"+(goods.getCorpOwnerCode()==null?"":goods.getCorpOwnerCode())+"</goodsId>\n");
 			goodsXmlStr.append(" <goodsImage></goodsImage>\n");
 			goodsXmlStr.append(" <isBrand>"+(goods.getIsBrand()==null?"":goods.getIsBrand())+"</isBrand>\n");
 			goodsXmlStr.append(" <model>"+(goods.getModel()==null?"":goods.getModel())+"</model>\n");
