@@ -337,8 +337,9 @@ public class SmtGoodsServiceImpl implements ISmtGoodsService
 		String response = subjectIntFaceFacade.sendDeclaration(Global.getCorpCode(), Global.getCorpName(), Global.getLoginCode(), Global.getLoginPassWord(), goodsXmlStr);
 		logger.info(response);
 		if (StringUtils.isEmpty(response)) {
+			jsonArray.add("市场采购贸易系统未返回回执");
 			json.put("status", false);
-			json.put("msg", jsonArray.add("市场采购贸易系统未返回回执"));
+			json.put("msg", jsonArray);
 			return json.toString();
 		}
 		JSONObject repJson = JSONObject.parseObject(response);
@@ -351,9 +352,10 @@ public class SmtGoodsServiceImpl implements ISmtGoodsService
 			json.put("msg", repJson.get("errorMessage"));
 			return json.toString();
 		} else {
+			jsonArray.add("发送失败");
 			System.out.println(response);
 			json.put("status", false);
-			json.put("msg", jsonArray.add("发送失败"));
+			json.put("msg", jsonArray);
 			return json.toString();
 		}
 	}
