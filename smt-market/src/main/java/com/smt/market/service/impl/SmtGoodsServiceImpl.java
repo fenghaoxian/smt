@@ -153,7 +153,7 @@ public class SmtGoodsServiceImpl implements ISmtGoodsService
 					if (hsCode != null && !"".equals(hsCode)) {
 						goods.setHsCode(hsCode);
 					}
-					String hsCodes = goodsEle.elementTextTrim("hsCodes");
+					String hsCodes = goodsEle.elementTextTrim("hsCodeS");
 					if (hsCodes != null && !"".equals(hsCodes)) {
 						goods.setHsCodes(hsCodes);
 					}
