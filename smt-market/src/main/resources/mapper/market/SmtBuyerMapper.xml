@@ -50,6 +50,11 @@
         where buyer_id = #{buyerId}
     </select>
 
+    <select id="selectSmtBuyerByCorpCode" parameterType="Integer" resultMap="SmtBuyerResult">
+        <include refid="selectSmtBuyerVo"/>
+        where corp_code = #{corpCode}
+    </select>
+
     <insert id="insertSmtBuyer" parameterType="SmtBuyer" useGeneratedKeys="true" keyProperty="buyerId">
         insert into smt_buyer
         <trim prefix="(" suffix=")" suffixOverrides=",">

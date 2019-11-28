@@ -53,7 +53,12 @@ public class SmtBuyerServiceImpl implements ISmtBuyerService
 	{
 	    return smtBuyerMapper.selectSmtBuyerById(buyerId);
 	}
-	
+
+	@Override
+	public SmtBuyer selectSmtBuyerByCorpCode(String corpCode) {
+    	return smtBuyerMapper.selectSmtBuyerBycorpCode(corpCode);
+	}
+
 	/**
      * 查询采购商列表
      * 
@@ -160,15 +165,20 @@ public class SmtBuyerServiceImpl implements ISmtBuyerService
 				} else {
 					jsonArray.add("创建企业编码为空");
 				}
-				int rows = smtBuyerMapper.insertSmtBuyer(buyer);
-				if (rows > 0) {
-					insertCompanyBuyer(buyer, company);
-					String response = execBuyer("A", buyer, company.getSgsRegCode());
+				String response = execBuyer("A", buyer, company.getSgsRegCode());
+				JSONObject repJSON = JSONObject.parseObject(response);
+				if (repJSON.getBoolean("status") || response.contains("私有数据已存在不需要新建")) {
+					SmtBuyer smtBuyer = selectSmtBuyerByCorpCode(buyer.getCorpCode());
+					if (smtBuyer != null) {
+						buyer.setBuyerId(smtBuyer.getBuyerId());
+						this.updateSmtBuyer(buyer);
+					} else {
+						this.insertSmtBuyer(buyer);
+						this.insertCompanyBuyer(buyer, company);
+					}
 					return response;
 				} else {
-					json.put("status", false);
-					json.put("msg", jsonArray.add("保存失败"));
-					return json.toString();
+					return response;
 				}
 			} else {
 				jsonArray.add("报文信息有误");
@@ -198,12 +208,8 @@ public class SmtBuyerServiceImpl implements ISmtBuyerService
 		}
 		JSONObject repJson = JSONObject.parseObject(response);
 		if (StringUtils.isNotEmpty(repJson.get("errorMessage").toString())) {
-			if (!response.contains("私有数据已存在不需要新建")) {
-				json.put("status", false);
-				json.put("msg", repJson.get("errorMessage"));
-			}
-		}
-		if (json.getBoolean("status")) {
+			json.put("status", false);
+			json.put("msg", repJson.get("errorMessage"));
 			return json.toString();
 		}
 		json.put("msg", repJson.get("otherMessage"));

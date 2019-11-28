@@ -18,6 +18,8 @@ public interface SmtBuyerMapper
      * @return 采购商信息
      */
 	public SmtBuyer selectSmtBuyerById(Integer buyerId);
+
+	public SmtBuyer selectSmtBuyerBycorpCode(String corpCode);
 	
 	/**
      * 查询采购商列表
