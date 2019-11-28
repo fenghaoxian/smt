@@ -386,24 +386,24 @@ public class SmtCompanyServiceImpl implements ISmtCompanyService
         }
         JSONObject repJSON = JSONObject.parseObject(response);
         if (repJSON.getBoolean("status")) {
-            if ("A".equals(opType)) {
-                userService.insertUser(user);
-                insertSmtCompany(company);
-                return response;
-            } else if ("M".equals(opType)) {
+            SysUser sysUser = userService.selectUserByLoginName(user.getUserName());
+            if (sysUser != null) {
+                user.setUserId(sysUser.getUserId());
                 userService.updateUser(user);
-                SmtCompany company1 = selectSmtCompanyBySgsRegCode(company.getSgsRegCode());
-                company.setCompanyId(company1.getCompanyId());
-                updateSmtCompany(company);
-                return response;
+            } else {
+                userService.insertUser(user);
             }
+            SmtCompany smtCompany = this.selectSmtCompanyBySgsRegCode(company.getSgsRegCode());
+            if (smtCompany != null) {
+                company.setCompanyId(smtCompany.getCompanyId());
+                this.updateSmtCompany(company);
+            } else {
+                insertSmtCompany(company);
+            }
+            return response;
         } else {
             return response;
         }
-        jsonArray.add("发送失败");
-        json.put("msg", jsonArray);
-        json.put("status", false);
-        return json.toString();
     }
 
     @Override
