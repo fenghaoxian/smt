@@ -50,7 +50,7 @@
         where buyer_id = #{buyerId}
     </select>
 
-    <select id="selectSmtBuyerByCorpCode" parameterType="Integer" resultMap="SmtBuyerResult">
+    <select id="selectSmtBuyerByCorpCode" parameterType="String" resultMap="SmtBuyerResult">
         <include refid="selectSmtBuyerVo"/>
         where corp_code = #{corpCode}
     </select>
