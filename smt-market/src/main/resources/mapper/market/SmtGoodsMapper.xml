@@ -71,6 +71,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectSmtGoodsVo"/>
         where goods_id = #{goodsId}
     </select>
+
+    <select id="selectSmtGoodsByGoodsCode" parameterType="String" resultMap="SmtGoodsResult">
+        <include refid="selectSmtGoodsVo"/>
+        where goods_code = #{goodsCode}
+    </select>
         
     <insert id="insertSmtGoods" parameterType="SmtGoods" useGeneratedKeys="true" keyProperty="goodsId">
         insert into smt_goods

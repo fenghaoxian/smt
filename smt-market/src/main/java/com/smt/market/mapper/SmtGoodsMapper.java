@@ -18,6 +18,8 @@ public interface SmtGoodsMapper
      * @return 商品信息
      */
 	public SmtGoods selectSmtGoodsById(Integer goodsId);
+
+	public SmtGoods selectSmtGoodsByGoodsCode(String goodsCode);
 	
 	/**
      * 查询商品列表

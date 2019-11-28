@@ -22,6 +22,8 @@ public interface ISmtGoodsService
      * @return 商品信息
      */
 	public SmtGoods selectSmtGoodsById(Integer goodsId);
+
+	public SmtGoods selectSmtGoodsByGoodsCode(String goodsCode);
 	
 	/**
      * 查询商品列表
@@ -57,7 +59,11 @@ public interface ISmtGoodsService
 
 	public void insertGoodsProducer(SmtGoods goods, SmtProducer producer);
 
-	public String insert(Iterator iterator);
+	public String insert(Iterator iterator, String opType);
+
+	public String query(Iterator iterator, String messageType);
+
+	public String queryGoods(String opType, SmtGoods goods);
 
 	/**
 	 * 商品备案

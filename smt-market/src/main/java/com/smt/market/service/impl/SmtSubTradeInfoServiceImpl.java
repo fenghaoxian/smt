@@ -66,7 +66,7 @@ public class SmtSubTradeInfoServiceImpl implements ISmtSubTradeInfoService {
                     if ("COMP".equals(messageType)) {
                         return companyService.insert(decIter, opType);
                     } else if ("GOODS".equals(messageType)) {
-                        return goodsService.insert(decIter);
+                        return goodsService.insert(decIter, opType);
                     } else if ("TRAD".equals(messageType)) {
                         return orderService.insert(decIter);
                     } else if ("BUYER".equals(messageType)) {

@@ -2,8 +2,6 @@ package com.smt.market.domain;
 
 
 import com.smt.common.base.BaseEntity;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.util.Date;
 
@@ -53,6 +51,8 @@ public class SmtGoods extends BaseEntity
 	private String goodsCode;
 	/** 唯一ID */
 	private String unId;
+	/** 商品状态 */
+	private String status;
 	/** 市场核实状态 */
 	private String chkMarket;
 	/** 删除标志 */
@@ -294,33 +294,60 @@ public class SmtGoods extends BaseEntity
 		return remark;
 	}
 
-    public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("goodsId", getGoodsId())
-            .append("goodsCname", getGoodsCname())
-            .append("hsCode", getHsCode())
-            .append("hsCodes", getHsCodes())
-            .append("corpOwnerCode", getCorpOwnerCode())
-            .append("goodsType", getGoodsType())
-            .append("goodsEname", getGoodsEname())
-            .append("model", getModel())
-            .append("isBrand", getIsBrand())
-            .append("cBrand", getCBrand())
-            .append("eBrand", getEBrand())
-            .append("producer", getProducer())
-            .append("cunit", getCunit())
-            .append("qunit", getQunit())
-            .append("wunit", getWunit())
-            .append("goodsImage", getGoodsImage())
-            .append("goodsCode", getGoodsCode())
-            .append("unId", getUnId())
-            .append("chkMarket", getChkMarket())
-            .append("delFlag", getDelFlag())
-            .append("createBy", getCreateBy())
-            .append("createTime", getCreateTime())
-            .append("updateBy", getUpdateBy())
-            .append("updateTime", getUpdateTime())
-            .append("remark", getRemark())
-            .toString();
-    }
+	public String getcBrand() {
+		return cBrand;
+	}
+
+	public void setcBrand(String cBrand) {
+		this.cBrand = cBrand;
+	}
+
+	public String geteBrand() {
+		return eBrand;
+	}
+
+	public void seteBrand(String eBrand) {
+		this.eBrand = eBrand;
+	}
+
+	@Override
+	public String toString() {
+		return "SmtGoods{" +
+				"goodsId=" + goodsId +
+				", goodsCname='" + goodsCname + '\'' +
+				", hsCode='" + hsCode + '\'' +
+				", hsCodes='" + hsCodes + '\'' +
+				", corpOwnerCode='" + corpOwnerCode + '\'' +
+				", goodsType='" + goodsType + '\'' +
+				", goodsEname='" + goodsEname + '\'' +
+				", model='" + model + '\'' +
+				", isBrand='" + isBrand + '\'' +
+				", cBrand='" + cBrand + '\'' +
+				", eBrand='" + eBrand + '\'' +
+				", producer='" + producer + '\'' +
+				", cunit='" + cunit + '\'' +
+				", qunit='" + qunit + '\'' +
+				", wunit='" + wunit + '\'' +
+				", goodsImage='" + goodsImage + '\'' +
+				", goodsCode='" + goodsCode + '\'' +
+				", unId='" + unId + '\'' +
+				", status='" + status + '\'' +
+				", chkMarket='" + chkMarket + '\'' +
+				", delFlag='" + delFlag + '\'' +
+				", createBy='" + createBy + '\'' +
+				", createTime=" + createTime +
+				", updateBy='" + updateBy + '\'' +
+				", updateTime=" + updateTime +
+				", remark='" + remark + '\'' +
+				'}';
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 }

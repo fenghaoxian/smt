@@ -3,6 +3,7 @@ package com.smt.market.service.impl;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.smt.market.service.ISmtCompanyService;
+import com.smt.market.service.ISmtGoodsService;
 import com.smt.market.service.ISmtQueryTradeInfoService;
 import org.dom4j.Document;
 import org.dom4j.Element;
@@ -27,6 +28,9 @@ public class SmtQueryTradeServiceimpl implements ISmtQueryTradeInfoService {
     @Autowired
     private ISmtCompanyService companyService;
 
+    @Autowired
+    private ISmtGoodsService goodsService;
+
     Logger logger = LoggerFactory.getLogger(SmtSubTradeInfoServiceImpl.class);
 
     @Override
@@ -48,6 +52,8 @@ public class SmtQueryTradeServiceimpl implements ISmtQueryTradeInfoService {
                     String opType = recordEle.elementTextTrim("opType");
                     if ("COMP".equals(messageType)) {
                         return companyService.query(decIter, messageType);
+                    } else if ("GOODS".equals(messageType)) {
+                        return goodsService.query(decIter, messageType);
                     } else {
                         jsonArray.add("失败");
                         json.put("msg", jsonArray);
