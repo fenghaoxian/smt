@@ -347,7 +347,7 @@ public class SmtGoodsServiceImpl implements ISmtGoodsService
 			json.put("status", true);
 			json.put("msg", repJson.get("otherMessage"));
 			return json.toString();
-		} else if (repJson.getInteger("status") == 0) {
+		} else if (repJson.getInteger("result") == 0) {
 			json.put("status", false);
 			json.put("msg", repJson.get("errorMessage"));
 			return json.toString();
