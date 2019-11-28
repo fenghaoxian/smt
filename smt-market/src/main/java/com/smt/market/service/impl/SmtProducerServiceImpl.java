@@ -171,9 +171,25 @@ public class SmtProducerServiceImpl implements ISmtProducerService
 					return json.toString();
 				} else {
 					String response = execProducer("A", producer, company.getSgsRegCode());
-					if ("true".equals(response)) {
-						smtProducerMapper.insertSmtProducer(producer);
-						insertCompanyProducer(company, producer);
+					JSONObject repJson = JSONObject.parseObject(response);
+					if (repJson.getBoolean("status")) {
+						SmtProducer smtProducer = smtProducerMapper.selectSmtProducerByCorpCode(producer.getCorpCode());
+						if (smtProducer != null) {
+							smtProducerMapper.updateSmtProducer(producer);
+						} else {
+							smtProducerMapper.insertSmtProducer(producer);
+							insertCompanyProducer(company, producer);
+						}
+					} else {
+						if ("私有数据已存在不需要新建".equals(repJson.get("msg"))) {
+							SmtProducer smtProducer = smtProducerMapper.selectSmtProducerByCorpCode(producer.getCorpCode());
+							if (smtProducer != null) {
+								smtProducerMapper.updateSmtProducer(producer);
+							} else {
+								smtProducerMapper.insertSmtProducer(producer);
+								insertCompanyProducer(company, producer);
+							}
+						}
 					}
 					return response;
 				}
