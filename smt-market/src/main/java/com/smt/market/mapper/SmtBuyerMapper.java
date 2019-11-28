@@ -19,7 +19,7 @@ public interface SmtBuyerMapper
      */
 	public SmtBuyer selectSmtBuyerById(Integer buyerId);
 
-	public SmtBuyer selectSmtBuyerBycorpCode(String corpCode);
+	public SmtBuyer selectSmtBuyerByCorpCode(String corpCode);
 	
 	/**
      * 查询采购商列表

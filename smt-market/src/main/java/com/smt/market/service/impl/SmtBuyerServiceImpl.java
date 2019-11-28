@@ -56,7 +56,7 @@ public class SmtBuyerServiceImpl implements ISmtBuyerService
 
 	@Override
 	public SmtBuyer selectSmtBuyerByCorpCode(String corpCode) {
-    	return smtBuyerMapper.selectSmtBuyerBycorpCode(corpCode);
+    	return smtBuyerMapper.selectSmtBuyerByCorpCode(corpCode);
 	}
 
 	/**
