@@ -25,6 +25,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectSmtGoodsProducerVo"/>
         where goods_id = #{goodsId}
     </select>
+
+    <select id="selectSmtGoodsProducerByProducerId" parameterType="Integer" resultMap="SmtGoodsProducerResult">
+        <include refid="selectSmtGoodsProducerVo"/>
+        where producer_id = #{producerId}
+    </select>
         
     <insert id="insertSmtGoodsProducer" parameterType="SmtGoodsProducer">
         insert into smt_goods_producer
