@@ -159,7 +159,7 @@ public class SmtProducerServiceImpl implements ISmtProducerService
 				String createOrg = manufacturerEle.elementTextTrim("createOrg");
 				if (StringUtils.isNotEmpty(createOrg)) {
 					company = companyMapper.selectSmtCompanyBySgsRegCode(createOrg);
-					if (StringUtils.isEmpty(company.getSgsRegCode())) {
+					if (company == null) {
 						jsonArray.add("创建企业编码不存在");
 					}
 				} else {
@@ -181,7 +181,7 @@ public class SmtProducerServiceImpl implements ISmtProducerService
 							insertCompanyProducer(company, producer);
 						}
 					} else {
-						if ("私有数据已存在不需要新建".equals(repJson.get("msg"))) {
+						if (response.contains("私有数据已存在不需要新建")) {
 							SmtProducer smtProducer = smtProducerMapper.selectSmtProducerByCorpCode(producer.getCorpCode());
 							if (smtProducer != null) {
 								smtProducerMapper.updateSmtProducer(producer);
