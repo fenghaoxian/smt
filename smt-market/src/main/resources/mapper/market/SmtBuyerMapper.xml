@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smt.market.mapper.SmtBuyerMapper">
-    
+
     <resultMap type="SmtBuyer" id="SmtBuyerResult">
         <result property="buyerId"    column="buyer_id"    />
         <result property="corpCode"    column="corp_code"    />
@@ -20,72 +20,72 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="updateBy"    column="update_by"    />
         <result property="remark"    column="remark"    />
     </resultMap>
-	
-	<sql id="selectSmtBuyerVo">
+
+    <sql id="selectSmtBuyerVo">
         select buyer_id, corp_code, corp_c_name, company_type, contract_man, finvest1, telno, address, del_flag, create_time, create_by, update_time, update_by, remark from smt_buyer
     </sql>
-	
+
     <select id="selectSmtBuyerList" parameterType="SmtBuyer" resultMap="SmtBuyerResult">
         <include refid="selectSmtBuyerVo"/>
-        <where>  
+        <where>
             <if test="buyerId != null "> and buyer_id = #{buyerId}</if>
-             <if test="corpCode != null  and corpCode != '' "> and corp_code = #{corpCode}</if>
-             <if test="corpCName != null  and corpCName != '' "> and corp_c_name = #{corpCName}</if>
-             <if test="companyType != null  and companyType != '' "> and company_type = #{companyType}</if>
-             <if test="contractMan != null  and contractMan != '' "> and contract_man = #{contractMan}</if>
-             <if test="finvest1 != null  and finvest1 != '' "> and finvest1 = #{finvest1}</if>
-             <if test="telno != null  and telno != '' "> and telno = #{telno}</if>
-             <if test="address != null  and address != '' "> and address = #{address}</if>
-             <if test="delFlag != null  and delFlag != '' "> and del_flag = #{delFlag}</if>
-             <if test="createTime != null "> and create_time = #{createTime}</if>
-             <if test="createBy != null  and createBy != '' "> and create_by = #{createBy}</if>
-             <if test="updateTime != null "> and update_time = #{updateTime}</if>
-             <if test="updateBy != null  and updateBy != '' "> and update_by = #{updateBy}</if>
-             <if test="remark != null  and remark != '' "> and remark = #{remark}</if>
-         </where>
+            <if test="corpCode != null  and corpCode != '' "> and corp_code = #{corpCode}</if>
+            <if test="corpCName != null  and corpCName != '' "> and corp_c_name = #{corpCName}</if>
+            <if test="companyType != null  and companyType != '' "> and company_type = #{companyType}</if>
+            <if test="contractMan != null  and contractMan != '' "> and contract_man = #{contractMan}</if>
+            <if test="finvest1 != null  and finvest1 != '' "> and finvest1 = #{finvest1}</if>
+            <if test="telno != null  and telno != '' "> and telno = #{telno}</if>
+            <if test="address != null  and address != '' "> and address = #{address}</if>
+            <if test="delFlag != null  and delFlag != '' "> and del_flag = #{delFlag}</if>
+            <if test="createTime != null "> and create_time = #{createTime}</if>
+            <if test="createBy != null  and createBy != '' "> and create_by = #{createBy}</if>
+            <if test="updateTime != null "> and update_time = #{updateTime}</if>
+            <if test="updateBy != null  and updateBy != '' "> and update_by = #{updateBy}</if>
+            <if test="remark != null  and remark != '' "> and remark = #{remark}</if>
+        </where>
     </select>
-    
+
     <select id="selectSmtBuyerById" parameterType="Integer" resultMap="SmtBuyerResult">
         <include refid="selectSmtBuyerVo"/>
         where buyer_id = #{buyerId}
-    </select>s
-        
+    </select>
+
     <insert id="insertSmtBuyer" parameterType="SmtBuyer" useGeneratedKeys="true" keyProperty="buyerId">
         insert into smt_buyer
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="buyerId != null  ">buyer_id,</if>
-			<if test="corpCode != null  and corpCode != ''  ">corp_code,</if>
-			<if test="corpCName != null  and corpCName != ''  ">corp_c_name,</if>
-			<if test="companyType != null  and companyType != ''  ">company_type,</if>
-			<if test="contractMan != null  and contractMan != ''  ">contract_man,</if>
-			<if test="finvest1 != null  and finvest1 != ''  ">finvest1,</if>
-			<if test="telno != null  and telno != ''  ">telno,</if>
-			<if test="address != null  and address != ''  ">address,</if>
-			<if test="delFlag != null  and delFlag != ''  ">del_flag,</if>
-			<if test="createTime != null  ">create_time,</if>
-			<if test="createBy != null  and createBy != ''  ">create_by,</if>
-			<if test="updateTime != null  ">update_time,</if>
-			<if test="updateBy != null  and updateBy != ''  ">update_by,</if>
-			<if test="remark != null  and remark != ''  ">remark,</if>
-         </trim>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="buyerId != null  ">buyer_id,</if>
+            <if test="corpCode != null  and corpCode != ''  ">corp_code,</if>
+            <if test="corpCName != null  and corpCName != ''  ">corp_c_name,</if>
+            <if test="companyType != null  and companyType != ''  ">company_type,</if>
+            <if test="contractMan != null  and contractMan != ''  ">contract_man,</if>
+            <if test="finvest1 != null  and finvest1 != ''  ">finvest1,</if>
+            <if test="telno != null  and telno != ''  ">telno,</if>
+            <if test="address != null  and address != ''  ">address,</if>
+            <if test="delFlag != null  and delFlag != ''  ">del_flag,</if>
+            <if test="createTime != null  ">create_time,</if>
+            <if test="createBy != null  and createBy != ''  ">create_by,</if>
+            <if test="updateTime != null  ">update_time,</if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by,</if>
+            <if test="remark != null  and remark != ''  ">remark,</if>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="buyerId != null  ">#{buyerId},</if>
-			<if test="corpCode != null  and corpCode != ''  ">#{corpCode},</if>
-			<if test="corpCName != null  and corpCName != ''  ">#{corpCName},</if>
-			<if test="companyType != null  and companyType != ''  ">#{companyType},</if>
-			<if test="contractMan != null  and contractMan != ''  ">#{contractMan},</if>
-			<if test="finvest1 != null  and finvest1 != ''  ">#{finvest1},</if>
-			<if test="telno != null  and telno != ''  ">#{telno},</if>
-			<if test="address != null  and address != ''  ">#{address},</if>
-			<if test="delFlag != null  and delFlag != ''  ">#{delFlag},</if>
-			<if test="createTime != null  ">#{createTime},</if>
-			<if test="createBy != null  and createBy != ''  ">#{createBy},</if>
-			<if test="updateTime != null  ">#{updateTime},</if>
-			<if test="updateBy != null  and updateBy != ''  ">#{updateBy},</if>
-			<if test="remark != null  and remark != ''  ">#{remark},</if>
-         </trim>
+            <if test="buyerId != null  ">#{buyerId},</if>
+            <if test="corpCode != null  and corpCode != ''  ">#{corpCode},</if>
+            <if test="corpCName != null  and corpCName != ''  ">#{corpCName},</if>
+            <if test="companyType != null  and companyType != ''  ">#{companyType},</if>
+            <if test="contractMan != null  and contractMan != ''  ">#{contractMan},</if>
+            <if test="finvest1 != null  and finvest1 != ''  ">#{finvest1},</if>
+            <if test="telno != null  and telno != ''  ">#{telno},</if>
+            <if test="address != null  and address != ''  ">#{address},</if>
+            <if test="delFlag != null  and delFlag != ''  ">#{delFlag},</if>
+            <if test="createTime != null  ">#{createTime},</if>
+            <if test="createBy != null  and createBy != ''  ">#{createBy},</if>
+            <if test="updateTime != null  ">#{updateTime},</if>
+            <if test="updateBy != null  and updateBy != ''  ">#{updateBy},</if>
+            <if test="remark != null  and remark != ''  ">#{remark},</if>
+        </trim>
     </insert>
-	 
+
     <update id="updateSmtBuyer" parameterType="SmtBuyer">
         update smt_buyer
         <trim prefix="SET" suffixOverrides=",">
@@ -106,15 +106,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where buyer_id = #{buyerId}
     </update>
 
-	<delete id="deleteSmtBuyerById" parameterType="Integer">
+    <delete id="deleteSmtBuyerById" parameterType="Integer">
         delete from smt_buyer where buyer_id = #{buyerId}
     </delete>
-	
+
     <delete id="deleteSmtBuyerByIds" parameterType="String">
-        delete from smt_buyer where buyer_id in 
+        delete from smt_buyer where buyer_id in
         <foreach item="buyerId" collection="array" open="(" separator="," close=")">
             #{buyerId}
         </foreach>
     </delete>
-    
+
 </mapper>
