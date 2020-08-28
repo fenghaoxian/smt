@@ -35,7 +35,13 @@
             <artifactId>smt-common</artifactId>
             <version>${smt.version}</version>
         </dependency>
-		
+        <dependency>
+            <groupId>com.smt</groupId>
+            <artifactId>smt-market</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
 	
 </project>
