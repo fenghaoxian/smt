@@ -1,0 +1,998 @@
+<!DOCTYPE HTML>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+    
+     <div class="container-div">
+		<div class="row">
+			<div class="col-sm-12 search-collapse">
+				<form id="formId">
+					<div class="select-list">
+						<ul>
+							<li>
+								创建人：<input type="text" name="createBy"/>
+							</li>
+
+							<li>
+								创建时间：<input type="text" name="createTime"/>
+							</li>
+
+							<li>
+								更新人：<input type="text" name="updateBy"/>
+							</li>
+
+							<li>
+								更新时间：<input type="text" name="updateTime"/>
+							</li>
+
+							<li>
+								备注：<input type="text" name="remark"/>
+							</li>
+
+							<li>
+								报关单状态：<input type="text" name="status"/>
+							</li>
+
+							<li>
+								报关单状态(联网)：<input type="text" name="custStatus"/>
+							</li>
+
+							<li>
+								是否删除 存在(0), 删除(2)：<input type="text" name="delFlag"/>
+							</li>
+
+							<li>
+								业务类型代码：<input type="text" name="opType"/>
+							</li>
+
+							<li>
+								报关转关代码：<input type="text" name="decTin"/>
+							</li>
+
+							<li>
+								报关模式代码：<input type="text" name="decMode"/>
+							</li>
+
+							<li>
+								担保验放：<input type="text" name="checkSurety"/>
+							</li>
+
+							<li>
+								备案清单类型：<input type="text" name="billType"/>
+							</li>
+
+							<li>
+								统一编号：<input type="text" name="seqNo"/>
+							</li>
+
+							<li>
+								预录入编号：<input type="text" name="preEntryId"/>
+							</li>
+
+							<li>
+								报关单号：<input type="text" name="entryId"/>
+							</li>
+
+							<li>
+								出口口岸：<input type="text" name="iePort"/>
+							</li>
+
+							<li>
+								合同协议号：<input type="text" name="contrNo"/>
+							</li>
+
+							<li>
+								出口日期：<input type="text" name="ieDate"/>
+							</li>
+
+							<li>
+								申报日期：<input type="text" name="dDate"/>
+							</li>
+
+							<li>
+								收货人：<input type="text" name="tradeCo"/>
+							</li>
+
+							<li>
+								收货人名称：<input type="text" name="tradeCoName"/>
+							</li>
+
+							<li>
+								收发货人(企业类型)：<input type="text" name="coOwner"/>
+							</li>
+
+							<li>
+								经营单位统一编码：<input type="text" name="tradeCoscc"/>
+							</li>
+
+							<li>
+								生产销售单位：<input type="text" name="ownerCode"/>
+							</li>
+
+							<li>
+								生产销售单位名称：<input type="text" name="ownerName"/>
+							</li>
+
+							<li>
+								货主单位统一编码：<input type="text" name="ownerCodeScc"/>
+							</li>
+
+							<li>
+								申报单位：<input type="text" name="agentCode"/>
+							</li>
+
+							<li>
+								申报单位名称：<input type="text" name="agentName"/>
+							</li>
+
+							<li>
+								申报单位统一编码：<input type="text" name="agentCodeScc"/>
+							</li>
+
+							<li>
+								录入单位统一编码：<input type="text" name="copCodeScc"/>
+							</li>
+
+							<li>
+								运输方式：<input type="text" name="trafMode"/>
+							</li>
+
+							<li>
+								运输工具名称：<input type="text" name="trafName"/>
+							</li>
+
+							<li>
+								航次号：<input type="text" name="voyageNo"/>
+							</li>
+
+							<li>
+								提运单号：<input type="text" name="billNo"/>
+							</li>
+
+							<li>
+								监管方式：<input type="text" name="tradeMode"/>
+							</li>
+
+							<li>
+								征免性质：<input type="text" name="cutMode"/>
+							</li>
+
+							<li>
+								纳税单位：<input type="text" name="paymentMark"/>
+							</li>
+
+							<li>
+								许可证号：<input type="text" name="licenseNo"/>
+							</li>
+
+							<li>
+								贸易国别：<input type="text" name="tradeAreaCode"/>
+							</li>
+
+							<li>
+								抵运国：<input type="text" name="tradeCountry"/>
+							</li>
+
+							<li>
+								抵运港：<input type="text" name="distinatePort"/>
+							</li>
+
+							<li>
+								境内货源地：<input type="text" name="districtCode"/>
+							</li>
+
+							<li>
+								批准文号：<input type="text" name="apprNo"/>
+							</li>
+
+							<li>
+								承诺事项：<input type="text" name="promiseItems"/>
+							</li>
+
+							<li>
+								成交方式：<input type="text" name="transMode"/>
+							</li>
+
+							<li>
+								运费：<input type="text" name="feeMark"/>
+							</li>
+
+							<li>
+								运费比率：<input type="text" name="feeRate"/>
+							</li>
+
+							<li>
+								运费单位：<input type="text" name="feeCurr"/>
+							</li>
+
+							<li>
+								保费：<input type="text" name="insurMark"/>
+							</li>
+
+							<li>
+								保费比率：<input type="text" name="insurRate"/>
+							</li>
+
+							<li>
+								保费单位：<input type="text" name="insurCurr"/>
+							</li>
+
+							<li>
+								杂费：<input type="text" name="otherMark"/>
+							</li>
+
+							<li>
+								杂费比率：<input type="text" name="otherRate"/>
+							</li>
+
+							<li>
+								杂费单位：<input type="text" name="otherCurr"/>
+							</li>
+
+							<li>
+								件数：<input type="text" name="packNo"/>
+							</li>
+
+							<li>
+								包装种类：<input type="text" name="wrapType"/>
+							</li>
+
+							<li>
+								毛重：<input type="text" name="grossWt"/>
+							</li>
+
+							<li>
+								净重：<input type="text" name="netWt"/>
+							</li>
+
+							<li>
+								集装箱数量：<input type="text" name="containerNum"/>
+							</li>
+
+							<li>
+								随附单证：<input type="text" name="certMark"/>
+							</li>
+
+							<li>
+								自定义编号：<input type="text" name="copId"/>
+							</li>
+
+							<li>
+								申报地海关：<input type="text" name="customMaster"/>
+							</li>
+
+							<li>
+								关联报关单：<input type="text" name="relativeId"/>
+							</li>
+
+							<li>
+								关联备案：<input type="text" name="relativeManualNo"/>
+							</li>
+
+							<li>
+								保税/监管场所：<input type="text" name="bondedNo"/>
+							</li>
+
+							<li>
+								货场代码：<input type="text" name="customsFieId"/>
+							</li>
+
+							<li>
+								操作员：<input type="text" name="typistNo"/>
+							</li>
+
+							<li>
+								联系方式：<input type="text" name="bpNo"/>
+							</li>
+
+							<li>
+								报关模式：<input type="text" name="entryType"/>
+							</li>
+
+							<li>
+								备注：<input type="text" name="noteS"/>
+							</li>
+
+							<li>
+								创建企业编码：<input type="text" name="createOrg"/>
+							</li>
+
+							<li>
+								报检企业编码：<input type="text" name="ciqComp"/>
+							</li>
+
+							<li>
+								货代公司编码：<input type="text" name="packComp"/>
+							</li>
+
+							<li>
+								装箱仓库：<input type="text" name="packWarehouse"/>
+							</li>
+
+							<li>
+								单据类型：<input type="text" name="type"/>
+							</li>
+
+							<li>
+								担保验放：<input type="text" name="chkSurety"/>
+							</li>
+
+							<li>
+								查验分流：<input type="text" name="checkFlow"/>
+							</li>
+
+							<li>
+								税收征管标记：<input type="text" name="taxAaminMark"/>
+							</li>
+
+							<li>
+								标记唛码：<input type="text" name="markNo"/>
+							</li>
+
+							<li>
+								启运港代码：<input type="text" name="despPortCode"/>
+							</li>
+
+							<li>
+								入境/离境口岸代码：<input type="text" name="entyPortCode"/>
+							</li>
+
+							<li>
+								存放地点：<input type="text" name="goodsPlace"/>
+							</li>
+
+							<li>
+								B/L号：<input type="text" name="blNo"/>
+							</li>
+
+							<li>
+								口岸检验检疫机关：<input type="text" name="inspOrgCode"/>
+							</li>
+
+							<li>
+								特种业务标识：<input type="text" name="specDeclFalg"/>
+							</li>
+
+							<li>
+								目的地检验检疫机关：<input type="text" name="purpOrgCode"/>
+							</li>
+
+							<li>
+								启运日期：<input type="text" name="despDate"/>
+							</li>
+
+							<li>
+								卸毕日期：<input type="text" name="cmplDschrgDt"/>
+							</li>
+
+							<li>
+								关联理由：<input type="text" name="correlationReasonFlag"/>
+							</li>
+
+							<li>
+								领证机关：<input type="text" name="vsaOrgCode"/>
+							</li>
+
+							<li>
+								原集装箱标识：<input type="text" name="origBoxFlag"/>
+							</li>
+
+							<li>
+								无其他包装：<input type="text" name="noOtherPack"/>
+							</li>
+
+							<li>
+								检验检疫受理机关：<input type="text" name="orgCode"/>
+							</li>
+
+							<li>
+								境外收发货人名称：<input type="text" name="overseasConsignorCname"/>
+							</li>
+
+							<li>
+								境外收发货人名称(外文)：<input type="text" name="overseasConsigneeEname"/>
+							</li>
+
+							<li>
+								境外发货人地址：<input type="text" name="overseasConsignorAddr"/>
+							</li>
+
+							<li>
+								境内收发货人名称：<input type="text" name="domesticConsigneeEname"/>
+							</li>
+
+							<li>
+								关联号码：<input type="text" name="correlationNo"/>
+							</li>
+
+							<li>
+								境内收发货人10位检验检疫编码：<input type="text" name="consignorCode"/>
+							</li>
+
+							<li>
+								生产销售单位10位检验检疫编码：<input type="text" name="ownereCiqCode"/>
+							</li>
+
+							<li>
+								申报单位10位检验检疫编码：<input type="text" name="declRegNo"/>
+							</li>
+
+							<li>
+								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+								<a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+							</li>
+						</ul>
+					</div>
+				</form>
+			</div>
+			
+	        <div class="btn-group-sm hidden-xs" id="toolbar" role="group">
+				<a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="market:custom:add">
+					<i class="fa fa-plus"></i> 添加
+				</a>
+				<a class="btn btn-primary btn-edit disabled" onclick="$.operate.edit()" shiro:hasPermission="market:custom:edit">
+					<i class="fa fa-edit"></i> 修改
+				</a>
+				<a class="btn btn-danger btn-del btn-del disabled" onclick="$.operate.removeAll()" shiro:hasPermission="market:custom:remove">
+					<i class="fa fa-remove"></i> 删除
+				</a>
+				<a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="market:custom:export">
+						<i class="fa fa-download"></i> 导出
+				 </a>
+			</div>
+			<div class="col-sm-12 select-table table-striped">
+				<table id="bootstrap-table" data-mobile-responsive="true"></table>
+			</div>
+		</div>
+	</div>
+    <div th:include="include :: footer"></div>
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('market:custom:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('market:custom:remove')}]];
+        var prefix = ctx + "market/custom";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+				exportUrl: prefix + "/export",
+                modalName: "一次性录入",
+				search: false,
+		        showExport: true,
+                columns: [{
+		            checkbox: true
+		        },
+				{
+					field : 'customId', 
+					title : '报关单ID',
+					visible: false
+				},
+				{
+					field : 'createBy', 
+					title : '创建人',
+					sortable: true
+				},
+				{
+					field : 'createTime', 
+					title : '创建时间',
+					sortable: true
+				},
+				{
+					field : 'updateBy', 
+					title : '更新人',
+					sortable: true
+				},
+				{
+					field : 'updateTime', 
+					title : '更新时间',
+					sortable: true
+				},
+				{
+					field : 'remark', 
+					title : '备注',
+					sortable: true
+				},
+				{
+					field : 'status', 
+					title : '报关单状态',
+					sortable: true
+				},
+				{
+					field : 'custStatus', 
+					title : '报关单状态(联网)',
+					sortable: true
+				},
+				{
+					field : 'delFlag', 
+					title : '是否删除 存在(0), 删除(2)',
+					sortable: true
+				},
+				{
+					field : 'opType', 
+					title : '业务类型代码',
+					sortable: true
+				},
+				{
+					field : 'decTin', 
+					title : '报关转关代码',
+					sortable: true
+				},
+				{
+					field : 'decMode', 
+					title : '报关模式代码',
+					sortable: true
+				},
+				{
+					field : 'checkSurety', 
+					title : '担保验放',
+					sortable: true
+				},
+				{
+					field : 'billType', 
+					title : '备案清单类型',
+					sortable: true
+				},
+				{
+					field : 'seqNo', 
+					title : '统一编号',
+					sortable: true
+				},
+				{
+					field : 'preEntryId', 
+					title : '预录入编号',
+					sortable: true
+				},
+				{
+					field : 'entryId', 
+					title : '报关单号',
+					sortable: true
+				},
+				{
+					field : 'iePort', 
+					title : '出口口岸',
+					sortable: true
+				},
+				{
+					field : 'contrNo', 
+					title : '合同协议号',
+					sortable: true
+				},
+				{
+					field : 'ieDate', 
+					title : '出口日期',
+					sortable: true
+				},
+				{
+					field : 'dDate', 
+					title : '申报日期',
+					sortable: true
+				},
+				{
+					field : 'tradeCo', 
+					title : '收货人',
+					sortable: true
+				},
+				{
+					field : 'tradeCoName', 
+					title : '收货人名称',
+					sortable: true
+				},
+				{
+					field : 'coOwner', 
+					title : '收发货人(企业类型)',
+					sortable: true
+				},
+				{
+					field : 'tradeCoscc', 
+					title : '经营单位统一编码',
+					sortable: true
+				},
+				{
+					field : 'ownerCode', 
+					title : '生产销售单位',
+					sortable: true
+				},
+				{
+					field : 'ownerName', 
+					title : '生产销售单位名称',
+					sortable: true
+				},
+				{
+					field : 'ownerCodeScc', 
+					title : '货主单位统一编码',
+					sortable: true
+				},
+				{
+					field : 'agentCode', 
+					title : '申报单位',
+					sortable: true
+				},
+				{
+					field : 'agentName', 
+					title : '申报单位名称',
+					sortable: true
+				},
+				{
+					field : 'agentCodeScc', 
+					title : '申报单位统一编码',
+					sortable: true
+				},
+				{
+					field : 'copCodeScc', 
+					title : '录入单位统一编码',
+					sortable: true
+				},
+				{
+					field : 'trafMode', 
+					title : '运输方式',
+					sortable: true
+				},
+				{
+					field : 'trafName', 
+					title : '运输工具名称',
+					sortable: true
+				},
+				{
+					field : 'voyageNo', 
+					title : '航次号',
+					sortable: true
+				},
+				{
+					field : 'billNo', 
+					title : '提运单号',
+					sortable: true
+				},
+				{
+					field : 'tradeMode', 
+					title : '监管方式',
+					sortable: true
+				},
+				{
+					field : 'cutMode', 
+					title : '征免性质',
+					sortable: true
+				},
+				{
+					field : 'paymentMark', 
+					title : '纳税单位',
+					sortable: true
+				},
+				{
+					field : 'licenseNo', 
+					title : '许可证号',
+					sortable: true
+				},
+				{
+					field : 'tradeAreaCode', 
+					title : '贸易国别',
+					sortable: true
+				},
+				{
+					field : 'tradeCountry', 
+					title : '抵运国',
+					sortable: true
+				},
+				{
+					field : 'distinatePort', 
+					title : '抵运港',
+					sortable: true
+				},
+				{
+					field : 'districtCode', 
+					title : '境内货源地',
+					sortable: true
+				},
+				{
+					field : 'apprNo', 
+					title : '批准文号',
+					sortable: true
+				},
+				{
+					field : 'promiseItems', 
+					title : '承诺事项',
+					sortable: true
+				},
+				{
+					field : 'transMode', 
+					title : '成交方式',
+					sortable: true
+				},
+				{
+					field : 'feeMark', 
+					title : '运费',
+					sortable: true
+				},
+				{
+					field : 'feeRate', 
+					title : '运费比率',
+					sortable: true
+				},
+				{
+					field : 'feeCurr', 
+					title : '运费单位',
+					sortable: true
+				},
+				{
+					field : 'insurMark', 
+					title : '保费',
+					sortable: true
+				},
+				{
+					field : 'insurRate', 
+					title : '保费比率',
+					sortable: true
+				},
+				{
+					field : 'insurCurr', 
+					title : '保费单位',
+					sortable: true
+				},
+				{
+					field : 'otherMark', 
+					title : '杂费',
+					sortable: true
+				},
+				{
+					field : 'otherRate', 
+					title : '杂费比率',
+					sortable: true
+				},
+				{
+					field : 'otherCurr', 
+					title : '杂费单位',
+					sortable: true
+				},
+				{
+					field : 'packNo', 
+					title : '件数',
+					sortable: true
+				},
+				{
+					field : 'wrapType', 
+					title : '包装种类',
+					sortable: true
+				},
+				{
+					field : 'grossWt', 
+					title : '毛重',
+					sortable: true
+				},
+				{
+					field : 'netWt', 
+					title : '净重',
+					sortable: true
+				},
+				{
+					field : 'containerNum', 
+					title : '集装箱数量',
+					sortable: true
+				},
+				{
+					field : 'certMark', 
+					title : '随附单证',
+					sortable: true
+				},
+				{
+					field : 'copId', 
+					title : '自定义编号',
+					sortable: true
+				},
+				{
+					field : 'customMaster', 
+					title : '申报地海关',
+					sortable: true
+				},
+				{
+					field : 'relativeId', 
+					title : '关联报关单',
+					sortable: true
+				},
+				{
+					field : 'relativeManualNo', 
+					title : '关联备案',
+					sortable: true
+				},
+				{
+					field : 'bondedNo', 
+					title : '保税/监管场所',
+					sortable: true
+				},
+				{
+					field : 'customsFieId', 
+					title : '货场代码',
+					sortable: true
+				},
+				{
+					field : 'typistNo', 
+					title : '操作员',
+					sortable: true
+				},
+				{
+					field : 'bpNo', 
+					title : '联系方式',
+					sortable: true
+				},
+				{
+					field : 'entryType', 
+					title : '报关模式',
+					sortable: true
+				},
+				{
+					field : 'noteS', 
+					title : '备注',
+					sortable: true
+				},
+				{
+					field : 'createOrg', 
+					title : '创建企业编码',
+					sortable: true
+				},
+				{
+					field : 'ciqComp', 
+					title : '报检企业编码',
+					sortable: true
+				},
+				{
+					field : 'packComp', 
+					title : '货代公司编码',
+					sortable: true
+				},
+				{
+					field : 'packWarehouse', 
+					title : '装箱仓库',
+					sortable: true
+				},
+				{
+					field : 'type', 
+					title : '单据类型',
+					sortable: true
+				},
+				{
+					field : 'chkSurety', 
+					title : '担保验放',
+					sortable: true
+				},
+				{
+					field : 'checkFlow', 
+					title : '查验分流',
+					sortable: true
+				},
+				{
+					field : 'taxAaminMark', 
+					title : '税收征管标记',
+					sortable: true
+				},
+				{
+					field : 'markNo', 
+					title : '标记唛码',
+					sortable: true
+				},
+				{
+					field : 'despPortCode', 
+					title : '启运港代码',
+					sortable: true
+				},
+				{
+					field : 'entyPortCode', 
+					title : '入境/离境口岸代码',
+					sortable: true
+				},
+				{
+					field : 'goodsPlace', 
+					title : '存放地点',
+					sortable: true
+				},
+				{
+					field : 'blNo', 
+					title : 'B/L号',
+					sortable: true
+				},
+				{
+					field : 'inspOrgCode', 
+					title : '口岸检验检疫机关',
+					sortable: true
+				},
+				{
+					field : 'specDeclFalg', 
+					title : '特种业务标识',
+					sortable: true
+				},
+				{
+					field : 'purpOrgCode', 
+					title : '目的地检验检疫机关',
+					sortable: true
+				},
+				{
+					field : 'despDate', 
+					title : '启运日期',
+					sortable: true
+				},
+				{
+					field : 'cmplDschrgDt', 
+					title : '卸毕日期',
+					sortable: true
+				},
+				{
+					field : 'correlationReasonFlag', 
+					title : '关联理由',
+					sortable: true
+				},
+				{
+					field : 'vsaOrgCode', 
+					title : '领证机关',
+					sortable: true
+				},
+				{
+					field : 'origBoxFlag', 
+					title : '原集装箱标识',
+					sortable: true
+				},
+				{
+					field : 'noOtherPack', 
+					title : '无其他包装',
+					sortable: true
+				},
+				{
+					field : 'orgCode', 
+					title : '检验检疫受理机关',
+					sortable: true
+				},
+				{
+					field : 'overseasConsignorCname', 
+					title : '境外收发货人名称',
+					sortable: true
+				},
+				{
+					field : 'overseasConsigneeEname', 
+					title : '境外收发货人名称(外文)',
+					sortable: true
+				},
+				{
+					field : 'overseasConsignorAddr', 
+					title : '境外发货人地址',
+					sortable: true
+				},
+				{
+					field : 'domesticConsigneeEname', 
+					title : '境内收发货人名称',
+					sortable: true
+				},
+				{
+					field : 'correlationNo', 
+					title : '关联号码',
+					sortable: true
+				},
+				{
+					field : 'consignorCode', 
+					title : '境内收发货人10位检验检疫编码',
+					sortable: true
+				},
+				{
+					field : 'ownereCiqCode', 
+					title : '生产销售单位10位检验检疫编码',
+					sortable: true
+				},
+				{
+					field : 'declRegNo', 
+					title : '申报单位10位检验检疫编码',
+					sortable: true
+				},
+		        {
+		            title: '操作',
+		            align: 'center',
+		            formatter: function(value, row, index) {
+		            	var actions = [];
+		            	actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="#" onclick="$.operate.edit(\'' + row.customId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="#" onclick="$.operate.remove(\'' + row.customId + '\')"><i class="fa fa-remove"></i>删除</a>');
+						return actions.join('');
+		            }
+		        }]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>

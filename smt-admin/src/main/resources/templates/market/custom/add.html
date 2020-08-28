@@ -1,0 +1,640 @@
+<!DOCTYPE HTML>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-smtCustom-add">
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建人：</label>
+				<div class="col-sm-8">
+					<input id="createBy" name="createBy" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建时间：</label>
+				<div class="col-sm-8">
+					<input id="createTime" name="createTime" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">更新人：</label>
+				<div class="col-sm-8">
+					<input id="updateBy" name="updateBy" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">更新时间：</label>
+				<div class="col-sm-8">
+					<input id="updateTime" name="updateTime" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">备注：</label>
+				<div class="col-sm-8">
+					<input id="remark" name="remark" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">报关单状态：</label>
+				<div class="col-sm-8">
+					<input id="status" name="status" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">报关单状态(联网)：</label>
+				<div class="col-sm-8">
+					<input id="custStatus" name="custStatus" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">是否删除 存在(0), 删除(2)：</label>
+				<div class="col-sm-8">
+					<input id="delFlag" name="delFlag" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">业务类型代码：</label>
+				<div class="col-sm-8">
+					<input id="opType" name="opType" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">报关转关代码：</label>
+				<div class="col-sm-8">
+					<input id="decTin" name="decTin" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">报关模式代码：</label>
+				<div class="col-sm-8">
+					<input id="decMode" name="decMode" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">担保验放：</label>
+				<div class="col-sm-8">
+					<input id="checkSurety" name="checkSurety" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">备案清单类型：</label>
+				<div class="col-sm-8">
+					<input id="billType" name="billType" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">统一编号：</label>
+				<div class="col-sm-8">
+					<input id="seqNo" name="seqNo" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">预录入编号：</label>
+				<div class="col-sm-8">
+					<input id="preEntryId" name="preEntryId" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">报关单号：</label>
+				<div class="col-sm-8">
+					<input id="entryId" name="entryId" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">出口口岸：</label>
+				<div class="col-sm-8">
+					<input id="iePort" name="iePort" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">合同协议号：</label>
+				<div class="col-sm-8">
+					<input id="contrNo" name="contrNo" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">出口日期：</label>
+				<div class="col-sm-8">
+					<input id="ieDate" name="ieDate" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">申报日期：</label>
+				<div class="col-sm-8">
+					<input id="dDate" name="dDate" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">收货人：</label>
+				<div class="col-sm-8">
+					<input id="tradeCo" name="tradeCo" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">收货人名称：</label>
+				<div class="col-sm-8">
+					<input id="tradeCoName" name="tradeCoName" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">收发货人(企业类型)：</label>
+				<div class="col-sm-8">
+					<input id="coOwner" name="coOwner" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">经营单位统一编码：</label>
+				<div class="col-sm-8">
+					<input id="tradeCoscc" name="tradeCoscc" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">生产销售单位：</label>
+				<div class="col-sm-8">
+					<input id="ownerCode" name="ownerCode" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">生产销售单位名称：</label>
+				<div class="col-sm-8">
+					<input id="ownerName" name="ownerName" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">货主单位统一编码：</label>
+				<div class="col-sm-8">
+					<input id="ownerCodeScc" name="ownerCodeScc" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">申报单位：</label>
+				<div class="col-sm-8">
+					<input id="agentCode" name="agentCode" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">申报单位名称：</label>
+				<div class="col-sm-8">
+					<input id="agentName" name="agentName" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">申报单位统一编码：</label>
+				<div class="col-sm-8">
+					<input id="agentCodeScc" name="agentCodeScc" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">录入单位统一编码：</label>
+				<div class="col-sm-8">
+					<input id="copCodeScc" name="copCodeScc" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">运输方式：</label>
+				<div class="col-sm-8">
+					<input id="trafMode" name="trafMode" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">运输工具名称：</label>
+				<div class="col-sm-8">
+					<input id="trafName" name="trafName" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">航次号：</label>
+				<div class="col-sm-8">
+					<input id="voyageNo" name="voyageNo" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">提运单号：</label>
+				<div class="col-sm-8">
+					<input id="billNo" name="billNo" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">监管方式：</label>
+				<div class="col-sm-8">
+					<input id="tradeMode" name="tradeMode" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">征免性质：</label>
+				<div class="col-sm-8">
+					<input id="cutMode" name="cutMode" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">纳税单位：</label>
+				<div class="col-sm-8">
+					<input id="paymentMark" name="paymentMark" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">许可证号：</label>
+				<div class="col-sm-8">
+					<input id="licenseNo" name="licenseNo" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">贸易国别：</label>
+				<div class="col-sm-8">
+					<input id="tradeAreaCode" name="tradeAreaCode" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">抵运国：</label>
+				<div class="col-sm-8">
+					<input id="tradeCountry" name="tradeCountry" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">抵运港：</label>
+				<div class="col-sm-8">
+					<input id="distinatePort" name="distinatePort" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">境内货源地：</label>
+				<div class="col-sm-8">
+					<input id="districtCode" name="districtCode" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">批准文号：</label>
+				<div class="col-sm-8">
+					<input id="apprNo" name="apprNo" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">承诺事项：</label>
+				<div class="col-sm-8">
+					<input id="promiseItems" name="promiseItems" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">成交方式：</label>
+				<div class="col-sm-8">
+					<input id="transMode" name="transMode" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">运费：</label>
+				<div class="col-sm-8">
+					<input id="feeMark" name="feeMark" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">运费比率：</label>
+				<div class="col-sm-8">
+					<input id="feeRate" name="feeRate" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">运费单位：</label>
+				<div class="col-sm-8">
+					<input id="feeCurr" name="feeCurr" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">保费：</label>
+				<div class="col-sm-8">
+					<input id="insurMark" name="insurMark" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">保费比率：</label>
+				<div class="col-sm-8">
+					<input id="insurRate" name="insurRate" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">保费单位：</label>
+				<div class="col-sm-8">
+					<input id="insurCurr" name="insurCurr" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">杂费：</label>
+				<div class="col-sm-8">
+					<input id="otherMark" name="otherMark" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">杂费比率：</label>
+				<div class="col-sm-8">
+					<input id="otherRate" name="otherRate" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">杂费单位：</label>
+				<div class="col-sm-8">
+					<input id="otherCurr" name="otherCurr" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">件数：</label>
+				<div class="col-sm-8">
+					<input id="packNo" name="packNo" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">包装种类：</label>
+				<div class="col-sm-8">
+					<input id="wrapType" name="wrapType" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">毛重：</label>
+				<div class="col-sm-8">
+					<input id="grossWt" name="grossWt" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">净重：</label>
+				<div class="col-sm-8">
+					<input id="netWt" name="netWt" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">集装箱数量：</label>
+				<div class="col-sm-8">
+					<input id="containerNum" name="containerNum" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">随附单证：</label>
+				<div class="col-sm-8">
+					<input id="certMark" name="certMark" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">自定义编号：</label>
+				<div class="col-sm-8">
+					<input id="copId" name="copId" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">申报地海关：</label>
+				<div class="col-sm-8">
+					<input id="customMaster" name="customMaster" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">关联报关单：</label>
+				<div class="col-sm-8">
+					<input id="relativeId" name="relativeId" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">关联备案：</label>
+				<div class="col-sm-8">
+					<input id="relativeManualNo" name="relativeManualNo" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">保税/监管场所：</label>
+				<div class="col-sm-8">
+					<input id="bondedNo" name="bondedNo" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">货场代码：</label>
+				<div class="col-sm-8">
+					<input id="customsFieId" name="customsFieId" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">操作员：</label>
+				<div class="col-sm-8">
+					<input id="typistNo" name="typistNo" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">联系方式：</label>
+				<div class="col-sm-8">
+					<input id="bpNo" name="bpNo" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">报关模式：</label>
+				<div class="col-sm-8">
+					<input id="entryType" name="entryType" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">备注：</label>
+				<div class="col-sm-8">
+					<input id="noteS" name="noteS" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建企业编码：</label>
+				<div class="col-sm-8">
+					<input id="createOrg" name="createOrg" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">报检企业编码：</label>
+				<div class="col-sm-8">
+					<input id="ciqComp" name="ciqComp" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">货代公司编码：</label>
+				<div class="col-sm-8">
+					<input id="packComp" name="packComp" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">装箱仓库：</label>
+				<div class="col-sm-8">
+					<input id="packWarehouse" name="packWarehouse" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">单据类型：</label>
+				<div class="col-sm-8">
+					<input id="type" name="type" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">担保验放：</label>
+				<div class="col-sm-8">
+					<input id="chkSurety" name="chkSurety" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">查验分流：</label>
+				<div class="col-sm-8">
+					<input id="checkFlow" name="checkFlow" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">税收征管标记：</label>
+				<div class="col-sm-8">
+					<input id="taxAaminMark" name="taxAaminMark" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">标记唛码：</label>
+				<div class="col-sm-8">
+					<input id="markNo" name="markNo" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">启运港代码：</label>
+				<div class="col-sm-8">
+					<input id="despPortCode" name="despPortCode" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">入境/离境口岸代码：</label>
+				<div class="col-sm-8">
+					<input id="entyPortCode" name="entyPortCode" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">存放地点：</label>
+				<div class="col-sm-8">
+					<input id="goodsPlace" name="goodsPlace" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">B/L号：</label>
+				<div class="col-sm-8">
+					<input id="blNo" name="blNo" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">口岸检验检疫机关：</label>
+				<div class="col-sm-8">
+					<input id="inspOrgCode" name="inspOrgCode" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">特种业务标识：</label>
+				<div class="col-sm-8">
+					<input id="specDeclFalg" name="specDeclFalg" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">目的地检验检疫机关：</label>
+				<div class="col-sm-8">
+					<input id="purpOrgCode" name="purpOrgCode" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">启运日期：</label>
+				<div class="col-sm-8">
+					<input id="despDate" name="despDate" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">卸毕日期：</label>
+				<div class="col-sm-8">
+					<input id="cmplDschrgDt" name="cmplDschrgDt" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">关联理由：</label>
+				<div class="col-sm-8">
+					<input id="correlationReasonFlag" name="correlationReasonFlag" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">领证机关：</label>
+				<div class="col-sm-8">
+					<input id="vsaOrgCode" name="vsaOrgCode" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">原集装箱标识：</label>
+				<div class="col-sm-8">
+					<input id="origBoxFlag" name="origBoxFlag" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">无其他包装：</label>
+				<div class="col-sm-8">
+					<input id="noOtherPack" name="noOtherPack" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">检验检疫受理机关：</label>
+				<div class="col-sm-8">
+					<input id="orgCode" name="orgCode" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">境外收发货人名称：</label>
+				<div class="col-sm-8">
+					<input id="overseasConsignorCname" name="overseasConsignorCname" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">境外收发货人名称(外文)：</label>
+				<div class="col-sm-8">
+					<input id="overseasConsigneeEname" name="overseasConsigneeEname" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">境外发货人地址：</label>
+				<div class="col-sm-8">
+					<input id="overseasConsignorAddr" name="overseasConsignorAddr" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">境内收发货人名称：</label>
+				<div class="col-sm-8">
+					<input id="domesticConsigneeEname" name="domesticConsigneeEname" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">关联号码：</label>
+				<div class="col-sm-8">
+					<input id="correlationNo" name="correlationNo" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">境内收发货人10位检验检疫编码：</label>
+				<div class="col-sm-8">
+					<input id="consignorCode" name="consignorCode" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">生产销售单位10位检验检疫编码：</label>
+				<div class="col-sm-8">
+					<input id="ownereCiqCode" name="ownereCiqCode" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">申报单位10位检验检疫编码：</label>
+				<div class="col-sm-8">
+					<input id="declRegNo" name="declRegNo" class="form-control" type="text">
+				</div>
+			</div>
+		</form>
+	</div>
+    <div th:include="include::footer"></div>
+    <script type="text/javascript">
+		var prefix = ctx + "market/custom"
+		$("#form-smtCustom-add").validate({
+			rules:{
+				xxxx:{
+					required:true,
+				},
+			}
+		});
+		
+		function submitHandler() {
+	        if ($.validate.form()) {
+	            $.operate.save(prefix + "/add", $('#form-smtCustom-add').serialize());
+	        }
+	    }
+	</script>
+</body>
+</html>

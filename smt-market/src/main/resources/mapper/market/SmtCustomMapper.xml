@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smt.market.mapper.SmtCustomMapper">
+    
+    <resultMap type="SmtCustom" id="SmtCustomResult">
+        <result property="customId"    column="custom_id"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+        <result property="status"    column="status"    />
+        <result property="custStatus"    column="cust_status"    />
+        <result property="delFlag"    column="del_flag"    />
+        <result property="opType"    column="op_type"    />
+        <result property="decTin"    column="dec_tin"    />
+        <result property="decMode"    column="dec_mode"    />
+        <result property="checkSurety"    column="check_surety"    />
+        <result property="billType"    column="bill_type"    />
+        <result property="seqNo"    column="seq_no"    />
+        <result property="preEntryId"    column="pre_entry_id"    />
+        <result property="entryId"    column="entry_id"    />
+        <result property="iePort"    column="ie_port"    />
+        <result property="contrNo"    column="contr_no"    />
+        <result property="ieDate"    column="ie_date"    />
+        <result property="dDate"    column="d_date"    />
+        <result property="tradeCo"    column="trade_co"    />
+        <result property="tradeCoName"    column="trade_co_name"    />
+        <result property="coOwner"    column="co_owner"    />
+        <result property="tradeCoscc"    column="trade_coscc"    />
+        <result property="ownerCode"    column="owner_code"    />
+        <result property="ownerName"    column="owner_name"    />
+        <result property="ownerCodeScc"    column="owner_code_scc"    />
+        <result property="agentCode"    column="agent_code"    />
+        <result property="agentName"    column="agent_name"    />
+        <result property="agentCodeScc"    column="agent_code_scc"    />
+        <result property="copCodeScc"    column="cop_code_scc"    />
+        <result property="trafMode"    column="traf_mode"    />
+        <result property="trafName"    column="traf_name"    />
+        <result property="voyageNo"    column="voyage_no"    />
+        <result property="billNo"    column="bill_no"    />
+        <result property="tradeMode"    column="trade_mode"    />
+        <result property="cutMode"    column="cut_mode"    />
+        <result property="paymentMark"    column="payment_mark"    />
+        <result property="licenseNo"    column="license_no"    />
+        <result property="tradeAreaCode"    column="trade_area_code"    />
+        <result property="tradeCountry"    column="trade_country"    />
+        <result property="distinatePort"    column="distinate_port"    />
+        <result property="districtCode"    column="district_code"    />
+        <result property="apprNo"    column="appr_no"    />
+        <result property="promiseItems"    column="promise_items"    />
+        <result property="transMode"    column="trans_mode"    />
+        <result property="feeMark"    column="fee_mark"    />
+        <result property="feeRate"    column="fee_rate"    />
+        <result property="feeCurr"    column="fee_curr"    />
+        <result property="insurMark"    column="insur_mark"    />
+        <result property="insurRate"    column="insur_rate"    />
+        <result property="insurCurr"    column="insur_curr"    />
+        <result property="otherMark"    column="other_mark"    />
+        <result property="otherRate"    column="other_rate"    />
+        <result property="otherCurr"    column="other_curr"    />
+        <result property="packNo"    column="pack_no"    />
+        <result property="wrapType"    column="wrap_type"    />
+        <result property="grossWt"    column="gross_wt"    />
+        <result property="netWt"    column="net_wt"    />
+        <result property="containerNum"    column="container_num"    />
+        <result property="certMark"    column="cert_mark"    />
+        <result property="copId"    column="cop_id"    />
+        <result property="customMaster"    column="custom_master"    />
+        <result property="relativeId"    column="relative_id"    />
+        <result property="relativeManualNo"    column="relative_manual_no"    />
+        <result property="bondedNo"    column="bonded_no"    />
+        <result property="customsFieId"    column="customs_fie_id"    />
+        <result property="typistNo"    column="typist_no"    />
+        <result property="bpNo"    column="bp_no"    />
+        <result property="entryType"    column="entry_type"    />
+        <result property="noteS"    column="note_s"    />
+        <result property="createOrg"    column="create_org"    />
+        <result property="ciqComp"    column="ciq_comp"    />
+        <result property="packComp"    column="pack_comp"    />
+        <result property="packWarehouse"    column="pack_warehouse"    />
+        <result property="type"    column="type"    />
+        <result property="chkSurety"    column="chk_surety"    />
+        <result property="checkFlow"    column="check_flow"    />
+        <result property="taxAaminMark"    column="tax_aamin_mark"    />
+        <result property="markNo"    column="mark_no"    />
+        <result property="despPortCode"    column="desp_port_code"    />
+        <result property="entyPortCode"    column="enty_port_code"    />
+        <result property="goodsPlace"    column="goods_place"    />
+        <result property="blNo"    column="bl_no"    />
+        <result property="inspOrgCode"    column="insp_org_code"    />
+        <result property="specDeclFalg"    column="spec_decl_falg"    />
+        <result property="purpOrgCode"    column="purp_org_code"    />
+        <result property="despDate"    column="desp_date"    />
+        <result property="cmplDschrgDt"    column="cmpl_dschrg_dt"    />
+        <result property="correlationReasonFlag"    column="correlation_reason_flag"    />
+        <result property="vsaOrgCode"    column="vsa_org_code"    />
+        <result property="origBoxFlag"    column="orig_box_flag"    />
+        <result property="noOtherPack"    column="no_other_pack"    />
+        <result property="orgCode"    column="org_code"    />
+        <result property="overseasConsigneeCode"    column="overseas_consignee_code"    />
+        <result property="overseasConsignorCname"    column="overseas_consignor_cname"    />
+        <result property="overseasConsigneeEname"    column="overseas_consignee_ename"    />
+        <result property="overseasConsignorAddr"    column="overseas_consignor_addr"    />
+        <result property="domesticConsigneeEname"    column="domestic_consignee_ename"    />
+        <result property="correlationNo"    column="correlation_no"    />
+        <result property="consignorCode"    column="consignor_code"    />
+        <result property="ownereCiqCode"    column="ownere_ciq_code"    />
+        <result property="declRegNo"    column="decl_reg_no"    />
+    </resultMap>
+	
+	<sql id="selectSmtCustomVo">
+        select custom_id, create_by, create_time, update_by, update_time, remark, status, cust_status, del_flag, op_type, dec_tin, dec_mode, check_surety, bill_type, seq_no, pre_entry_id, entry_id, ie_port, contr_no, ie_date, d_date, trade_co, trade_co_name, co_owner, trade_coscc, owner_code, owner_name, owner_code_scc, agent_code, agent_name, agent_code_scc, cop_code_scc, traf_mode, traf_name, voyage_no, bill_no, trade_mode, cut_mode, payment_mark, license_no, trade_area_code, trade_country, distinate_port, district_code, appr_no, promise_items, trans_mode, fee_mark, fee_rate, fee_curr, insur_mark, insur_rate, insur_curr, other_mark, other_rate, other_curr, pack_no, wrap_type, gross_wt, net_wt, container_num, cert_mark, cop_id, custom_master, relative_id, relative_manual_no, bonded_no, customs_fie_id, typist_no, bp_no, entry_type, note_s, create_org, ciq_comp, pack_comp, pack_warehouse, type, chk_surety, check_flow, tax_aamin_mark, mark_no, desp_port_code, enty_port_code, goods_place, bl_no, insp_org_code, spec_decl_falg, purp_org_code, desp_date, cmpl_dschrg_dt, correlation_reason_flag, vsa_org_code, orig_box_flag, no_other_pack, org_code, overseas_consignor_cname, overseas_consignee_ename, overseas_consignor_addr, domestic_consignee_ename, correlation_no, consignor_code, ownere_ciq_code, decl_reg_no from smt_custom
+    </sql>
+	
+    <select id="selectSmtCustomList" parameterType="SmtCustom" resultMap="SmtCustomResult">
+        <include refid="selectSmtCustomVo"/>
+        <where>  
+            <if test="customId != null "> and custom_id = #{customId}</if>
+             <if test="createBy != null  and createBy != '' "> and create_by = #{createBy}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+             <if test="updateBy != null  and updateBy != '' "> and update_by = #{updateBy}</if>
+             <if test="updateTime != null "> and update_time = #{updateTime}</if>
+             <if test="remark != null  and remark != '' "> and remark = #{remark}</if>
+             <if test="status != null  and status != '' "> and status = #{status}</if>
+             <if test="custStatus != null  and custStatus != '' "> and cust_status = #{custStatus}</if>
+             <if test="delFlag != null  and delFlag != '' "> and del_flag = #{delFlag}</if>
+             <if test="opType != null  and opType != '' "> and op_type = #{opType}</if>
+             <if test="decTin != null  and decTin != '' "> and dec_tin = #{decTin}</if>
+             <if test="decMode != null  and decMode != '' "> and dec_mode = #{decMode}</if>
+             <if test="checkSurety != null  and checkSurety != '' "> and check_surety = #{checkSurety}</if>
+             <if test="billType != null  and billType != '' "> and bill_type = #{billType}</if>
+             <if test="seqNo != null  and seqNo != '' "> and seq_no = #{seqNo}</if>
+             <if test="preEntryId != null  and preEntryId != '' "> and pre_entry_id = #{preEntryId}</if>
+             <if test="entryId != null  and entryId != '' "> and entry_id = #{entryId}</if>
+             <if test="iePort != null  and iePort != '' "> and ie_port = #{iePort}</if>
+             <if test="contrNo != null  and contrNo != '' "> and contr_no = #{contrNo}</if>
+             <if test="ieDate != null "> and ie_date = #{ieDate}</if>
+             <if test="dDate != null "> and d_date = #{dDate}</if>
+             <if test="tradeCo != null  and tradeCo != '' "> and trade_co = #{tradeCo}</if>
+             <if test="tradeCoName != null  and tradeCoName != '' "> and trade_co_name = #{tradeCoName}</if>
+             <if test="coOwner != null  and coOwner != '' "> and co_owner = #{coOwner}</if>
+             <if test="tradeCoscc != null  and tradeCoscc != '' "> and trade_coscc = #{tradeCoscc}</if>
+             <if test="ownerCode != null  and ownerCode != '' "> and owner_code = #{ownerCode}</if>
+             <if test="ownerName != null  and ownerName != '' "> and owner_name = #{ownerName}</if>
+             <if test="ownerCodeScc != null  and ownerCodeScc != '' "> and owner_code_scc = #{ownerCodeScc}</if>
+             <if test="agentCode != null  and agentCode != '' "> and agent_code = #{agentCode}</if>
+             <if test="agentName != null  and agentName != '' "> and agent_name = #{agentName}</if>
+             <if test="agentCodeScc != null  and agentCodeScc != '' "> and agent_code_scc = #{agentCodeScc}</if>
+             <if test="copCodeScc != null  and copCodeScc != '' "> and cop_code_scc = #{copCodeScc}</if>
+             <if test="trafMode != null  and trafMode != '' "> and traf_mode = #{trafMode}</if>
+             <if test="trafName != null  and trafName != '' "> and traf_name = #{trafName}</if>
+             <if test="voyageNo != null  and voyageNo != '' "> and voyage_no = #{voyageNo}</if>
+             <if test="billNo != null  and billNo != '' "> and bill_no = #{billNo}</if>
+             <if test="tradeMode != null  and tradeMode != '' "> and trade_mode = #{tradeMode}</if>
+             <if test="cutMode != null  and cutMode != '' "> and cut_mode = #{cutMode}</if>
+             <if test="paymentMark != null  and paymentMark != '' "> and payment_mark = #{paymentMark}</if>
+             <if test="licenseNo != null  and licenseNo != '' "> and license_no = #{licenseNo}</if>
+             <if test="tradeAreaCode != null  and tradeAreaCode != '' "> and trade_area_code = #{tradeAreaCode}</if>
+             <if test="tradeCountry != null  and tradeCountry != '' "> and trade_country = #{tradeCountry}</if>
+             <if test="distinatePort != null  and distinatePort != '' "> and distinate_port = #{distinatePort}</if>
+             <if test="districtCode != null  and districtCode != '' "> and district_code = #{districtCode}</if>
+             <if test="apprNo != null  and apprNo != '' "> and appr_no = #{apprNo}</if>
+             <if test="promiseItems != null  and promiseItems != '' "> and promise_items = #{promiseItems}</if>
+             <if test="transMode != null  and transMode != '' "> and trans_mode = #{transMode}</if>
+             <if test="feeMark != null  and feeMark != '' "> and fee_mark = #{feeMark}</if>
+             <if test="feeRate != null  and feeRate != '' "> and fee_rate = #{feeRate}</if>
+             <if test="feeCurr != null  and feeCurr != '' "> and fee_curr = #{feeCurr}</if>
+             <if test="insurMark != null  and insurMark != '' "> and insur_mark = #{insurMark}</if>
+             <if test="insurRate != null  and insurRate != '' "> and insur_rate = #{insurRate}</if>
+             <if test="insurCurr != null  and insurCurr != '' "> and insur_curr = #{insurCurr}</if>
+             <if test="otherMark != null  and otherMark != '' "> and other_mark = #{otherMark}</if>
+             <if test="otherRate != null  and otherRate != '' "> and other_rate = #{otherRate}</if>
+             <if test="otherCurr != null  and otherCurr != '' "> and other_curr = #{otherCurr}</if>
+             <if test="packNo != null  and packNo != '' "> and pack_no = #{packNo}</if>
+             <if test="wrapType != null  and wrapType != '' "> and wrap_type = #{wrapType}</if>
+             <if test="grossWt != null  and grossWt != '' "> and gross_wt = #{grossWt}</if>
+             <if test="netWt != null  and netWt != '' "> and net_wt = #{netWt}</if>
+             <if test="containerNum != null  and containerNum != '' "> and container_num = #{containerNum}</if>
+             <if test="certMark != null  and certMark != '' "> and cert_mark = #{certMark}</if>
+             <if test="copId != null  and copId != '' "> and cop_id = #{copId}</if>
+             <if test="customMaster != null  and customMaster != '' "> and custom_master = #{customMaster}</if>
+             <if test="relativeId != null  and relativeId != '' "> and relative_id = #{relativeId}</if>
+             <if test="relativeManualNo != null  and relativeManualNo != '' "> and relative_manual_no = #{relativeManualNo}</if>
+             <if test="bondedNo != null  and bondedNo != '' "> and bonded_no = #{bondedNo}</if>
+             <if test="customsFieId != null  and customsFieId != '' "> and customs_fie_id = #{customsFieId}</if>
+             <if test="typistNo != null  and typistNo != '' "> and typist_no = #{typistNo}</if>
+             <if test="bpNo != null  and bpNo != '' "> and bp_no = #{bpNo}</if>
+             <if test="entryType != null  and entryType != '' "> and entry_type = #{entryType}</if>
+             <if test="noteS != null  and noteS != '' "> and note_s = #{noteS}</if>
+             <if test="createOrg != null  and createOrg != '' "> and create_org = #{createOrg}</if>
+             <if test="ciqComp != null  and ciqComp != '' "> and ciq_comp = #{ciqComp}</if>
+             <if test="packComp != null  and packComp != '' "> and pack_comp = #{packComp}</if>
+             <if test="packWarehouse != null  and packWarehouse != '' "> and pack_warehouse = #{packWarehouse}</if>
+             <if test="type != null  and type != '' "> and type = #{type}</if>
+             <if test="chkSurety != null  and chkSurety != '' "> and chk_surety = #{chkSurety}</if>
+             <if test="checkFlow != null  and checkFlow != '' "> and check_flow = #{checkFlow}</if>
+             <if test="taxAaminMark != null  and taxAaminMark != '' "> and tax_aamin_mark = #{taxAaminMark}</if>
+             <if test="markNo != null  and markNo != '' "> and mark_no = #{markNo}</if>
+             <if test="despPortCode != null  and despPortCode != '' "> and desp_port_code = #{despPortCode}</if>
+             <if test="entyPortCode != null  and entyPortCode != '' "> and enty_port_code = #{entyPortCode}</if>
+             <if test="goodsPlace != null  and goodsPlace != '' "> and goods_place = #{goodsPlace}</if>
+             <if test="blNo != null  and blNo != '' "> and bl_no = #{blNo}</if>
+             <if test="inspOrgCode != null  and inspOrgCode != '' "> and insp_org_code = #{inspOrgCode}</if>
+             <if test="specDeclFalg != null  and specDeclFalg != '' "> and spec_decl_falg = #{specDeclFalg}</if>
+             <if test="purpOrgCode != null  and purpOrgCode != '' "> and purp_org_code = #{purpOrgCode}</if>
+             <if test="despDate != null "> and desp_date = #{despDate}</if>
+             <if test="cmplDschrgDt != null "> and cmpl_dschrg_dt = #{cmplDschrgDt}</if>
+             <if test="correlationReasonFlag != null  and correlationReasonFlag != '' "> and correlation_reason_flag = #{correlationReasonFlag}</if>
+             <if test="vsaOrgCode != null  and vsaOrgCode != '' "> and vsa_org_code = #{vsaOrgCode}</if>
+             <if test="origBoxFlag != null  and origBoxFlag != '' "> and orig_box_flag = #{origBoxFlag}</if>
+             <if test="noOtherPack != null  and noOtherPack != '' "> and no_other_pack = #{noOtherPack}</if>
+             <if test="orgCode != null  and orgCode != '' "> and org_code = #{orgCode}</if>
+             <if test="overseasConsigneeCode != null  and overseasConsigneeCode != '' "> and overseas_consignee_code = #{overseas_consignee_code}</if>
+             <if test="overseasConsignorCname != null  and overseasConsignorCname != '' "> and overseas_consignor_cname = #{overseasConsignorCname}</if>
+             <if test="overseasConsigneeEname != null  and overseasConsigneeEname != '' "> and overseas_consignee_ename = #{overseasConsigneeEname}</if>
+             <if test="overseasConsignorAddr != null  and overseasConsignorAddr != '' "> and overseas_consignor_addr = #{overseasConsignorAddr}</if>
+             <if test="domesticConsigneeEname != null  and domesticConsigneeEname != '' "> and domestic_consignee_ename = #{domesticConsigneeEname}</if>
+             <if test="correlationNo != null  and correlationNo != '' "> and correlation_no = #{correlationNo}</if>
+             <if test="consignorCode != null  and consignorCode != '' "> and consignor_code = #{consignorCode}</if>
+             <if test="ownereCiqCode != null  and ownereCiqCode != '' "> and ownere_ciq_code = #{ownereCiqCode}</if>
+             <if test="declRegNo != null  and declRegNo != '' "> and decl_reg_no = #{declRegNo}</if>
+         </where>
+    </select>
+    
+    <select id="selectSmtCustomById" parameterType="Integer" resultMap="SmtCustomResult">
+        <include refid="selectSmtCustomVo"/>
+        where custom_id = #{customId}
+    </select>
+        
+    <insert id="insertSmtCustom" parameterType="SmtCustom">
+        insert into smt_custom
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="customId != null  ">custom_id,</if>
+			<if test="createBy != null  and createBy != ''  ">create_by,</if>
+			<if test="createTime != null  ">create_time,</if>
+			<if test="updateBy != null  and updateBy != ''  ">update_by,</if>
+			<if test="updateTime != null  ">update_time,</if>
+			<if test="remark != null  and remark != ''  ">remark,</if>
+			<if test="status != null  and status != ''  ">status,</if>
+			<if test="custStatus != null  and custStatus != ''  ">cust_status,</if>
+			<if test="delFlag != null  and delFlag != ''  ">del_flag,</if>
+			<if test="opType != null  and opType != ''  ">op_type,</if>
+			<if test="decTin != null  and decTin != ''  ">dec_tin,</if>
+			<if test="decMode != null  and decMode != ''  ">dec_mode,</if>
+			<if test="checkSurety != null  and checkSurety != ''  ">check_surety,</if>
+			<if test="billType != null  and billType != ''  ">bill_type,</if>
+			<if test="seqNo != null  and seqNo != ''  ">seq_no,</if>
+			<if test="preEntryId != null  and preEntryId != ''  ">pre_entry_id,</if>
+			<if test="entryId != null  and entryId != ''  ">entry_id,</if>
+			<if test="iePort != null  and iePort != ''  ">ie_port,</if>
+			<if test="contrNo != null  and contrNo != ''  ">contr_no,</if>
+			<if test="ieDate != null  ">ie_date,</if>
+			<if test="dDate != null  ">d_date,</if>
+			<if test="tradeCo != null  and tradeCo != ''  ">trade_co,</if>
+			<if test="tradeCoName != null  and tradeCoName != ''  ">trade_co_name,</if>
+			<if test="coOwner != null  and coOwner != ''  ">co_owner,</if>
+			<if test="tradeCoscc != null  and tradeCoscc != ''  ">trade_coscc,</if>
+			<if test="ownerCode != null  and ownerCode != ''  ">owner_code,</if>
+			<if test="ownerName != null  and ownerName != ''  ">owner_name,</if>
+			<if test="ownerCodeScc != null  and ownerCodeScc != ''  ">owner_code_scc,</if>
+			<if test="agentCode != null  and agentCode != ''  ">agent_code,</if>
+			<if test="agentName != null  and agentName != ''  ">agent_name,</if>
+			<if test="agentCodeScc != null  and agentCodeScc != ''  ">agent_code_scc,</if>
+			<if test="copCodeScc != null  and copCodeScc != ''  ">cop_code_scc,</if>
+			<if test="trafMode != null  and trafMode != ''  ">traf_mode,</if>
+			<if test="trafName != null  and trafName != ''  ">traf_name,</if>
+			<if test="voyageNo != null  and voyageNo != ''  ">voyage_no,</if>
+			<if test="billNo != null  and billNo != ''  ">bill_no,</if>
+			<if test="tradeMode != null  and tradeMode != ''  ">trade_mode,</if>
+			<if test="cutMode != null  and cutMode != ''  ">cut_mode,</if>
+			<if test="paymentMark != null  and paymentMark != ''  ">payment_mark,</if>
+			<if test="licenseNo != null  and licenseNo != ''  ">license_no,</if>
+			<if test="tradeAreaCode != null  and tradeAreaCode != ''  ">trade_area_code,</if>
+			<if test="tradeCountry != null  and tradeCountry != ''  ">trade_country,</if>
+			<if test="distinatePort != null  and distinatePort != ''  ">distinate_port,</if>
+			<if test="districtCode != null  and districtCode != ''  ">district_code,</if>
+			<if test="apprNo != null  and apprNo != ''  ">appr_no,</if>
+			<if test="promiseItems != null  and promiseItems != ''  ">promise_items,</if>
+			<if test="transMode != null  and transMode != ''  ">trans_mode,</if>
+			<if test="feeMark != null  and feeMark != ''  ">fee_mark,</if>
+			<if test="feeRate != null  and feeRate != ''  ">fee_rate,</if>
+			<if test="feeCurr != null  and feeCurr != ''  ">fee_curr,</if>
+			<if test="insurMark != null  and insurMark != ''  ">insur_mark,</if>
+			<if test="insurRate != null  and insurRate != ''  ">insur_rate,</if>
+			<if test="insurCurr != null  and insurCurr != ''  ">insur_curr,</if>
+			<if test="otherMark != null  and otherMark != ''  ">other_mark,</if>
+			<if test="otherRate != null  and otherRate != ''  ">other_rate,</if>
+			<if test="otherCurr != null  and otherCurr != ''  ">other_curr,</if>
+			<if test="packNo != null  and packNo != ''  ">pack_no,</if>
+			<if test="wrapType != null  and wrapType != ''  ">wrap_type,</if>
+			<if test="grossWt != null  and grossWt != ''  ">gross_wt,</if>
+			<if test="netWt != null  and netWt != ''  ">net_wt,</if>
+			<if test="containerNum != null  and containerNum != ''  ">container_num,</if>
+			<if test="certMark != null  and certMark != ''  ">cert_mark,</if>
+			<if test="copId != null  and copId != ''  ">cop_id,</if>
+			<if test="customMaster != null  and customMaster != ''  ">custom_master,</if>
+			<if test="relativeId != null  and relativeId != ''  ">relative_id,</if>
+			<if test="relativeManualNo != null  and relativeManualNo != ''  ">relative_manual_no,</if>
+			<if test="bondedNo != null  and bondedNo != ''  ">bonded_no,</if>
+			<if test="customsFieId != null  and customsFieId != ''  ">customs_fie_id,</if>
+			<if test="typistNo != null  and typistNo != ''  ">typist_no,</if>
+			<if test="bpNo != null  and bpNo != ''  ">bp_no,</if>
+			<if test="entryType != null  and entryType != ''  ">entry_type,</if>
+			<if test="noteS != null  and noteS != ''  ">note_s,</if>
+			<if test="createOrg != null  and createOrg != ''  ">create_org,</if>
+			<if test="ciqComp != null  and ciqComp != ''  ">ciq_comp,</if>
+			<if test="packComp != null  and packComp != ''  ">pack_comp,</if>
+			<if test="packWarehouse != null  and packWarehouse != ''  ">pack_warehouse,</if>
+			<if test="type != null  and type != ''  ">type,</if>
+			<if test="chkSurety != null  and chkSurety != ''  ">chk_surety,</if>
+			<if test="checkFlow != null  and checkFlow != ''  ">check_flow,</if>
+			<if test="taxAaminMark != null  and taxAaminMark != ''  ">tax_aamin_mark,</if>
+			<if test="markNo != null  and markNo != ''  ">mark_no,</if>
+			<if test="despPortCode != null  and despPortCode != ''  ">desp_port_code,</if>
+			<if test="entyPortCode != null  and entyPortCode != ''  ">enty_port_code,</if>
+			<if test="goodsPlace != null  and goodsPlace != ''  ">goods_place,</if>
+			<if test="blNo != null  and blNo != ''  ">bl_no,</if>
+			<if test="inspOrgCode != null  and inspOrgCode != ''  ">insp_org_code,</if>
+			<if test="specDeclFalg != null  and specDeclFalg != ''  ">spec_decl_falg,</if>
+			<if test="purpOrgCode != null  and purpOrgCode != ''  ">purp_org_code,</if>
+			<if test="despDate != null  ">desp_date,</if>
+			<if test="cmplDschrgDt != null  ">cmpl_dschrg_dt,</if>
+			<if test="correlationReasonFlag != null  and correlationReasonFlag != ''  ">correlation_reason_flag,</if>
+			<if test="vsaOrgCode != null  and vsaOrgCode != ''  ">vsa_org_code,</if>
+			<if test="origBoxFlag != null  and origBoxFlag != ''  ">orig_box_flag,</if>
+			<if test="noOtherPack != null  and noOtherPack != ''  ">no_other_pack,</if>
+			<if test="orgCode != null  and orgCode != ''  ">org_code,</if>
+            <if test="overseasConsigneeCode != null  and overseasConsigneeCode != ''  ">overseas_consignee_code,</if>
+			<if test="overseasConsignorCname != null  and overseasConsignorCname != ''  ">overseas_consignor_cname,</if>
+			<if test="overseasConsigneeEname != null  and overseasConsigneeEname != ''  ">overseas_consignee_ename,</if>
+			<if test="overseasConsignorAddr != null  and overseasConsignorAddr != ''  ">overseas_consignor_addr,</if>
+			<if test="domesticConsigneeEname != null  and domesticConsigneeEname != ''  ">domestic_consignee_ename,</if>
+			<if test="correlationNo != null  and correlationNo != ''  ">correlation_no,</if>
+			<if test="consignorCode != null  and consignorCode != ''  ">consignor_code,</if>
+			<if test="ownereCiqCode != null  and ownereCiqCode != ''  ">ownere_ciq_code,</if>
+			<if test="declRegNo != null  and declRegNo != ''  ">decl_reg_no,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="customId != null  ">#{customId},</if>
+			<if test="createBy != null  and createBy != ''  ">#{createBy},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+			<if test="updateBy != null  and updateBy != ''  ">#{updateBy},</if>
+			<if test="updateTime != null  ">#{updateTime},</if>
+			<if test="remark != null  and remark != ''  ">#{remark},</if>
+			<if test="status != null  and status != ''  ">#{status},</if>
+			<if test="custStatus != null  and custStatus != ''  ">#{custStatus},</if>
+			<if test="delFlag != null  and delFlag != ''  ">#{delFlag},</if>
+			<if test="opType != null  and opType != ''  ">#{opType},</if>
+			<if test="decTin != null  and decTin != ''  ">#{decTin},</if>
+			<if test="decMode != null  and decMode != ''  ">#{decMode},</if>
+			<if test="checkSurety != null  and checkSurety != ''  ">#{checkSurety},</if>
+			<if test="billType != null  and billType != ''  ">#{billType},</if>
+			<if test="seqNo != null  and seqNo != ''  ">#{seqNo},</if>
+			<if test="preEntryId != null  and preEntryId != ''  ">#{preEntryId},</if>
+			<if test="entryId != null  and entryId != ''  ">#{entryId},</if>
+			<if test="iePort != null  and iePort != ''  ">#{iePort},</if>
+			<if test="contrNo != null  and contrNo != ''  ">#{contrNo},</if>
+			<if test="ieDate != null  ">#{ieDate},</if>
+			<if test="dDate != null  ">#{dDate},</if>
+			<if test="tradeCo != null  and tradeCo != ''  ">#{tradeCo},</if>
+			<if test="tradeCoName != null  and tradeCoName != ''  ">#{tradeCoName},</if>
+			<if test="coOwner != null  and coOwner != ''  ">#{coOwner},</if>
+			<if test="tradeCoscc != null  and tradeCoscc != ''  ">#{tradeCoscc},</if>
+			<if test="ownerCode != null  and ownerCode != ''  ">#{ownerCode},</if>
+			<if test="ownerName != null  and ownerName != ''  ">#{ownerName},</if>
+			<if test="ownerCodeScc != null  and ownerCodeScc != ''  ">#{ownerCodeScc},</if>
+			<if test="agentCode != null  and agentCode != ''  ">#{agentCode},</if>
+			<if test="agentName != null  and agentName != ''  ">#{agentName},</if>
+			<if test="agentCodeScc != null  and agentCodeScc != ''  ">#{agentCodeScc},</if>
+			<if test="copCodeScc != null  and copCodeScc != ''  ">#{copCodeScc},</if>
+			<if test="trafMode != null  and trafMode != ''  ">#{trafMode},</if>
+			<if test="trafName != null  and trafName != ''  ">#{trafName},</if>
+			<if test="voyageNo != null  and voyageNo != ''  ">#{voyageNo},</if>
+			<if test="billNo != null  and billNo != ''  ">#{billNo},</if>
+			<if test="tradeMode != null  and tradeMode != ''  ">#{tradeMode},</if>
+			<if test="cutMode != null  and cutMode != ''  ">#{cutMode},</if>
+			<if test="paymentMark != null  and paymentMark != ''  ">#{paymentMark},</if>
+			<if test="licenseNo != null  and licenseNo != ''  ">#{licenseNo},</if>
+			<if test="tradeAreaCode != null  and tradeAreaCode != ''  ">#{tradeAreaCode},</if>
+			<if test="tradeCountry != null  and tradeCountry != ''  ">#{tradeCountry},</if>
+			<if test="distinatePort != null  and distinatePort != ''  ">#{distinatePort},</if>
+			<if test="districtCode != null  and districtCode != ''  ">#{districtCode},</if>
+			<if test="apprNo != null  and apprNo != ''  ">#{apprNo},</if>
+			<if test="promiseItems != null  and promiseItems != ''  ">#{promiseItems},</if>
+			<if test="transMode != null  and transMode != ''  ">#{transMode},</if>
+			<if test="feeMark != null  and feeMark != ''  ">#{feeMark},</if>
+			<if test="feeRate != null  and feeRate != ''  ">#{feeRate},</if>
+			<if test="feeCurr != null  and feeCurr != ''  ">#{feeCurr},</if>
+			<if test="insurMark != null  and insurMark != ''  ">#{insurMark},</if>
+			<if test="insurRate != null  and insurRate != ''  ">#{insurRate},</if>
+			<if test="insurCurr != null  and insurCurr != ''  ">#{insurCurr},</if>
+			<if test="otherMark != null  and otherMark != ''  ">#{otherMark},</if>
+			<if test="otherRate != null  and otherRate != ''  ">#{otherRate},</if>
+			<if test="otherCurr != null  and otherCurr != ''  ">#{otherCurr},</if>
+			<if test="packNo != null  and packNo != ''  ">#{packNo},</if>
+			<if test="wrapType != null  and wrapType != ''  ">#{wrapType},</if>
+			<if test="grossWt != null  and grossWt != ''  ">#{grossWt},</if>
+			<if test="netWt != null  and netWt != ''  ">#{netWt},</if>
+			<if test="containerNum != null  and containerNum != ''  ">#{containerNum},</if>
+			<if test="certMark != null  and certMark != ''  ">#{certMark},</if>
+			<if test="copId != null  and copId != ''  ">#{copId},</if>
+			<if test="customMaster != null  and customMaster != ''  ">#{customMaster},</if>
+			<if test="relativeId != null  and relativeId != ''  ">#{relativeId},</if>
+			<if test="relativeManualNo != null  and relativeManualNo != ''  ">#{relativeManualNo},</if>
+			<if test="bondedNo != null  and bondedNo != ''  ">#{bondedNo},</if>
+			<if test="customsFieId != null  and customsFieId != ''  ">#{customsFieId},</if>
+			<if test="typistNo != null  and typistNo != ''  ">#{typistNo},</if>
+			<if test="bpNo != null  and bpNo != ''  ">#{bpNo},</if>
+			<if test="entryType != null  and entryType != ''  ">#{entryType},</if>
+			<if test="noteS != null  and noteS != ''  ">#{noteS},</if>
+			<if test="createOrg != null  and createOrg != ''  ">#{createOrg},</if>
+			<if test="ciqComp != null  and ciqComp != ''  ">#{ciqComp},</if>
+			<if test="packComp != null  and packComp != ''  ">#{packComp},</if>
+			<if test="packWarehouse != null  and packWarehouse != ''  ">#{packWarehouse},</if>
+			<if test="type != null  and type != ''  ">#{type},</if>
+			<if test="chkSurety != null  and chkSurety != ''  ">#{chkSurety},</if>
+			<if test="checkFlow != null  and checkFlow != ''  ">#{checkFlow},</if>
+			<if test="taxAaminMark != null  and taxAaminMark != ''  ">#{taxAaminMark},</if>
+			<if test="markNo != null  and markNo != ''  ">#{markNo},</if>
+			<if test="despPortCode != null  and despPortCode != ''  ">#{despPortCode},</if>
+			<if test="entyPortCode != null  and entyPortCode != ''  ">#{entyPortCode},</if>
+			<if test="goodsPlace != null  and goodsPlace != ''  ">#{goodsPlace},</if>
+			<if test="blNo != null  and blNo != ''  ">#{blNo},</if>
+			<if test="inspOrgCode != null  and inspOrgCode != ''  ">#{inspOrgCode},</if>
+			<if test="specDeclFalg != null  and specDeclFalg != ''  ">#{specDeclFalg},</if>
+			<if test="purpOrgCode != null  and purpOrgCode != ''  ">#{purpOrgCode},</if>
+			<if test="despDate != null  ">#{despDate},</if>
+			<if test="cmplDschrgDt != null  ">#{cmplDschrgDt},</if>
+			<if test="correlationReasonFlag != null  and correlationReasonFlag != ''  ">#{correlationReasonFlag},</if>
+			<if test="vsaOrgCode != null  and vsaOrgCode != ''  ">#{vsaOrgCode},</if>
+			<if test="origBoxFlag != null  and origBoxFlag != ''  ">#{origBoxFlag},</if>
+			<if test="noOtherPack != null  and noOtherPack != ''  ">#{noOtherPack},</if>
+			<if test="orgCode != null  and orgCode != ''  ">#{orgCode},</if>
+            <if test="overseasConsigneeCode != null  and overseasConsigneeCode != ''  ">#{overseasConsigneeCode},</if>
+			<if test="overseasConsignorCname != null  and overseasConsignorCname != ''  ">#{overseasConsignorCname},</if>
+			<if test="overseasConsigneeEname != null  and overseasConsigneeEname != ''  ">#{overseasConsigneeEname},</if>
+			<if test="overseasConsignorAddr != null  and overseasConsignorAddr != ''  ">#{overseasConsignorAddr},</if>
+			<if test="domesticConsigneeEname != null  and domesticConsigneeEname != ''  ">#{domesticConsigneeEname},</if>
+			<if test="correlationNo != null  and correlationNo != ''  ">#{correlationNo},</if>
+			<if test="consignorCode != null  and consignorCode != ''  ">#{consignorCode},</if>
+			<if test="ownereCiqCode != null  and ownereCiqCode != ''  ">#{ownereCiqCode},</if>
+			<if test="declRegNo != null  and declRegNo != ''  ">#{declRegNo},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateSmtCustom" parameterType="SmtCustom">
+        update smt_custom
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createBy != null  and createBy != ''  ">create_by = #{createBy},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by = #{updateBy},</if>
+            <if test="updateTime != null  ">update_time = #{updateTime},</if>
+            <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
+            <if test="status != null  and status != ''  ">status = #{status},</if>
+            <if test="custStatus != null  and custStatus != ''  ">cust_status = #{custStatus},</if>
+            <if test="delFlag != null  and delFlag != ''  ">del_flag = #{delFlag},</if>
+            <if test="opType != null  and opType != ''  ">op_type = #{opType},</if>
+            <if test="decTin != null  and decTin != ''  ">dec_tin = #{decTin},</if>
+            <if test="decMode != null  and decMode != ''  ">dec_mode = #{decMode},</if>
+            <if test="checkSurety != null  and checkSurety != ''  ">check_surety = #{checkSurety},</if>
+            <if test="billType != null  and billType != ''  ">bill_type = #{billType},</if>
+            <if test="seqNo != null  and seqNo != ''  ">seq_no = #{seqNo},</if>
+            <if test="preEntryId != null  and preEntryId != ''  ">pre_entry_id = #{preEntryId},</if>
+            <if test="entryId != null  and entryId != ''  ">entry_id = #{entryId},</if>
+            <if test="iePort != null  and iePort != ''  ">ie_port = #{iePort},</if>
+            <if test="contrNo != null  and contrNo != ''  ">contr_no = #{contrNo},</if>
+            <if test="ieDate != null  ">ie_date = #{ieDate},</if>
+            <if test="dDate != null  ">d_date = #{dDate},</if>
+            <if test="tradeCo != null  and tradeCo != ''  ">trade_co = #{tradeCo},</if>
+            <if test="tradeCoName != null  and tradeCoName != ''  ">trade_co_name = #{tradeCoName},</if>
+            <if test="coOwner != null  and coOwner != ''  ">co_owner = #{coOwner},</if>
+            <if test="tradeCoscc != null  and tradeCoscc != ''  ">trade_coscc = #{tradeCoscc},</if>
+            <if test="ownerCode != null  and ownerCode != ''  ">owner_code = #{ownerCode},</if>
+            <if test="ownerName != null  and ownerName != ''  ">owner_name = #{ownerName},</if>
+            <if test="ownerCodeScc != null  and ownerCodeScc != ''  ">owner_code_scc = #{ownerCodeScc},</if>
+            <if test="agentCode != null  and agentCode != ''  ">agent_code = #{agentCode},</if>
+            <if test="agentName != null  and agentName != ''  ">agent_name = #{agentName},</if>
+            <if test="agentCodeScc != null  and agentCodeScc != ''  ">agent_code_scc = #{agentCodeScc},</if>
+            <if test="copCodeScc != null  and copCodeScc != ''  ">cop_code_scc = #{copCodeScc},</if>
+            <if test="trafMode != null  and trafMode != ''  ">traf_mode = #{trafMode},</if>
+            <if test="trafName != null  and trafName != ''  ">traf_name = #{trafName},</if>
+            <if test="voyageNo != null  and voyageNo != ''  ">voyage_no = #{voyageNo},</if>
+            <if test="billNo != null  and billNo != ''  ">bill_no = #{billNo},</if>
+            <if test="tradeMode != null  and tradeMode != ''  ">trade_mode = #{tradeMode},</if>
+            <if test="cutMode != null  and cutMode != ''  ">cut_mode = #{cutMode},</if>
+            <if test="paymentMark != null  and paymentMark != ''  ">payment_mark = #{paymentMark},</if>
+            <if test="licenseNo != null  and licenseNo != ''  ">license_no = #{licenseNo},</if>
+            <if test="tradeAreaCode != null  and tradeAreaCode != ''  ">trade_area_code = #{tradeAreaCode},</if>
+            <if test="tradeCountry != null  and tradeCountry != ''  ">trade_country = #{tradeCountry},</if>
+            <if test="distinatePort != null  and distinatePort != ''  ">distinate_port = #{distinatePort},</if>
+            <if test="districtCode != null  and districtCode != ''  ">district_code = #{districtCode},</if>
+            <if test="apprNo != null  and apprNo != ''  ">appr_no = #{apprNo},</if>
+            <if test="promiseItems != null  and promiseItems != ''  ">promise_items = #{promiseItems},</if>
+            <if test="transMode != null  and transMode != ''  ">trans_mode = #{transMode},</if>
+            <if test="feeMark != null  and feeMark != ''  ">fee_mark = #{feeMark},</if>
+            <if test="feeRate != null  and feeRate != ''  ">fee_rate = #{feeRate},</if>
+            <if test="feeCurr != null  and feeCurr != ''  ">fee_curr = #{feeCurr},</if>
+            <if test="insurMark != null  and insurMark != ''  ">insur_mark = #{insurMark},</if>
+            <if test="insurRate != null  and insurRate != ''  ">insur_rate = #{insurRate},</if>
+            <if test="insurCurr != null  and insurCurr != ''  ">insur_curr = #{insurCurr},</if>
+            <if test="otherMark != null  and otherMark != ''  ">other_mark = #{otherMark},</if>
+            <if test="otherRate != null  and otherRate != ''  ">other_rate = #{otherRate},</if>
+            <if test="otherCurr != null  and otherCurr != ''  ">other_curr = #{otherCurr},</if>
+            <if test="packNo != null  and packNo != ''  ">pack_no = #{packNo},</if>
+            <if test="wrapType != null  and wrapType != ''  ">wrap_type = #{wrapType},</if>
+            <if test="grossWt != null  and grossWt != ''  ">gross_wt = #{grossWt},</if>
+            <if test="netWt != null  and netWt != ''  ">net_wt = #{netWt},</if>
+            <if test="containerNum != null  and containerNum != ''  ">container_num = #{containerNum},</if>
+            <if test="certMark != null  and certMark != ''  ">cert_mark = #{certMark},</if>
+            <if test="copId != null  and copId != ''  ">cop_id = #{copId},</if>
+            <if test="customMaster != null  and customMaster != ''  ">custom_master = #{customMaster},</if>
+            <if test="relativeId != null  and relativeId != ''  ">relative_id = #{relativeId},</if>
+            <if test="relativeManualNo != null  and relativeManualNo != ''  ">relative_manual_no = #{relativeManualNo},</if>
+            <if test="bondedNo != null  and bondedNo != ''  ">bonded_no = #{bondedNo},</if>
+            <if test="customsFieId != null  and customsFieId != ''  ">customs_fie_id = #{customsFieId},</if>
+            <if test="typistNo != null  and typistNo != ''  ">typist_no = #{typistNo},</if>
+            <if test="bpNo != null  and bpNo != ''  ">bp_no = #{bpNo},</if>
+            <if test="entryType != null  and entryType != ''  ">entry_type = #{entryType},</if>
+            <if test="noteS != null  and noteS != ''  ">note_s = #{noteS},</if>
+            <if test="createOrg != null  and createOrg != ''  ">create_org = #{createOrg},</if>
+            <if test="ciqComp != null  and ciqComp != ''  ">ciq_comp = #{ciqComp},</if>
+            <if test="packComp != null  and packComp != ''  ">pack_comp = #{packComp},</if>
+            <if test="packWarehouse != null  and packWarehouse != ''  ">pack_warehouse = #{packWarehouse},</if>
+            <if test="type != null  and type != ''  ">type = #{type},</if>
+            <if test="chkSurety != null  and chkSurety != ''  ">chk_surety = #{chkSurety},</if>
+            <if test="checkFlow != null  and checkFlow != ''  ">check_flow = #{checkFlow},</if>
+            <if test="taxAaminMark != null  and taxAaminMark != ''  ">tax_aamin_mark = #{taxAaminMark},</if>
+            <if test="markNo != null  and markNo != ''  ">mark_no = #{markNo},</if>
+            <if test="despPortCode != null  and despPortCode != ''  ">desp_port_code = #{despPortCode},</if>
+            <if test="entyPortCode != null  and entyPortCode != ''  ">enty_port_code = #{entyPortCode},</if>
+            <if test="goodsPlace != null  and goodsPlace != ''  ">goods_place = #{goodsPlace},</if>
+            <if test="blNo != null  and blNo != ''  ">bl_no = #{blNo},</if>
+            <if test="inspOrgCode != null  and inspOrgCode != ''  ">insp_org_code = #{inspOrgCode},</if>
+            <if test="specDeclFalg != null  and specDeclFalg != ''  ">spec_decl_falg = #{specDeclFalg},</if>
+            <if test="purpOrgCode != null  and purpOrgCode != ''  ">purp_org_code = #{purpOrgCode},</if>
+            <if test="despDate != null  ">desp_date = #{despDate},</if>
+            <if test="cmplDschrgDt != null  ">cmpl_dschrg_dt = #{cmplDschrgDt},</if>
+            <if test="correlationReasonFlag != null  and correlationReasonFlag != ''  ">correlation_reason_flag = #{correlationReasonFlag},</if>
+            <if test="vsaOrgCode != null  and vsaOrgCode != ''  ">vsa_org_code = #{vsaOrgCode},</if>
+            <if test="origBoxFlag != null  and origBoxFlag != ''  ">orig_box_flag = #{origBoxFlag},</if>
+            <if test="noOtherPack != null  and noOtherPack != ''  ">no_other_pack = #{noOtherPack},</if>
+            <if test="orgCode != null  and orgCode != ''  ">org_code = #{orgCode},</if>
+            <if test="overseasConsigneeCode != null  and overseasConsigneeCode != ''  ">overseas_consignee_code = #{overseasConsignorCname},</if>
+            <if test="overseasConsignorCname != null  and overseasConsignorCname != ''  ">overseas_consignor_cname = #{overseasConsignorCname},</if>
+            <if test="overseasConsigneeEname != null  and overseasConsigneeEname != ''  ">overseas_consignee_ename = #{overseasConsigneeEname},</if>
+            <if test="overseasConsignorAddr != null  and overseasConsignorAddr != ''  ">overseas_consignor_addr = #{overseasConsignorAddr},</if>
+            <if test="domesticConsigneeEname != null  and domesticConsigneeEname != ''  ">domestic_consignee_ename = #{domesticConsigneeEname},</if>
+            <if test="correlationNo != null  and correlationNo != ''  ">correlation_no = #{correlationNo},</if>
+            <if test="consignorCode != null  and consignorCode != ''  ">consignor_code = #{consignorCode},</if>
+            <if test="ownereCiqCode != null  and ownereCiqCode != ''  ">ownere_ciq_code = #{ownereCiqCode},</if>
+            <if test="declRegNo != null  and declRegNo != ''  ">decl_reg_no = #{declRegNo},</if>
+        </trim>
+        where custom_id = #{customId}
+    </update>
+
+	<delete id="deleteSmtCustomById" parameterType="Integer">
+        delete from smt_custom where custom_id = #{customId}
+    </delete>
+	
+    <delete id="deleteSmtCustomByIds" parameterType="String">
+        delete from smt_custom where custom_id in 
+        <foreach item="customId" collection="array" open="(" separator="," close=")">
+            #{customId}
+        </foreach>
+    </delete>
+    
+</mapper>

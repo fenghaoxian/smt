@@ -1,0 +1,641 @@
+<!DOCTYPE HTML>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-smtCustom-edit" th:object="${smtCustom}">
+            <input id="customId" name="customId" th:field="*{customId}"  type="hidden">
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建人：</label>
+				<div class="col-sm-8">
+					<input id="createBy" name="createBy" th:field="*{createBy}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建时间：</label>
+				<div class="col-sm-8">
+					<input id="createTime" name="createTime" th:field="*{createTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">更新人：</label>
+				<div class="col-sm-8">
+					<input id="updateBy" name="updateBy" th:field="*{updateBy}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">更新时间：</label>
+				<div class="col-sm-8">
+					<input id="updateTime" name="updateTime" th:field="*{updateTime}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">备注：</label>
+				<div class="col-sm-8">
+					<input id="remark" name="remark" th:field="*{remark}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">报关单状态：</label>
+				<div class="col-sm-8">
+					<input id="status" name="status" th:field="*{status}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">报关单状态(联网)：</label>
+				<div class="col-sm-8">
+					<input id="custStatus" name="custStatus" th:field="*{custStatus}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">是否删除 存在(0), 删除(2)：</label>
+				<div class="col-sm-8">
+					<input id="delFlag" name="delFlag" th:field="*{delFlag}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">业务类型代码：</label>
+				<div class="col-sm-8">
+					<input id="opType" name="opType" th:field="*{opType}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">报关转关代码：</label>
+				<div class="col-sm-8">
+					<input id="decTin" name="decTin" th:field="*{decTin}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">报关模式代码：</label>
+				<div class="col-sm-8">
+					<input id="decMode" name="decMode" th:field="*{decMode}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">担保验放：</label>
+				<div class="col-sm-8">
+					<input id="checkSurety" name="checkSurety" th:field="*{checkSurety}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">备案清单类型：</label>
+				<div class="col-sm-8">
+					<input id="billType" name="billType" th:field="*{billType}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">统一编号：</label>
+				<div class="col-sm-8">
+					<input id="seqNo" name="seqNo" th:field="*{seqNo}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">预录入编号：</label>
+				<div class="col-sm-8">
+					<input id="preEntryId" name="preEntryId" th:field="*{preEntryId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">报关单号：</label>
+				<div class="col-sm-8">
+					<input id="entryId" name="entryId" th:field="*{entryId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">出口口岸：</label>
+				<div class="col-sm-8">
+					<input id="iePort" name="iePort" th:field="*{iePort}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">合同协议号：</label>
+				<div class="col-sm-8">
+					<input id="contrNo" name="contrNo" th:field="*{contrNo}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">出口日期：</label>
+				<div class="col-sm-8">
+					<input id="ieDate" name="ieDate" th:field="*{ieDate}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">申报日期：</label>
+				<div class="col-sm-8">
+					<input id="dDate" name="dDate" th:field="*{dDate}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">收货人：</label>
+				<div class="col-sm-8">
+					<input id="tradeCo" name="tradeCo" th:field="*{tradeCo}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">收货人名称：</label>
+				<div class="col-sm-8">
+					<input id="tradeCoName" name="tradeCoName" th:field="*{tradeCoName}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">收发货人(企业类型)：</label>
+				<div class="col-sm-8">
+					<input id="coOwner" name="coOwner" th:field="*{coOwner}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">经营单位统一编码：</label>
+				<div class="col-sm-8">
+					<input id="tradeCoscc" name="tradeCoscc" th:field="*{tradeCoscc}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">生产销售单位：</label>
+				<div class="col-sm-8">
+					<input id="ownerCode" name="ownerCode" th:field="*{ownerCode}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">生产销售单位名称：</label>
+				<div class="col-sm-8">
+					<input id="ownerName" name="ownerName" th:field="*{ownerName}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">货主单位统一编码：</label>
+				<div class="col-sm-8">
+					<input id="ownerCodeScc" name="ownerCodeScc" th:field="*{ownerCodeScc}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">申报单位：</label>
+				<div class="col-sm-8">
+					<input id="agentCode" name="agentCode" th:field="*{agentCode}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">申报单位名称：</label>
+				<div class="col-sm-8">
+					<input id="agentName" name="agentName" th:field="*{agentName}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">申报单位统一编码：</label>
+				<div class="col-sm-8">
+					<input id="agentCodeScc" name="agentCodeScc" th:field="*{agentCodeScc}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">录入单位统一编码：</label>
+				<div class="col-sm-8">
+					<input id="copCodeScc" name="copCodeScc" th:field="*{copCodeScc}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">运输方式：</label>
+				<div class="col-sm-8">
+					<input id="trafMode" name="trafMode" th:field="*{trafMode}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">运输工具名称：</label>
+				<div class="col-sm-8">
+					<input id="trafName" name="trafName" th:field="*{trafName}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">航次号：</label>
+				<div class="col-sm-8">
+					<input id="voyageNo" name="voyageNo" th:field="*{voyageNo}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">提运单号：</label>
+				<div class="col-sm-8">
+					<input id="billNo" name="billNo" th:field="*{billNo}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">监管方式：</label>
+				<div class="col-sm-8">
+					<input id="tradeMode" name="tradeMode" th:field="*{tradeMode}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">征免性质：</label>
+				<div class="col-sm-8">
+					<input id="cutMode" name="cutMode" th:field="*{cutMode}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">纳税单位：</label>
+				<div class="col-sm-8">
+					<input id="paymentMark" name="paymentMark" th:field="*{paymentMark}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">许可证号：</label>
+				<div class="col-sm-8">
+					<input id="licenseNo" name="licenseNo" th:field="*{licenseNo}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">贸易国别：</label>
+				<div class="col-sm-8">
+					<input id="tradeAreaCode" name="tradeAreaCode" th:field="*{tradeAreaCode}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">抵运国：</label>
+				<div class="col-sm-8">
+					<input id="tradeCountry" name="tradeCountry" th:field="*{tradeCountry}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">抵运港：</label>
+				<div class="col-sm-8">
+					<input id="distinatePort" name="distinatePort" th:field="*{distinatePort}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">境内货源地：</label>
+				<div class="col-sm-8">
+					<input id="districtCode" name="districtCode" th:field="*{districtCode}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">批准文号：</label>
+				<div class="col-sm-8">
+					<input id="apprNo" name="apprNo" th:field="*{apprNo}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">承诺事项：</label>
+				<div class="col-sm-8">
+					<input id="promiseItems" name="promiseItems" th:field="*{promiseItems}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">成交方式：</label>
+				<div class="col-sm-8">
+					<input id="transMode" name="transMode" th:field="*{transMode}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">运费：</label>
+				<div class="col-sm-8">
+					<input id="feeMark" name="feeMark" th:field="*{feeMark}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">运费比率：</label>
+				<div class="col-sm-8">
+					<input id="feeRate" name="feeRate" th:field="*{feeRate}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">运费单位：</label>
+				<div class="col-sm-8">
+					<input id="feeCurr" name="feeCurr" th:field="*{feeCurr}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">保费：</label>
+				<div class="col-sm-8">
+					<input id="insurMark" name="insurMark" th:field="*{insurMark}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">保费比率：</label>
+				<div class="col-sm-8">
+					<input id="insurRate" name="insurRate" th:field="*{insurRate}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">保费单位：</label>
+				<div class="col-sm-8">
+					<input id="insurCurr" name="insurCurr" th:field="*{insurCurr}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">杂费：</label>
+				<div class="col-sm-8">
+					<input id="otherMark" name="otherMark" th:field="*{otherMark}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">杂费比率：</label>
+				<div class="col-sm-8">
+					<input id="otherRate" name="otherRate" th:field="*{otherRate}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">杂费单位：</label>
+				<div class="col-sm-8">
+					<input id="otherCurr" name="otherCurr" th:field="*{otherCurr}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">件数：</label>
+				<div class="col-sm-8">
+					<input id="packNo" name="packNo" th:field="*{packNo}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">包装种类：</label>
+				<div class="col-sm-8">
+					<input id="wrapType" name="wrapType" th:field="*{wrapType}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">毛重：</label>
+				<div class="col-sm-8">
+					<input id="grossWt" name="grossWt" th:field="*{grossWt}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">净重：</label>
+				<div class="col-sm-8">
+					<input id="netWt" name="netWt" th:field="*{netWt}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">集装箱数量：</label>
+				<div class="col-sm-8">
+					<input id="containerNum" name="containerNum" th:field="*{containerNum}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">随附单证：</label>
+				<div class="col-sm-8">
+					<input id="certMark" name="certMark" th:field="*{certMark}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">自定义编号：</label>
+				<div class="col-sm-8">
+					<input id="copId" name="copId" th:field="*{copId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">申报地海关：</label>
+				<div class="col-sm-8">
+					<input id="customMaster" name="customMaster" th:field="*{customMaster}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">关联报关单：</label>
+				<div class="col-sm-8">
+					<input id="relativeId" name="relativeId" th:field="*{relativeId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">关联备案：</label>
+				<div class="col-sm-8">
+					<input id="relativeManualNo" name="relativeManualNo" th:field="*{relativeManualNo}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">保税/监管场所：</label>
+				<div class="col-sm-8">
+					<input id="bondedNo" name="bondedNo" th:field="*{bondedNo}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">货场代码：</label>
+				<div class="col-sm-8">
+					<input id="customsFieId" name="customsFieId" th:field="*{customsFieId}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">操作员：</label>
+				<div class="col-sm-8">
+					<input id="typistNo" name="typistNo" th:field="*{typistNo}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">联系方式：</label>
+				<div class="col-sm-8">
+					<input id="bpNo" name="bpNo" th:field="*{bpNo}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">报关模式：</label>
+				<div class="col-sm-8">
+					<input id="entryType" name="entryType" th:field="*{entryType}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">备注：</label>
+				<div class="col-sm-8">
+					<input id="noteS" name="noteS" th:field="*{noteS}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">创建企业编码：</label>
+				<div class="col-sm-8">
+					<input id="createOrg" name="createOrg" th:field="*{createOrg}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">报检企业编码：</label>
+				<div class="col-sm-8">
+					<input id="ciqComp" name="ciqComp" th:field="*{ciqComp}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">货代公司编码：</label>
+				<div class="col-sm-8">
+					<input id="packComp" name="packComp" th:field="*{packComp}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">装箱仓库：</label>
+				<div class="col-sm-8">
+					<input id="packWarehouse" name="packWarehouse" th:field="*{packWarehouse}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">单据类型：</label>
+				<div class="col-sm-8">
+					<input id="type" name="type" th:field="*{type}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">担保验放：</label>
+				<div class="col-sm-8">
+					<input id="chkSurety" name="chkSurety" th:field="*{chkSurety}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">查验分流：</label>
+				<div class="col-sm-8">
+					<input id="checkFlow" name="checkFlow" th:field="*{checkFlow}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">税收征管标记：</label>
+				<div class="col-sm-8">
+					<input id="taxAaminMark" name="taxAaminMark" th:field="*{taxAaminMark}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">标记唛码：</label>
+				<div class="col-sm-8">
+					<input id="markNo" name="markNo" th:field="*{markNo}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">启运港代码：</label>
+				<div class="col-sm-8">
+					<input id="despPortCode" name="despPortCode" th:field="*{despPortCode}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">入境/离境口岸代码：</label>
+				<div class="col-sm-8">
+					<input id="entyPortCode" name="entyPortCode" th:field="*{entyPortCode}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">存放地点：</label>
+				<div class="col-sm-8">
+					<input id="goodsPlace" name="goodsPlace" th:field="*{goodsPlace}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">B/L号：</label>
+				<div class="col-sm-8">
+					<input id="blNo" name="blNo" th:field="*{blNo}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">口岸检验检疫机关：</label>
+				<div class="col-sm-8">
+					<input id="inspOrgCode" name="inspOrgCode" th:field="*{inspOrgCode}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">特种业务标识：</label>
+				<div class="col-sm-8">
+					<input id="specDeclFalg" name="specDeclFalg" th:field="*{specDeclFalg}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">目的地检验检疫机关：</label>
+				<div class="col-sm-8">
+					<input id="purpOrgCode" name="purpOrgCode" th:field="*{purpOrgCode}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">启运日期：</label>
+				<div class="col-sm-8">
+					<input id="despDate" name="despDate" th:field="*{despDate}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">卸毕日期：</label>
+				<div class="col-sm-8">
+					<input id="cmplDschrgDt" name="cmplDschrgDt" th:field="*{cmplDschrgDt}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">关联理由：</label>
+				<div class="col-sm-8">
+					<input id="correlationReasonFlag" name="correlationReasonFlag" th:field="*{correlationReasonFlag}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">领证机关：</label>
+				<div class="col-sm-8">
+					<input id="vsaOrgCode" name="vsaOrgCode" th:field="*{vsaOrgCode}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">原集装箱标识：</label>
+				<div class="col-sm-8">
+					<input id="origBoxFlag" name="origBoxFlag" th:field="*{origBoxFlag}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">无其他包装：</label>
+				<div class="col-sm-8">
+					<input id="noOtherPack" name="noOtherPack" th:field="*{noOtherPack}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">检验检疫受理机关：</label>
+				<div class="col-sm-8">
+					<input id="orgCode" name="orgCode" th:field="*{orgCode}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">境外收发货人名称：</label>
+				<div class="col-sm-8">
+					<input id="overseasConsignorCname" name="overseasConsignorCname" th:field="*{overseasConsignorCname}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">境外收发货人名称(外文)：</label>
+				<div class="col-sm-8">
+					<input id="overseasConsigneeEname" name="overseasConsigneeEname" th:field="*{overseasConsigneeEname}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">境外发货人地址：</label>
+				<div class="col-sm-8">
+					<input id="overseasConsignorAddr" name="overseasConsignorAddr" th:field="*{overseasConsignorAddr}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">境内收发货人名称：</label>
+				<div class="col-sm-8">
+					<input id="domesticConsigneeEname" name="domesticConsigneeEname" th:field="*{domesticConsigneeEname}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">关联号码：</label>
+				<div class="col-sm-8">
+					<input id="correlationNo" name="correlationNo" th:field="*{correlationNo}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">境内收发货人10位检验检疫编码：</label>
+				<div class="col-sm-8">
+					<input id="consignorCode" name="consignorCode" th:field="*{consignorCode}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">生产销售单位10位检验检疫编码：</label>
+				<div class="col-sm-8">
+					<input id="ownereCiqCode" name="ownereCiqCode" th:field="*{ownereCiqCode}" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">申报单位10位检验检疫编码：</label>
+				<div class="col-sm-8">
+					<input id="declRegNo" name="declRegNo" th:field="*{declRegNo}" class="form-control" type="text">
+				</div>
+			</div>
+		</form>
+    </div>
+    <div th:include="include::footer"></div>
+    <script type="text/javascript">
+		var prefix = ctx + "market/custom";
+		$("#form-smtCustom-edit").validate({
+			rules:{
+				xxxx:{
+					required:true,
+				},
+			}
+		});
+		
+		function submitHandler() {
+	        if ($.validate.form()) {
+	            $.operate.save(prefix + "/edit", $('#form-smtCustom-edit').serialize());
+	        }
+	    }
+	</script>
+</body>
+</html>
